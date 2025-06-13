@@ -12,7 +12,7 @@ services:
     networks:
       - atm_network
     ports:
-      - "3306:3306"
+      - "3307:3306"
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
@@ -25,7 +25,7 @@ services:
   wordpress:
     image: wordpress:latest
     ports:
-      - "8000:80"
+      - "8001:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: ${MYSQL_USER}
@@ -47,7 +47,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -66,7 +66,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - "81:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./frontend/build:/usr/share/nginx/html
