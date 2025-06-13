@@ -3,7 +3,7 @@ import config from '../config';
 
 const API_URL = config.apiUrl;
 
-// Log para debug
+// Log para debug..
 console.log('API URL:', API_URL);
 
 const wordpressService = {
