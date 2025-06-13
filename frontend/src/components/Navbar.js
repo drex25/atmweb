@@ -99,15 +99,14 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center space-x-2">
+          <div className="flex-shrink-0 flex items-center">
             <Link to="/">
               <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
             </Link>
-            <span className="hidden sm:inline text-atm-primary font-bold text-lg tracking-tight">ATM Misiones</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-2 w-full justify-center">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -116,7 +115,7 @@ function Navbar() {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className={`flex items-center px-4 py-2 rounded-lg font-medium transition-colors duration-200
+                  className={`flex items-center px-4 py-2 rounded-lg font-medium transition-colors duration-200 whitespace-nowrap
                 ${openMenu === item.name ? 'bg-atm-primary/10 text-atm-primary' : 'text-gray-700 hover:bg-atm-primary/5 hover:text-atm-primary'}`}
                 >
                   {item.icon && <item.icon className="h-5 w-5 mr-2 text-atm-primary" />}
@@ -140,7 +139,7 @@ function Navbar() {
                     <div className="absolute left-0 mt-3 w-screen max-w-4xl bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 grid grid-cols-3 gap-8 z-30 animate-fade-in">
                       {item.submenu.map((section) => (
                         <div key={section.title}>
-                          <h3 className="text-base font-semibold text-atm-primary mb-4">{section.title}</h3>
+                          <h3 className="text-base font-semibold text-atm-primary mb-4 whitespace-nowrap">{section.title}</h3>
                           <div className="space-y-4">
                             {section.items.map((subItem) => (
                               <Link
@@ -148,10 +147,10 @@ function Navbar() {
                                 to={subItem.href}
                                 className="block group"
                               >
-                                <p className="text-sm font-bold text-gray-900 group-hover:text-atm-primary mb-1">
+                                <p className="text-sm font-bold text-gray-900 group-hover:text-atm-primary mb-1 whitespace-nowrap">
                                   {subItem.name}
                                 </p>
-                                <p className="text-xs text-gray-500 group-hover:text-gray-700">
+                                <p className="text-xs text-gray-500 group-hover:text-gray-700 whitespace-nowrap">
                                   {subItem.description}
                                 </p>
                               </Link>
@@ -180,7 +179,7 @@ function Navbar() {
                           <Link
                             key={subItem.name}
                             to={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-atm-primary/10 hover:text-atm-primary rounded-lg"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-atm-primary/10 hover:text-atm-primary rounded-lg whitespace-nowrap"
                           >
                             {subItem.name}
                           </Link>
