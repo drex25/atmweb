@@ -11,6 +11,7 @@ import {
   BuildingLibraryIcon,
   GiftIcon,
   AcademicCapIcon,
+  ChevronDownIcon,
 } from '@heroicons/react/24/outline';
 
 // Nueva estructura de navegación con iconos
@@ -22,13 +23,28 @@ const navigation = [
     mega: true,
     icon: DocumentTextIcon,
     submenu: [
-      { name: 'Sellos', href: '/tramites/sellos' },
-      { name: 'Ingresos Brutos', href: '/tramites/ingresos-brutos' },
-      { name: 'Impuesto Inmobiliario', href: '/tramites/inmobiliario' },
-      { name: 'Control Fiscal en ruta', href: '/tramites/control-fiscal' },
-      { name: 'Tasas y Aranceles', href: '/tramites/tasas-aranceles' },
-      { name: 'Vehículos', href: '/tramites/vehiculos' },
-      { name: 'Otros trámites', href: '/tramites/otros' },
+      {
+        title: 'Impuestos',
+        items: [
+          { name: 'Sellos', href: '/tramites/sellos', description: 'Gestión de sellos y timbrados' },
+          { name: 'Ingresos Brutos', href: '/tramites/ingresos-brutos', description: 'Declaraciones y pagos' },
+          { name: 'Impuesto Inmobiliario', href: '/tramites/inmobiliario', description: 'Tasas y valuaciones' },
+        ]
+      },
+      {
+        title: 'Control y Fiscalización',
+        items: [
+          { name: 'Control Fiscal en ruta', href: '/tramites/control-fiscal', description: 'Verificación de documentación' },
+          { name: 'Tasas y Aranceles', href: '/tramites/tasas-aranceles', description: 'Pagos y gestiones' },
+          { name: 'Vehículos', href: '/tramites/vehiculos', description: 'Impuestos vehiculares' },
+        ]
+      },
+      {
+        title: 'Otros Servicios',
+        items: [
+          { name: 'Otros trámites', href: '/tramites/otros', description: 'Servicios adicionales' },
+        ]
+      }
     ],
   },
   {
@@ -36,10 +52,20 @@ const navigation = [
     mega: true,
     icon: BuildingLibraryIcon,
     submenu: [
-      { name: 'Normativas', href: '/info/normativas' },
-      { name: 'Documentación y Estadísticas', href: '/info/documentacion-estadisticas' },
-      { name: 'Padrones Productores', href: '/info/padrones-productores' },
-      { name: 'Exenciones Impositivas', href: '/info/exenciones' },
+      {
+        title: 'Documentación',
+        items: [
+          { name: 'Normativas', href: '/info/normativas', description: 'Leyes y reglamentos vigentes' },
+          { name: 'Documentación y Estadísticas', href: '/info/documentacion-estadisticas', description: 'Informes y datos' },
+        ]
+      },
+      {
+        title: 'Registros',
+        items: [
+          { name: 'Padrones Productores', href: '/info/padrones-productores', description: 'Registro de contribuyentes' },
+          { name: 'Exenciones Impositivas', href: '/info/exenciones', description: 'Beneficios y excepciones' },
+        ]
+      }
     ],
   },
   { name: 'Beneficios ATM', href: '/beneficios', icon: GiftIcon },
@@ -69,166 +95,178 @@ function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-lg shadow-lg">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4">
-        <div className="flex items-center justify-between h-14">
-          {/* Logo a la izquierda, solo imagen */}
-          <div className="flex items-center flex-shrink-0">
+    <nav className="sticky top-0 z-50 w-full bg-white shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
             <Link to="/">
-              <img src="/logo-atm.png" alt="ATM Misiones" className="h-9 w-auto drop-shadow" />
+              <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
             </Link>
           </div>
 
-          {/* Menú desktop centrado y bien distribuido */}
-          <div className="hidden md:flex flex-1 justify-center">
-            <ul className="flex space-x-3 bg-white/40 rounded-full px-4 py-1 shadow-inner items-center">
-              {navigation.map((item) =>
-                item.submenu ? (
-                  <div
-                    key={item.name}
-                    className="relative"
-                    onMouseEnter={() => handleMouseEnter(item.name)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <button className="px-3 py-1 rounded-full text-gray-700 font-medium hover:bg-white/70 transition-all focus:outline-none whitespace-nowrap">
-                      {item.name}
-                    </button>
-                    <Transition
-                      show={openMenu === item.name}
-                      enter="transition ease-out duration-150"
-                      enterFrom="opacity-0 translate-y-2"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 translate-y-2"
-                    >
-                      <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl py-2 z-30">
-                        {item.submenu.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            to={sub.href}
-                            className="block px-4 py-2 text-gray-700 rounded-xl hover:bg-atm-primary/10 hover:text-atm-primary transition-colors whitespace-nowrap"
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </Transition>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-4">
+            {navigation.map((item) => (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(item.name)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button className="flex items-center px-3 py-2 text-gray-700 hover:text-atm-primary transition-colors">
+                  <span>{item.name}</span>
+                  {item.mega && (
+                    <ChevronDownIcon className="ml-1 h-4 w-4" />
+                  )}
+                </button>
+
+                {item.mega && openMenu === item.name && (
+                  <div className="absolute left-0 mt-2 w-screen max-w-4xl bg-white rounded-xl shadow-xl border border-gray-100">
+                    <div className="p-6 grid grid-cols-3 gap-8">
+                      {item.submenu.map((section) => (
+                        <div key={section.title}>
+                          <h3 className="text-sm font-semibold text-gray-900 mb-4">{section.title}</h3>
+                          <div className="space-y-4">
+                            {section.items.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                to={subItem.href}
+                                className="block group"
+                              >
+                                <p className="text-sm font-medium text-gray-900 group-hover:text-atm-primary">
+                                  {subItem.name}
+                                </p>
+                                <p className="text-xs text-gray-500 group-hover:text-gray-700">
+                                  {subItem.description}
+                                </p>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ) : (
-                  <li key={item.name}>
-                    <Link
-                      to={item.href}
-                      className="px-3 py-1 rounded-full text-gray-700 font-medium hover:bg-white/70 transition-all whitespace-nowrap"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
+                )}
+
+                {!item.mega && item.submenu && openMenu === item.name && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100">
+                    <div className="py-2">
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          to={subItem.href}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-atm-primary"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
-          {/* Buscador a la derecha, compacto */}
-          <div className="hidden md:flex items-center ml-2 min-w-[180px] max-w-xs w-full justify-end">
-            <form onSubmit={handleSearch} className="flex items-center bg-white/80 rounded-full shadow-inner px-2 py-1 focus-within:ring-2 focus-within:ring-atm-primary transition-all w-full">
-              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+          {/* Search Bar */}
+          <div className="hidden md:flex items-center">
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar..."
-                className="flex-1 bg-transparent outline-none px-2 py-1 text-gray-700 rounded-full text-sm"
+                className="w-64 pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent"
               />
-              <button
-                type="submit"
-                className="ml-2 bg-atm-primary text-white rounded-full px-3 py-1 font-semibold shadow hover:bg-opacity-90 transition-all text-sm"
-              >
-                Buscar
-              </button>
+              <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
             </form>
           </div>
 
-          {/* Botón menú móvil */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile menu button */}
+          <div className="md:hidden">
             <button
               onClick={() => setMobileOpen(true)}
-              className="p-2 rounded-full bg-white/70 hover:bg-atm-primary/10 text-atm-primary focus:outline-none"
+              className="p-2 rounded-md text-gray-700 hover:text-atm-primary focus:outline-none"
             >
-              <MenuIcon className="h-7 w-7" />
+              <MenuIcon className="h-6 w-6" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Menú móvil tipo off-canvas */}
+      {/* Mobile menu */}
       <Transition show={mobileOpen}>
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <div className="absolute top-0 left-0 h-full w-72 bg-white/95 shadow-2xl p-6 flex flex-col gap-6 animate-slide-in rounded-tr-3xl rounded-br-3xl">
-            <div className="flex items-center justify-between mb-4">
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl">
+            <div className="flex items-center justify-between p-4 border-b">
               <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
+                <img src="/logo-atm.png" alt="ATM Misiones" className="h-8 w-auto" />
               </Link>
-              <button onClick={() => setMobileOpen(false)} className="p-2 rounded-full hover:bg-atm-primary/10">
-                <XIcon className="h-7 w-7 text-atm-primary" />
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2 rounded-md text-gray-700 hover:text-atm-primary"
+              >
+                <XIcon className="h-6 w-6" />
               </button>
             </div>
-            <nav className="flex-1 flex flex-col gap-2">
-              {navigation.map((item) =>
-                item.submenu ? (
+
+            <div className="p-4">
+              <form onSubmit={handleSearch} className="mb-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Buscar..."
+                    className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary"
+                  />
+                  <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                </div>
+              </form>
+
+              <nav className="space-y-1">
+                {navigation.map((item) => (
                   <Disclosure key={item.name}>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="w-full flex justify-between items-center px-4 py-2 rounded-xl text-gray-700 font-medium hover:bg-atm-primary/10 transition-all">
+                        <Disclosure.Button className="w-full flex items-center justify-between px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
                           <span>{item.name}</span>
-                          <svg className={`h-4 w-4 ml-2 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
+                          {item.submenu && (
+                            <ChevronDownIcon
+                              className={`h-5 w-5 transform transition-transform ${
+                                open ? 'rotate-180' : ''
+                              }`}
+                            />
+                          )}
                         </Disclosure.Button>
-                        <Disclosure.Panel className="pl-4 flex flex-col gap-1 mt-1">
-                          {item.submenu.map((sub) => (
-                            <Link
-                              key={sub.name}
-                              to={sub.href}
-                              className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-atm-primary/10 hover:text-atm-primary transition-colors"
-                              onClick={() => setMobileOpen(false)}
-                            >
-                              {sub.name}
-                            </Link>
-                          ))}
-                        </Disclosure.Panel>
+                        {item.submenu && (
+                          <Disclosure.Panel className="pl-4 space-y-1">
+                            {item.submenu.map((section) => (
+                              <div key={section.title} className="py-2">
+                                <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                                  {section.title}
+                                </h3>
+                                {section.items.map((subItem) => (
+                                  <Link
+                                    key={subItem.name}
+                                    to={subItem.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg"
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            ))}
+                          </Disclosure.Panel>
+                        )}
                       </>
                     )}
                   </Disclosure>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="block px-4 py-2 rounded-xl text-gray-700 font-medium hover:bg-atm-primary/10 transition-colors"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              )}
-            </nav>
-            <form onSubmit={handleSearch} className="flex items-center bg-gray-100 rounded-full shadow-inner px-3 py-1 mt-4">
-              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Buscar..."
-                className="flex-1 bg-transparent outline-none px-2 py-1 text-gray-700 rounded-full"
-              />
-              <button
-                type="submit"
-                className="ml-2 bg-atm-primary text-white rounded-full px-4 py-1 font-semibold shadow hover:bg-opacity-90 transition-all"
-              >
-                Buscar
-              </button>
-            </form>
+                ))}
+              </nav>
+            </div>
           </div>
         </div>
       </Transition>
