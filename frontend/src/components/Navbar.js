@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Transition } from '@headlessui/react';
 import {
   Bars3Icon as MenuIcon,
   XMarkIcon as XIcon,
@@ -56,6 +56,7 @@ const navigation = [
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Función para manejar hover en desktop
   const handleMouseEnter = (name) => setOpenMenu(name);
@@ -68,176 +69,176 @@ function Navbar() {
   };
 
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 bg-gradient-to-r from-atm-primary/80 to-atm-secondary/80 backdrop-blur-md shadow-xl transition-all">
-      {({ open }) => (
-        <>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-20">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Link to="/" className="flex items-center space-x-2">
-                    <img
-                      src="/logo-atm.png"
-                      alt="ATM Misiones"
-                      className="h-10 w-auto drop-shadow-md"
-                    />
-                    <span className="text-white font-bold text-xl tracking-wide drop-shadow">ATM Misiones</span>
-                  </Link>
-                </div>
-              </div>
-              {/* Buscador */}
-              <div className="hidden md:block flex-1 mx-8">
-                <form onSubmit={handleSearch} className="flex items-center bg-white/80 rounded-full shadow-inner px-2 py-1 focus-within:ring-2 focus-within:ring-atm-primary transition-all">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 ml-2" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar en ATM Misiones..."
-                    className="flex-1 bg-transparent outline-none px-3 py-2 text-gray-700 rounded-full"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-atm-accent text-white rounded-full px-4 py-2 ml-2 font-semibold shadow hover:bg-opacity-90 transition-all"
-                  >
-                    Buscar
-                  </button>
-                </form>
-              </div>
-              {/* Menú principal */}
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-2 relative">
-                  {navigation.map((item) =>
-                    item.submenu ? (
-                      <div
-                        key={item.name}
-                        className="relative group"
-                        onMouseEnter={() => handleMouseEnter(item.name)}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        <button
-                          className="flex items-center gap-2 text-white hover:bg-white/10 hover:text-atm-accent px-4 py-2 rounded-full text-base font-medium transition-all shadow-sm"
-                        >
-                          {item.icon && <item.icon className="h-5 w-5" />}
-                          {item.name}
-                          <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </button>
-                        {/* Mega menú o submenú */}
-                        {item.mega ? (
-                          openMenu === item.name && (
-                            <div className="absolute left-0 mt-3 w-[32rem] bg-white/95 shadow-2xl rounded-2xl z-30 p-6 grid grid-cols-2 gap-6 animate-fade-in border border-gray-100 backdrop-blur-xl">
-                              {item.submenu.map((sub, idx) => (
-                                <Link
-                                  key={sub.name}
-                                  to={sub.href}
-                                  className="block text-gray-700 hover:text-atm-primary py-2 px-3 rounded-lg transition-colors text-lg font-medium hover:bg-atm-primary/10"
-                                >
-                                  <div className="flex items-center space-x-2">
-                                    <span className="text-xl">•</span>
-                                    <span>{sub.name}</span>
-                                  </div>
-                                </Link>
-                              ))}
-                            </div>
-                          )
-                        ) : (
-                          openMenu === item.name && (
-                            <div className="absolute left-0 mt-3 w-56 bg-white/95 shadow-2xl rounded-2xl z-30 animate-fade-in border border-gray-100 backdrop-blur-xl">
-                              {item.submenu.map((sub) => (
-                                <Link
-                                  key={sub.name}
-                                  to={sub.href}
-                                  className="block text-gray-700 hover:text-atm-primary py-2 px-4 rounded-lg transition-colors font-medium hover:bg-atm-primary/10"
-                                >
-                                  {sub.name}
-                                </Link>
-                              ))}
-                            </div>
-                          )
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className="flex items-center gap-2 text-white hover:bg-white/10 hover:text-atm-accent px-4 py-2 rounded-full text-base font-medium transition-all shadow-sm"
-                      >
-                        {item.icon && <item.icon className="h-5 w-5" />}
-                        {item.name}
-                      </Link>
-                    )
-                  )}
-                </div>
-              </div>
-              <div className="-mr-2 flex md:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-atm-secondary focus:outline-none">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-            </div>
+    <nav className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-lg shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo a la izquierda */}
+          <div className="flex items-center flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-2">
+              <img
+                src="/logo-atm.png"
+                alt="ATM Misiones"
+                className="h-10 w-auto drop-shadow"
+              />
+              <span className="text-atm-primary font-bold text-xl tracking-wide drop-shadow">ATM Misiones</span>
+            </Link>
           </div>
-          {/* Menú móvil */}
-          <Disclosure.Panel className="md:hidden bg-white/95 backdrop-blur-xl shadow-xl border-b border-gray-100 animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+
+          {/* Menú desktop centrado */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <ul className="flex space-x-2 bg-white/40 rounded-full px-6 py-2 shadow-inner">
               {navigation.map((item) =>
                 item.submenu ? (
-                  <div key={item.name} className="mb-2">
-                    <span className="flex items-center gap-2 text-atm-primary font-semibold px-3 py-2">
-                      {item.icon && <item.icon className="h-5 w-5" />}
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => handleMouseEnter(item.name)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <button className="px-4 py-2 rounded-full text-gray-700 font-medium hover:bg-white/70 transition-all focus:outline-none">
                       {item.name}
-                    </span>
-                    <div className="pl-6">
-                      {item.submenu.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          to={sub.href}
-                          className="block text-gray-700 hover:bg-atm-primary/10 hover:text-atm-primary px-3 py-2 rounded-md text-base font-medium transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
+                    </button>
+                    <Transition
+                      show={openMenu === item.name}
+                      enter="transition ease-out duration-150"
+                      enterFrom="opacity-0 translate-y-2"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-2"
+                    >
+                      <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-48 bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl py-2 z-30">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            to={sub.href}
+                            className="block px-4 py-2 text-gray-700 rounded-xl hover:bg-atm-primary/10 hover:text-atm-primary transition-colors"
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </Transition>
                   </div>
+                ) : (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      className="px-4 py-2 rounded-full text-gray-700 font-medium hover:bg-white/70 transition-all"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Buscador a la derecha */}
+          <div className="hidden md:flex items-center ml-4">
+            <form onSubmit={handleSearch} className="flex items-center bg-white/80 rounded-full shadow-inner px-3 py-1 focus-within:ring-2 focus-within:ring-atm-primary transition-all">
+              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar..."
+                className="flex-1 bg-transparent outline-none px-2 py-1 text-gray-700 rounded-full"
+              />
+              <button
+                type="submit"
+                className="ml-2 bg-atm-primary text-white rounded-full px-4 py-1 font-semibold shadow hover:bg-opacity-90 transition-all"
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
+
+          {/* Botón menú móvil */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="p-2 rounded-full bg-white/70 hover:bg-atm-primary/10 text-atm-primary focus:outline-none"
+            >
+              <MenuIcon className="h-7 w-7" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Menú móvil tipo off-canvas */}
+      <Transition show={mobileOpen}>
+        <div className="fixed inset-0 z-50">
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="absolute top-0 left-0 h-full w-72 bg-white/95 shadow-2xl p-6 flex flex-col gap-6 animate-slide-in rounded-tr-3xl rounded-br-3xl">
+            <div className="flex items-center justify-between mb-4">
+              <Link to="/" className="flex items-center space-x-2" onClick={() => setMobileOpen(false)}>
+                <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
+                <span className="text-atm-primary font-bold text-xl">ATM</span>
+              </Link>
+              <button onClick={() => setMobileOpen(false)} className="p-2 rounded-full hover:bg-atm-primary/10">
+                <XIcon className="h-7 w-7 text-atm-primary" />
+              </button>
+            </div>
+            <nav className="flex-1 flex flex-col gap-2">
+              {navigation.map((item) =>
+                item.submenu ? (
+                  <Disclosure key={item.name}>
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="w-full flex justify-between items-center px-4 py-2 rounded-xl text-gray-700 font-medium hover:bg-atm-primary/10 transition-all">
+                          <span>{item.name}</span>
+                          <svg className={`h-4 w-4 ml-2 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </Disclosure.Button>
+                        <Disclosure.Panel className="pl-4 flex flex-col gap-1 mt-1">
+                          {item.submenu.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              to={sub.href}
+                              className="block px-4 py-2 rounded-lg text-gray-600 hover:bg-atm-primary/10 hover:text-atm-primary transition-colors"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
                 ) : (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="flex items-center gap-2 text-atm-primary hover:bg-atm-primary/10 hover:text-atm-accent block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                    className="block px-4 py-2 rounded-xl text-gray-700 font-medium hover:bg-atm-primary/10 transition-colors"
+                    onClick={() => setMobileOpen(false)}
                   >
-                    {item.icon && <item.icon className="h-5 w-5" />}
                     {item.name}
                   </Link>
                 )
               )}
-              {/* Buscador móvil */}
-              <form onSubmit={handleSearch} className="flex items-center bg-gray-100 rounded-full shadow-inner px-2 py-1 mt-4">
-                <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 ml-2" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Buscar en ATM Misiones..."
-                  className="flex-1 bg-transparent outline-none px-3 py-2 text-gray-700 rounded-full"
-                />
-                <button
-                  type="submit"
-                  className="bg-atm-accent text-white rounded-full px-4 py-2 ml-2 font-semibold shadow hover:bg-opacity-90 transition-all"
-                >
-                  Buscar
-                </button>
-              </form>
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+            </nav>
+            <form onSubmit={handleSearch} className="flex items-center bg-gray-100 rounded-full shadow-inner px-3 py-1 mt-4">
+              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar..."
+                className="flex-1 bg-transparent outline-none px-2 py-1 text-gray-700 rounded-full"
+              />
+              <button
+                type="submit"
+                className="ml-2 bg-atm-primary text-white rounded-full px-4 py-1 font-semibold shadow hover:bg-opacity-90 transition-all"
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
+        </div>
+      </Transition>
+    </nav>
   );
 }
 
