@@ -20,18 +20,19 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Debug VPS_HOST
+      - name: Debug VPS_HOST and VPS_PORT
         run: |
-          echo "VPS_HOST value: '${{ secrets.VPS_HOST }}'"
+          echo "VPS_HOST = '${{ secrets.VPS_HOST }}'"
+          echo "VPS_PORT = '${{ secrets.VPS_PORT }}'"
 
       - name: Add VPS to known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.VPS_PORT }} -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy on VPS
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          ssh -p ${{ secrets.VPS_PORT }} ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd ~/atmweb || exit 1
             git pull origin main
             docker compose down
