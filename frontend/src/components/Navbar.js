@@ -95,38 +95,52 @@ function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white shadow-lg">
+    <nav className="sticky top-0 z-50 w-full bg-white shadow-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center space-x-2">
             <Link to="/">
               <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
             </Link>
+            <span className="hidden sm:inline text-atm-primary font-bold text-lg tracking-tight">ATM Misiones</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2">
             {navigation.map((item) => (
               <div
                 key={item.name}
-                className="relative"
+                className="relative group"
                 onMouseEnter={() => handleMouseEnter(item.name)}
                 onMouseLeave={handleMouseLeave}
               >
-                <button className="flex items-center px-3 py-2 text-gray-700 hover:text-atm-primary transition-colors">
+                <button
+                  className={`flex items-center px-4 py-2 rounded-lg font-medium transition-colors duration-200
+                ${openMenu === item.name ? 'bg-atm-primary/10 text-atm-primary' : 'text-gray-700 hover:bg-atm-primary/5 hover:text-atm-primary'}`}
+                >
+                  {item.icon && <item.icon className="h-5 w-5 mr-2 text-atm-primary" />}
                   <span>{item.name}</span>
-                  {item.mega && (
-                    <ChevronDownIcon className="ml-1 h-4 w-4" />
+                  {(item.mega || item.submenu) && (
+                    <ChevronDownIcon className="ml-1 h-4 w-4 text-atm-primary" />
                   )}
                 </button>
 
+                {/* Mega menú */}
                 {item.mega && openMenu === item.name && (
-                  <div className="absolute left-0 mt-2 w-screen max-w-4xl bg-white rounded-xl shadow-xl border border-gray-100">
-                    <div className="p-6 grid grid-cols-3 gap-8">
+                  <Transition
+                    show={openMenu === item.name}
+                    enter="transition ease-out duration-200"
+                    enterFrom="opacity-0 translate-y-2"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in duration-150"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 translate-y-2"
+                  >
+                    <div className="absolute left-0 mt-3 w-screen max-w-4xl bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 grid grid-cols-3 gap-8 z-30 animate-fade-in">
                       {item.submenu.map((section) => (
                         <div key={section.title}>
-                          <h3 className="text-sm font-semibold text-gray-900 mb-4">{section.title}</h3>
+                          <h3 className="text-base font-semibold text-atm-primary mb-4">{section.title}</h3>
                           <div className="space-y-4">
                             {section.items.map((subItem) => (
                               <Link
@@ -134,7 +148,7 @@ function Navbar() {
                                 to={subItem.href}
                                 className="block group"
                               >
-                                <p className="text-sm font-medium text-gray-900 group-hover:text-atm-primary">
+                                <p className="text-sm font-bold text-gray-900 group-hover:text-atm-primary mb-1">
                                   {subItem.name}
                                 </p>
                                 <p className="text-xs text-gray-500 group-hover:text-gray-700">
@@ -146,37 +160,48 @@ function Navbar() {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </Transition>
                 )}
 
+                {/* Submenú simple */}
                 {!item.mega && item.submenu && openMenu === item.name && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100">
-                    <div className="py-2">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-atm-primary"
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
+                  <Transition
+                    show={openMenu === item.name}
+                    enter="transition ease-out duration-200"
+                    enterFrom="opacity-0 translate-y-2"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in duration-150"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 translate-y-2"
+                  >
+                    <div className="absolute left-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-30 animate-fade-in">
+                      <div className="py-2">
+                        {item.submenu.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-atm-primary/10 hover:text-atm-primary rounded-lg"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  </Transition>
                 )}
               </div>
             ))}
           </div>
 
           {/* Search Bar */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center ml-4">
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar..."
-                className="w-64 pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent"
+                className="w-64 pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent bg-gray-50"
               />
               <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
             </form>
@@ -219,7 +244,7 @@ function Navbar() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Buscar..."
-                    className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary"
+                    className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary bg-gray-50"
                   />
                   <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
                 </div>
@@ -230,21 +255,22 @@ function Navbar() {
                   <Disclosure key={item.name}>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="w-full flex items-center justify-between px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-                          <span>{item.name}</span>
+                        <Disclosure.Button className="w-full flex items-center justify-between px-4 py-2 text-gray-700 hover:bg-atm-primary/10 rounded-lg font-medium">
+                          <span className="flex items-center">
+                            {item.icon && <item.icon className="h-5 w-5 mr-2 text-atm-primary" />}
+                            {item.name}
+                          </span>
                           {item.submenu && (
                             <ChevronDownIcon
-                              className={`h-5 w-5 transform transition-transform ${
-                                open ? 'rotate-180' : ''
-                              }`}
+                              className={`h-5 w-5 transform transition-transform ${open ? 'rotate-180' : ''}`}
                             />
                           )}
                         </Disclosure.Button>
-                        {item.submenu && (
-                          <Disclosure.Panel className="pl-4 space-y-1">
+                        {item.mega && item.submenu && (
+                          <Disclosure.Panel className="pl-4 space-y-2">
                             {item.submenu.map((section) => (
                               <div key={section.title} className="py-2">
-                                <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                                <h3 className="text-sm font-semibold text-atm-primary mb-2">
                                   {section.title}
                                 </h3>
                                 {section.items.map((subItem) => (
@@ -252,12 +278,26 @@ function Navbar() {
                                     key={subItem.name}
                                     to={subItem.href}
                                     onClick={() => setMobileOpen(false)}
-                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-atm-primary/10 rounded-lg"
                                   >
                                     {subItem.name}
                                   </Link>
                                 ))}
                               </div>
+                            ))}
+                          </Disclosure.Panel>
+                        )}
+                        {!item.mega && item.submenu && (
+                          <Disclosure.Panel className="pl-4 space-y-1">
+                            {item.submenu.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                to={subItem.href}
+                                onClick={() => setMobileOpen(false)}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-atm-primary/10 rounded-lg"
+                              >
+                                {subItem.name}
+                              </Link>
                             ))}
                           </Disclosure.Panel>
                         )}
