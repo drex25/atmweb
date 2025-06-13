@@ -14,9 +14,8 @@ node_modules/
 .env
 .env.*
 !.env.example
-.env.development
-.env.production
-.env.development.docker
+
+
 
 # WordPress specific
 /backend/wp-config.php
