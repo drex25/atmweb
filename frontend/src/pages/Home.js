@@ -10,7 +10,7 @@ function Home() {
           <div className="text-center">
             <h1 className="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
               <span className="block">ATM Misiones</span>
-              <span className="block text-atm-accent">Administración de Transporte de Misiones</span>
+              <span className="block text-atm-accent">Agencia Tributaria Misiones</span>
             </h1>
             <p className="mt-3 max-w-md mx-auto text-base sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
               Gestionando el transporte público de la provincia de Misiones con eficiencia y compromiso.
