@@ -9,7 +9,7 @@ function Footer() {
           {/* Contact Information */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Contacto</h3>
-            <p className="mb-2">Av. Rivadavia 1866</p>
+            <p className="mb-2">Av.</p>
             <p className="mb-2">Posadas, Misiones</p>
             <p className="mb-2">Tel: (0376) 444-4444</p>
             <p>Email: info@atmisiones.gob.ar</p>
