@@ -12,6 +12,11 @@ import {
   GiftIcon,
   AcademicCapIcon,
   ChevronDownIcon,
+  PhoneIcon,
+  KeyIcon,
+  DocumentPlusIcon,
+  QuestionMarkCircleIcon,
+  BookOpenIcon,
 } from '@heroicons/react/24/outline';
 
 // Estructura de navegación optimizada
@@ -286,21 +291,69 @@ function Navbar() {
             />
             
             {/* Menu Panel */}
-            <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300">
+            <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 flex flex-col">
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-atm-primary to-atm-secondary">
                 <Link to="/" onClick={() => setMobileOpen(false)}>
-                  <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto" />
+                  <img src="/logo-atm.png" alt="ATM Misiones" className="h-10 w-auto filter brightness-0 invert" />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                  className="p-2 rounded-lg text-white hover:bg-white/20 transition-colors duration-200"
                 >
                   <XIcon className="h-6 w-6" />
                 </button>
               </div>
 
-              {/* Navigation - Sin búsqueda duplicada */}
+              {/* Teléfono de contacto */}
+              <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-100">
+                <a 
+                  href="tel:0810-444-5505"
+                  className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                >
+                  <PhoneIcon className="h-5 w-5 mr-3" />
+                  <span className="text-lg">0810-444-5505</span>
+                </a>
+              </div>
+
+              {/* Accesos Clave Fiscal */}
+              <div className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-b border-gray-100 space-y-3">
+                <h3 className="text-sm font-bold text-atm-primary uppercase tracking-wide mb-3 text-center">
+                  Acceso Digital
+                </h3>
+                
+                {/* Ingresar con Clave Fiscal */}
+                <button className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-atm-primary to-atm-secondary text-white rounded-xl font-semibold hover:from-atm-secondary hover:to-atm-primary transition-all duration-200 transform hover:scale-105 shadow-lg">
+                  <KeyIcon className="h-5 w-5 mr-3" />
+                  <span>Ingresar con Clave Fiscal</span>
+                </button>
+
+                {/* Sección ¿No tenés Clave Fiscal? */}
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                  <p className="text-sm text-gray-600 font-medium mb-3 text-center">
+                    ¿No tenés Clave Fiscal?
+                  </p>
+                  
+                  <div className="space-y-2">
+                    <button className="flex items-center justify-center w-full px-3 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-200 text-sm shadow-md">
+                      <DocumentPlusIcon className="h-4 w-4 mr-2" />
+                      <span>Obtenela</span>
+                    </button>
+                    
+                    <button className="flex items-center justify-center w-full px-3 py-2.5 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-all duration-200 text-sm shadow-md">
+                      <DocumentTextIcon className="h-4 w-4 mr-2" />
+                      <span>Constancia de Inscripción</span>
+                    </button>
+                    
+                    <button className="flex items-center justify-center w-full px-3 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-sm shadow-md">
+                      <BookOpenIcon className="h-4 w-4 mr-2" />
+                      <span>Guía para Clave Fiscal</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation */}
               <div className="flex-1 overflow-y-auto p-4">
                 <nav className="space-y-2">
                   {navigation.map((item) => (
