@@ -136,7 +136,7 @@ function Navbar() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-2"
                       >
-                        <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-[900px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 grid grid-cols-1 md:grid-cols-3 gap-8 z-30 animate-fade-in">
+                        <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-[600px] bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 grid grid-cols-1 md:grid-cols-2 gap-8 z-30 animate-fade-in">
                           {item.submenu.map((section) => (
                             <div key={section.title}>
                               <h3 className="text-base font-semibold text-atm-primary mb-4 whitespace-nowrap">{section.title}</h3>
