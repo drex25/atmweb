@@ -92,6 +92,19 @@ const wordpressService = {
       console.error('Error fetching categories:', error);
       throw error;
     }
+  },
+
+  // Obtener slides (CPT)
+  getSlides: async () => {
+    try {
+      const response = await axios.get(`${API_URL}/wp/v2/slides`, {
+        params: { _embed: true }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching slides:', error);
+      throw error;
+    }
   }
 };
 
