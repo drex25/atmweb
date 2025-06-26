@@ -27,9 +27,9 @@ function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center">
               <img 
-                src="/logo-atm.png" 
-                alt="ATM Misiones" 
-                className="h-16 w-auto filter brightness-0 invert"
+                src="/misiones.png" 
+                alt="Misiones" 
+                className="h-16 w-auto"
               />
             </div>
             
