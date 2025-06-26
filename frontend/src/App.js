@@ -15,8 +15,11 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/" element={<PostList />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/posts" element={<PostList />} />
             <Route path="/post/:slug" element={<PostDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
