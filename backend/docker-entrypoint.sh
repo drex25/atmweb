@@ -24,5 +24,9 @@ if [ $ATTEMPT -gt $MAX_ATTEMPTS ]; then
     exit 1
 fi
 
+# Asegura permisos correctos en uploads
+chown -R www-data:www-data /var/www/html/wp-content/uploads
+chmod -R 775 /var/www/html/wp-content/uploads
+
 # Start Apache
 exec apache2-foreground 
