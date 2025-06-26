@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
+import IngresosBrutos from './pages/IngresosBrutos';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/post/:slug" element={<PostDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/tramites/ingresos-brutos" element={<IngresosBrutos />} />
           </Routes>
         </main>
         <Footer />
