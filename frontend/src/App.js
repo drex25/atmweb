@@ -11,6 +11,7 @@ import IngresosBrutos from './pages/IngresosBrutos';
 import ImpuestoInmobiliario from './pages/ImpuestoInmobiliario';
 import ControlFiscal from './pages/ControlFiscal';
 import TasasYAranceles from './pages/TasaYAranceles';
+import Vehículos from './pages/Vehiculos';
 import Normativas from './pages/Normativas';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/tramites/inmobiliario" element={<ImpuestoInmobiliario />} />
             <Route path="/tramites/control-fiscal" element={<ControlFiscal/>} />
             <Route path="/tramites/tasas-aranceles" element={<TasasYAranceles/>} />
+            <Route path="/tramites/vehiculos" element={<Vehículos/>} />
             <Route path="/informacion-fiscal/normativas" element={<Normativas/>} />
           </Routes>
         </main>

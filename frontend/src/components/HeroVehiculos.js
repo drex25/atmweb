@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function HeroTasasAranceles({
-  title = 'TASAS Y ARANCELES',
-  description = 'Adéntrate en el mundo de tasas y aranceles: Para comprender, calcular y gestionar de manera sencilla las obligaciones tributarias en Misiones.',
-  backgroundImage = '/tasasaranceles.png',
+export default function HeroVehiculos({
+  title = 'VEHÍCULOS',
+  description = 'Información clave sobre la gestión y trámites relacionados con vehículos y embarcaciones. Simplificamos el proceso para que puedas realizar tus gestiones vehiculares de manera eficiente.',
+  backgroundImage = '/vehiculos.png',
   breadcrumbs = [
     { label: 'ATM', active: false },
-    { label: 'Tasas y Aranceles', active: true },
+    { label: 'Vehículos', active: true },
   ],
 }) {
   return (
