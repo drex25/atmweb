@@ -135,12 +135,19 @@ function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link to="/" className="flex items-center" aria-label="Ir al inicio">
+            <div className="flex-shrink-0 mr-12">
+              <Link to="/" className="flex items-center gap-2" aria-label="Ir al inicio">
                 <img 
                   src="/logo-atm.png" 
                   alt="ATM Misiones" 
-                  className="h-14 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200" 
+                  className="h-16 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200" 
+                  style={{maxHeight:'70px'}}
+                />
+                <img
+                  src="/ods.png"
+                  alt="ODS Misiones"
+                  className="h-10 w-auto ml-1 drop-shadow-sm transition-all duration-200"
+                  style={{maxHeight:'44px'}}
                 />
               </Link>
             </div>
@@ -157,14 +164,14 @@ function Navbar() {
                     {item.href ? (
                       <Link
                         to={item.href}
-                        className="flex items-center px-4 py-2 rounded-lg font-medium text-sm text-gray-700 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 group"
+                        className="flex items-center px-4 py-2 rounded-lg font-semibold text-base text-gray-700 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 group"
                       >
-                        <item.icon className="h-4 w-4 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
+                        <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
                         <span>{item.name}</span>
                       </Link>
                     ) : (
                       <button
-                        className={`flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 group ${
+                        className={`flex items-center px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 group ${
                           openMenu === item.name 
                             ? 'text-atm-primary bg-gray-50' 
                             : 'text-gray-700 hover:text-atm-primary hover:bg-gray-50'
@@ -172,9 +179,9 @@ function Navbar() {
                         aria-haspopup="true"
                         aria-expanded={openMenu === item.name}
                       >
-                        <item.icon className="h-4 w-4 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
+                        <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
                         <span>{item.name}</span>
-                        <ChevronDownIcon className={`ml-2 h-4 w-4 text-atm-primary transition-transform duration-200 ${
+                        <ChevronDownIcon className={`ml-2 h-5 w-5 text-atm-primary transition-transform duration-200 ${
                           openMenu === item.name ? 'rotate-180' : 'group-hover:rotate-180'
                         }`} />
                       </button>
@@ -423,29 +430,35 @@ function Navbar() {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 -translate-y-2"
       >
-        <div className="relative z-40 bg-white border-b border-gray-100 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex justify-end">
-              <form onSubmit={handleSearch} className="relative w-full max-w-md">
+        <>
+          {/* Overlay oscuro, pero no bloquea interacción */}
+          <div className="fixed inset-0 bg-black/20 z-[99] pointer-events-none transition-opacity animate-fade-in" aria-hidden="true" />
+          {/* Modal de búsqueda más adentro y campo más a la izquierda */}
+          <div className="fixed top-[88px] right-20 z-[100] w-full max-w-md animate-fade-in">
+            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 relative flex justify-start">
+              <button onClick={() => setShowSearch(false)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition" aria-label="Cerrar búsqueda">
+                <XIcon className="h-5 w-5" />
+              </button>
+              <form onSubmit={handleSearch} className="relative w-[90%] min-w-[220px]">
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Buscar información, trámites..."
-                  className="w-full pl-10 pr-20 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent bg-gray-50 text-sm shadow-sm"
+                  className="w-full pl-10 pr-20 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent bg-gray-50 text-base shadow-sm"
                   autoFocus
                 />
                 <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-atm-primary text-white rounded-full text-sm font-medium hover:bg-atm-secondary transition-colors duration-200"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-atm-primary text-white rounded-full text-base font-semibold hover:bg-atm-secondary transition-colors duration-200 shadow"
                 >
                   Buscar
                 </button>
               </form>
             </div>
           </div>
-        </div>
+        </>
       </Transition>
     </>
   );
