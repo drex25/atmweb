@@ -9,6 +9,7 @@ import PostList from './components/PostList';
 import PostDetail from './components/PostDetail';
 import IngresosBrutos from './pages/IngresosBrutos';
 import ImpuestoInmobiliario from './pages/ImpuestoInmobiliario';
+import ControlFiscal from './pages/ControlFiscal';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/tramites/ingresos-brutos" element={<IngresosBrutos />} />
             <Route path="/tramites/inmobiliario" element={<ImpuestoInmobiliario />} />
+            <Route path="/tramites/control-fiscal" element={<ControlFiscal/>} />
           </Routes>
         </main>
         <Footer />
