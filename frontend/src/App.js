@@ -14,6 +14,7 @@ import TasasYAranceles from './pages/TasaYAranceles';
 import Vehículos from './pages/Vehiculos';
 import Normativas from './pages/Normativas';
 import Sellos from './pages/Sellos';
+import PadronesProductores from './pages/PadronesProductores';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/tramites/vehiculos" element={<Vehículos/>} />
             <Route path="/informacion-fiscal/normativas" element={<Normativas/>} />
             <Route path="/tramites/sellos" element={<Sellos/>} />
+            <Route path="/informacion-fiscal/padrones" element={<PadronesProductores/>} />
           </Routes>
         </main>
         <Footer />
