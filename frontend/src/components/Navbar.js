@@ -59,15 +59,15 @@ const navigation = [
       {
         title: 'Documentación',
         items: [
-          { name: 'Normativas', href: '/info/normativas', description: 'Leyes y reglamentos' },
-          { name: 'Estadísticas', href: '/info/estadisticas', description: 'Informes y datos' },
+          { name: 'Normativas', href: '/informacion-fiscal/normativas', description: 'Leyes y reglamentos' },
+          { name: 'Estadísticas', href: '/informacion-fiscal/estadisticas', description: 'Informes y datos' },
         ]
       },
       {
         title: 'Registros',
         items: [
-          { name: 'Padrones', href: '/info/padrones', description: 'Registro de contribuyentes' },
-          { name: 'Exenciones', href: '/info/exenciones', description: 'Beneficios fiscales' },
+          { name: 'Padrones', href: '/informacion-fiscal/padrones', description: 'Registro de contribuyentes' },
+          { name: 'Exenciones', href: '/informacion-fiscal/exenciones', description: 'Beneficios fiscales' },
         ]
       }
     ],
