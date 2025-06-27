@@ -1,29 +1,34 @@
 import React from 'react';
-import { ClipboardDocumentCheckIcon, UsersIcon, DocumentTextIcon, ChartBarIcon } from '@heroicons/react/24/solid';
+import {
+  DocumentTextIcon,
+  PencilSquareIcon,
+  ClipboardIcon,
+  UserGroupIcon,
+} from '@heroicons/react/24/solid';
 import HeroControlFiscal from '../components/HeroControlFiscal';
 
 const quickLinks = [
   {
     title: 'Emisión de Formulario 341',
-    icon: ClipboardDocumentCheckIcon,
-    description: '',
-    href: '#',
-  },
-  {
-    title: 'Emisión de Formulario Tasa Forestal',
-    icon: UsersIcon,
-    description: '',
-    href: '#',
-  },
-  {
-    title: 'Verificación Recibo',
     icon: DocumentTextIcon,
     description: '',
     href: '#',
   },
   {
+    title: 'Emisión de Formulario Tasa Forestal',
+    icon: PencilSquareIcon,
+    description: '',
+    href: '#',
+  },
+  {
+    title: 'Verificación Recibo',
+    icon: ClipboardIcon,
+    description: '',
+    href: '#',
+  },
+  {
     title: 'Autogestión',
-    icon: UsersIcon,
+    icon: UserGroupIcon,
     description: '',
     href: '#',
   },
