@@ -13,6 +13,7 @@ import ControlFiscal from './pages/ControlFiscal';
 import TasasYAranceles from './pages/TasaYAranceles';
 import Vehículos from './pages/Vehiculos';
 import Normativas from './pages/Normativas';
+import PadronesProductores from './pages/PadronesProductores';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/tramites/tasas-aranceles" element={<TasasYAranceles/>} />
             <Route path="/tramites/vehiculos" element={<Vehículos/>} />
             <Route path="/informacion-fiscal/normativas" element={<Normativas/>} />
+            <Route path="/informacion-fiscal/padrones" element={<PadronesProductores/>} />
           </Routes>
         </main>
         <Footer />
