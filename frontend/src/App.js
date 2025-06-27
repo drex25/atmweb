@@ -15,6 +15,7 @@ import Vehículos from './pages/Vehiculos';
 import Normativas from './pages/Normativas';
 import Sellos from './pages/Sellos';
 import PadronesProductores from './pages/PadronesProductores';
+import Excenciones from './pages/Exenciones';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/informacion-fiscal/normativas" element={<Normativas/>} />
             <Route path="/tramites/sellos" element={<Sellos/>} />
             <Route path="/informacion-fiscal/padrones" element={<PadronesProductores/>} />
+            <Route path="/informacion-fiscal/exenciones" element={<Excenciones/>} />
           </Routes>
         </main>
         <Footer />
