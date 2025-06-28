@@ -50,8 +50,8 @@ export default function HeroExenciones({
         <div className="absolute bottom-1/4 right-1/4 w-20 h-20 border border-purple-400/10 rounded-full animate-ping" style={{animationDuration: '8s', animationDelay: '3s'}}></div>
       </div>
       
-      {/* Contenido principal centrado */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-8 text-center">
+      {/* Contenido principal centrado con más padding inferior */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 pb-16 text-center">
         
         {/* Badge holográfico más pequeño */}
         {badge && (
@@ -66,24 +66,24 @@ export default function HeroExenciones({
         )}
         
         {/* Título principal más compacto */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight animate-fade-in">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-3 leading-tight animate-fade-in">
           <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-2xl">
             {title}
           </span>
         </h1>
         
         {/* Subtítulo más pequeño */}
-        <h2 className="text-lg md:text-xl font-bold mb-4 text-cyan-200 animate-fade-in delay-100">
+        <h2 className="text-lg md:text-xl font-bold mb-3 text-cyan-200 animate-fade-in delay-100">
           {subtitle}
         </h2>
         
         {/* Descripción más compacta */}
-        <p className="text-base md:text-lg text-cyan-100 mb-6 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-200">
+        <p className="text-base md:text-lg text-cyan-100 mb-5 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-200">
           {description}
         </p>
         
         {/* Breadcrumbs más compactos */}
-        <div className="flex items-center justify-center gap-2 text-white/80 text-sm font-medium mb-6 animate-fade-in delay-200">
+        <div className="flex items-center justify-center gap-2 text-white/80 text-sm font-medium mb-8 animate-fade-in delay-200">
           {breadcrumbs.map((crumb, idx) => (
             <React.Fragment key={idx}>
               <span
@@ -102,8 +102,8 @@ export default function HeroExenciones({
           ))}
         </div>
         
-        {/* Botones de acción más compactos y centrados */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300">
+        {/* Botones de acción más compactos y centrados con más espacio */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-300 mb-8">
           <a 
             href="#tipos-exenciones" 
             className="group relative"
