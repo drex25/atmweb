@@ -132,153 +132,158 @@ function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 w-full bg-white shadow-lg border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Contenedor principal con full width */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0 mr-12">
-              <Link to="/" className="flex items-center gap-2" aria-label="Ir al inicio">
+            {/* Logo Section - Mejorado */}
+            <div className="flex-shrink-0 flex items-center gap-4">
+              <Link to="/" className="flex items-center gap-4" aria-label="Ir al inicio">
+                {/* Logo ATM - Más grande */}
                 <img 
                   src="/logo-atm.png" 
                   alt="ATM Misiones" 
-                  className="h-16 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200" 
-                  style={{maxHeight:'70px'}}
+                  className="h-14 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200" 
                 />
+                {/* Separador sutil */}
+                <div className="w-px h-10 bg-gray-300"></div>
+                {/* Logo ODS - Más pequeño */}
                 <img
                   src="/ods.png"
                   alt="ODS Misiones"
-                  className="h-10 w-auto ml-1 drop-shadow-sm transition-all duration-200"
-                  style={{maxHeight:'44px'}}
+                  className="h-10 w-auto drop-shadow-sm transition-all duration-200"
                 />
               </Link>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navigation.map((item) => (
-                <div key={item.name} className="relative group">
-                  <div
-                    onMouseEnter={() => handleMouseEnter(item.name)}
-                    onMouseLeave={handleMouseLeave}
-                    className="relative"
-                  >
-                    {item.href ? (
-                      <Link
-                        to={item.href}
-                        className="flex items-center px-4 py-2 rounded-lg font-semibold text-base text-gray-700 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 group"
-                      >
-                        <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
-                        <span>{item.name}</span>
-                      </Link>
-                    ) : (
-                      <button
-                        className={`flex items-center px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 group ${
-                          openMenu === item.name 
-                            ? 'text-atm-primary bg-gray-50' 
-                            : 'text-gray-700 hover:text-atm-primary hover:bg-gray-50'
-                        }`}
-                        aria-haspopup="true"
-                        aria-expanded={openMenu === item.name}
-                      >
-                        <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
-                        <span>{item.name}</span>
-                        <ChevronDownIcon className={`ml-2 h-5 w-5 text-atm-primary transition-transform duration-200 ${
-                          openMenu === item.name ? 'rotate-180' : 'group-hover:rotate-180'
-                        }`} />
-                      </button>
-                    )}
-
-                    {/* Mega Menu */}
-                    {item.mega && openMenu === item.name && (
-                      <Transition
-                        show={openMenu === item.name}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-2 scale-95"
-                        enterTo="opacity-100 translate-y-0 scale-100"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0 scale-100"
-                        leaveTo="opacity-0 translate-y-2 scale-95"
-                      >
-                        <div 
-                          className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[520px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
-                          onMouseEnter={handleMenuMouseEnter}
-                          onMouseLeave={handleMenuMouseLeave}
+            {/* Desktop Navigation - Centrado y expandido */}
+            <div className="hidden lg:flex items-center justify-center flex-1 mx-8">
+              <div className="flex items-center space-x-2">
+                {navigation.map((item) => (
+                  <div key={item.name} className="relative group">
+                    <div
+                      onMouseEnter={() => handleMouseEnter(item.name)}
+                      onMouseLeave={handleMouseLeave}
+                      className="relative"
+                    >
+                      {item.href ? (
+                        <Link
+                          to={item.href}
+                          className="flex items-center px-4 py-2 rounded-lg font-semibold text-base text-gray-700 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 group"
                         >
-                          <div className="p-6 grid grid-cols-2 gap-6">
-                            {item.submenu.map((section) => (
-                              <div key={section.title}>
-                                <h3 className="text-sm font-semibold text-atm-primary mb-3 uppercase tracking-wide">
-                                  {section.title}
-                                </h3>
-                                <div className="space-y-3">
-                                  {section.items.map((subItem) => (
-                                    <Link
-                                      key={subItem.name}
-                                      to={subItem.href}
-                                      className="block group p-2 rounded-lg hover:bg-gray-50 transition-colors duration-150"
-                                      onClick={() => setOpenMenu(null)}
-                                    >
-                                      <div className="font-medium text-gray-900 group-hover:text-atm-primary transition-colors">
-                                        {subItem.name}
-                                      </div>
-                                      <div className="text-xs text-gray-500 mt-1 group-hover:text-gray-700 transition-colors">
-                                        {subItem.description}
-                                      </div>
-                                    </Link>
-                                  ))}
+                          <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
+                          <span>{item.name}</span>
+                        </Link>
+                      ) : (
+                        <button
+                          className={`flex items-center px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 group ${
+                            openMenu === item.name 
+                              ? 'text-atm-primary bg-gray-50' 
+                              : 'text-gray-700 hover:text-atm-primary hover:bg-gray-50'
+                          }`}
+                          aria-haspopup="true"
+                          aria-expanded={openMenu === item.name}
+                        >
+                          <item.icon className="h-5 w-5 mr-2 text-atm-primary opacity-70 group-hover:opacity-100 transition-opacity" />
+                          <span>{item.name}</span>
+                          <ChevronDownIcon className={`ml-2 h-5 w-5 text-atm-primary transition-transform duration-200 ${
+                            openMenu === item.name ? 'rotate-180' : 'group-hover:rotate-180'
+                          }`} />
+                        </button>
+                      )}
+
+                      {/* Mega Menu */}
+                      {item.mega && openMenu === item.name && (
+                        <Transition
+                          show={openMenu === item.name}
+                          enter="transition ease-out duration-200"
+                          enterFrom="opacity-0 translate-y-2 scale-95"
+                          enterTo="opacity-100 translate-y-0 scale-100"
+                          leave="transition ease-in duration-150"
+                          leaveFrom="opacity-100 translate-y-0 scale-100"
+                          leaveTo="opacity-0 translate-y-2 scale-95"
+                        >
+                          <div 
+                            className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[520px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
+                            onMouseEnter={handleMenuMouseEnter}
+                            onMouseLeave={handleMenuMouseLeave}
+                          >
+                            <div className="p-6 grid grid-cols-2 gap-6">
+                              {item.submenu.map((section) => (
+                                <div key={section.title}>
+                                  <h3 className="text-sm font-semibold text-atm-primary mb-3 uppercase tracking-wide">
+                                    {section.title}
+                                  </h3>
+                                  <div className="space-y-3">
+                                    {section.items.map((subItem) => (
+                                      <Link
+                                        key={subItem.name}
+                                        to={subItem.href}
+                                        className="block group p-2 rounded-lg hover:bg-gray-50 transition-colors duration-150"
+                                        onClick={() => setOpenMenu(null)}
+                                      >
+                                        <div className="font-medium text-gray-900 group-hover:text-atm-primary transition-colors">
+                                          {subItem.name}
+                                        </div>
+                                        <div className="text-xs text-gray-500 mt-1 group-hover:text-gray-700 transition-colors">
+                                          {subItem.description}
+                                        </div>
+                                      </Link>
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      </Transition>
-                    )}
+                        </Transition>
+                      )}
 
-                    {/* Simple Submenu */}
-                    {!item.mega && item.submenu && openMenu === item.name && (
-                      <Transition
-                        show={openMenu === item.name}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-2 scale-95"
-                        enterTo="opacity-100 translate-y-0 scale-100"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0 scale-100"
-                        leaveTo="opacity-0 translate-y-2 scale-95"
-                      >
-                        <div 
-                          className="absolute left-0 mt-3 w-64 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
-                          onMouseEnter={handleMenuMouseEnter}
-                          onMouseLeave={handleMenuMouseLeave}
+                      {/* Simple Submenu */}
+                      {!item.mega && item.submenu && openMenu === item.name && (
+                        <Transition
+                          show={openMenu === item.name}
+                          enter="transition ease-out duration-200"
+                          enterFrom="opacity-0 translate-y-2 scale-95"
+                          enterTo="opacity-100 translate-y-0 scale-100"
+                          leave="transition ease-in duration-150"
+                          leaveFrom="opacity-100 translate-y-0 scale-100"
+                          leaveTo="opacity-0 translate-y-2 scale-95"
                         >
-                          <div className="py-2">
-                            {item.submenu.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.href}
-                                className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-atm-primary transition-colors duration-150"
-                                onClick={() => setOpenMenu(null)}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
+                          <div 
+                            className="absolute left-0 mt-3 w-64 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
+                            onMouseEnter={handleMenuMouseEnter}
+                            onMouseLeave={handleMenuMouseLeave}
+                          >
+                            <div className="py-2">
+                              {item.submenu.map((subItem) => (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.href}
+                                  className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-atm-primary transition-colors duration-150"
+                                  onClick={() => setOpenMenu(null)}
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      </Transition>
-                    )}
+                        </Transition>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Search and Mobile Menu */}
-            <div className="flex items-center space-x-3">
-              {/* Search Button */}
+            {/* Search and Mobile Menu - Derecha */}
+            <div className="flex items-center space-x-4">
+              {/* Search Button - Mejorado */}
               <button
                 type="button"
                 onClick={() => setShowSearch(!showSearch)}
-                className="p-2 rounded-full text-gray-500 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:ring-offset-2"
+                className="p-3 rounded-full text-gray-500 hover:text-atm-primary hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:ring-offset-2"
                 aria-label="Buscar"
               >
-                <MagnifyingGlassIcon className="h-5 w-5" />
+                <MagnifyingGlassIcon className="h-6 w-6" />
               </button>
 
               {/* Mobile menu button */}
@@ -420,42 +425,78 @@ function Navbar() {
         </Transition>
       </nav>
 
-      {/* Search Bar - Fuera del navbar, alineado a la derecha */}
+      {/* Search Bar Profesional - Estilo Modal Expandido */}
       <Transition
         show={showSearch}
-        enter="transition ease-out duration-200"
-        enterFrom="opacity-0 -translate-y-2"
-        enterTo="opacity-100 translate-y-0"
-        leave="transition ease-in duration-150"
-        leaveFrom="opacity-100 translate-y-0"
-        leaveTo="opacity-0 -translate-y-2"
+        enter="transition ease-out duration-300"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="transition ease-in duration-200"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
       >
         <>
-          {/* Overlay oscuro, pero no bloquea interacción */}
-          <div className="fixed inset-0 bg-black/20 z-[99] pointer-events-none transition-opacity animate-fade-in" aria-hidden="true" />
-          {/* Modal de búsqueda más adentro y campo más a la izquierda */}
-          <div className="fixed top-[88px] right-20 z-[100] w-full max-w-md animate-fade-in">
-            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 relative flex justify-start">
-              <button onClick={() => setShowSearch(false)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition" aria-label="Cerrar búsqueda">
-                <XIcon className="h-5 w-5" />
-              </button>
-              <form onSubmit={handleSearch} className="relative w-[90%] min-w-[220px]">
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Buscar información, trámites..."
-                  className="w-full pl-10 pr-20 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent bg-gray-50 text-base shadow-sm"
-                  autoFocus
-                />
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-atm-primary text-white rounded-full text-base font-semibold hover:bg-atm-secondary transition-colors duration-200 shadow"
+          {/* Overlay */}
+          <div className="fixed inset-0 bg-black/20 z-[99] transition-opacity" onClick={() => setShowSearch(false)} />
+          
+          {/* Modal de búsqueda profesional */}
+          <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[100] w-full max-w-2xl mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+              {/* Header del modal */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <MagnifyingGlassIcon className="h-6 w-6 text-atm-primary" />
+                  <span className="font-semibold text-gray-800">Buscar en ATM Misiones</span>
+                </div>
+                <button 
+                  onClick={() => setShowSearch(false)} 
+                  className="p-2 rounded-full hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all"
                 >
-                  Buscar
+                  <XIcon className="h-5 w-5" />
                 </button>
-              </form>
+              </div>
+              
+              {/* Campo de búsqueda */}
+              <div className="p-6">
+                <form onSubmit={handleSearch} className="relative">
+                  <div className="relative">
+                    <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Buscar información, trámites, normativas..."
+                      className="w-full pl-12 pr-24 py-4 text-lg border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-atm-primary focus:border-transparent bg-gray-50 hover:bg-white transition-all"
+                      autoFocus
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-atm-primary text-white rounded-lg font-semibold hover:bg-atm-secondary transition-all duration-200 shadow-md hover:shadow-lg"
+                    >
+                      Buscar
+                    </button>
+                  </div>
+                </form>
+                
+                {/* Sugerencias rápidas */}
+                <div className="mt-6">
+                  <p className="text-sm font-medium text-gray-600 mb-3">Búsquedas populares:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Ingresos Brutos', 'Clave Fiscal', 'Exenciones', 'Sellos', 'Inmobiliario'].map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        onClick={() => {
+                          setSearchTerm(suggestion);
+                          handleSearch({ preventDefault: () => {} });
+                        }}
+                        className="px-4 py-2 bg-gray-100 hover:bg-atm-primary hover:text-white text-gray-700 rounded-full text-sm font-medium transition-all duration-200"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </>
