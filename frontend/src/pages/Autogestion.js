@@ -17,7 +17,7 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-// Datos de las categorías principales
+// Datos exactos de las categorías según la imagen
 const mainCategories = [
   {
     id: 'ingresos-brutos',
@@ -42,9 +42,7 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones',
-      'Consultas de Estado',
-      'Emisión de Boletas'
+      'Exenciones y Bonificaciones'
     ]
   },
   {
@@ -56,9 +54,7 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones',
-      'Impuesto Provincial',
-      'Transferencias'
+      'Exenciones y Bonificaciones'
     ]
   },
   {
@@ -70,9 +66,7 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones',
-      'Autoliquidación',
-      'Estado del Sellado'
+      'Exenciones y Bonificaciones'
     ]
   },
   {
@@ -84,9 +78,7 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones',
-      'Control Fiscal',
-      'Formularios'
+      'Exenciones y Bonificaciones'
     ]
   },
   {
@@ -100,7 +92,9 @@ const mainCategories = [
       'SR-368 Clave Fiscal',
       'SR-178 Multimotivo',
       'SR-388 Domicilio Fiscal',
-      'SR-341 Pago a cuenta'
+      'SR-341 Pago a cuenta',
+      'SR-318 DDJJ IIBB mensual',
+      'SR-320 DDJJ IIBB anual'
     ]
   },
   {
@@ -111,10 +105,11 @@ const mainCategories = [
     iconBg: 'from-red-100 to-pink-100',
     services: [
       'Encuesta de Satisfacción',
-      'Reclamos y Sugerencias',
+      'Reclamos, Quejas y Sugerencias',
       'Curriculum Vitae',
       'Mesa de Ayuda',
-      'Atención al Público'
+      'Atención al Público',
+      'Gestión Externa'
     ]
   },
   {
@@ -128,6 +123,9 @@ const mainCategories = [
       'Legajo Único',
       'Domicilio Fiscal',
       'Medios de Pago',
+      'Agentes',
+      'SIRTAC',
+      'Notarios',
       'Manuales de Usuario'
     ]
   }
@@ -154,12 +152,12 @@ const SearchSection = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
-// Componente de tarjeta de categoría con altura fija
+// Componente de tarjeta de categoría con altura uniforme
 const CategoryCard = ({ category, isExpanded, onToggle }) => {
   return (
     <div className="group relative h-full">
       <div 
-        className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-pink-200/50 cursor-pointer h-full flex flex-col ${
+        className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-pink-200/50 cursor-pointer h-full flex flex-col min-h-[420px] ${
           isExpanded ? 'ring-4 ring-pink-300/50' : ''
         }`}
         onClick={onToggle}
@@ -265,7 +263,7 @@ export default function Autogestion() {
           {filteredCategories.map((category, index) => (
             <div 
               key={category.id}
-              className="animate-fade-in min-h-[420px]"
+              className="animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CategoryCard
