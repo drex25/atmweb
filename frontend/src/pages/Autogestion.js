@@ -16,7 +16,9 @@ import {
   ChevronRightIcon,
   ArrowRightIcon,
   SparklesIcon,
-  LightBulbIcon
+  LightBulbIcon,
+  CpuChipIcon,
+  RocketLaunchIcon
 } from '@heroicons/react/24/outline';
 
 // Datos exactos de las categorías según la imagen
@@ -25,8 +27,7 @@ const mainCategories = [
     id: 'ingresos-brutos',
     title: 'INGRESOS BRUTOS',
     icon: DocumentTextIcon,
-    gradient: 'from-blue-600 via-blue-700 to-indigo-800',
-    glowColor: 'blue',
+    color: '#3B82F6',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -39,8 +40,7 @@ const mainCategories = [
     id: 'inmobiliario',
     title: 'INMOBILIARIO',
     icon: HomeIcon,
-    gradient: 'from-purple-600 via-purple-700 to-pink-800',
-    glowColor: 'purple',
+    color: '#8B5CF6',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -51,8 +51,7 @@ const mainCategories = [
     id: 'automotor',
     title: 'AUTOMOTOR',
     icon: TruckIcon,
-    gradient: 'from-emerald-600 via-teal-700 to-cyan-800',
-    glowColor: 'emerald',
+    color: '#10B981',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -63,8 +62,7 @@ const mainCategories = [
     id: 'sellos',
     title: 'SELLOS',
     icon: DocumentIcon,
-    gradient: 'from-orange-600 via-red-600 to-pink-700',
-    glowColor: 'orange',
+    color: '#F59E0B',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -75,8 +73,7 @@ const mainCategories = [
     id: 'cfr',
     title: 'CFR',
     icon: ClipboardDocumentListIcon,
-    gradient: 'from-indigo-600 via-blue-700 to-purple-800',
-    glowColor: 'indigo',
+    color: '#EF4444',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -87,8 +84,7 @@ const mainCategories = [
     id: 'tramites-frecuentes',
     title: 'TRÁMITES FRECUENTES',
     icon: ClipboardDocumentListIcon,
-    gradient: 'from-amber-600 via-orange-600 to-red-700',
-    glowColor: 'amber',
+    color: '#EC4899',
     services: [
       'SR-311 Inscripción',
       'SR-368 Clave Fiscal',
@@ -103,8 +99,7 @@ const mainCategories = [
     id: 'contacto',
     title: 'CONTACTO',
     icon: EnvelopeIcon,
-    gradient: 'from-rose-600 via-pink-700 to-purple-800',
-    glowColor: 'rose',
+    color: '#06B6D4',
     services: [
       'Encuesta de Satisfacción',
       'Reclamos, Quejas y Sugerencias',
@@ -118,8 +113,7 @@ const mainCategories = [
     id: 'otros',
     title: 'OTROS',
     icon: EllipsisHorizontalIcon,
-    gradient: 'from-slate-600 via-gray-700 to-zinc-800',
-    glowColor: 'slate',
+    color: '#6B7280',
     services: [
       'Clave Fiscal',
       'Legajo Único',
@@ -133,28 +127,33 @@ const mainCategories = [
   }
 ];
 
-// Componente de búsqueda mágico
-const MagicSearchSection = ({ searchTerm, setSearchTerm }) => {
+// Componente de búsqueda futurista
+const FuturisticSearch = ({ searchTerm, setSearchTerm }) => {
   return (
-    <div className="relative max-w-5xl mx-auto mb-16">
+    <div className="relative max-w-4xl mx-auto mb-20">
       <div className="relative group">
-        {/* Glow effect mágico */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition duration-1000 animate-pulse"></div>
+        {/* Anillo de energía */}
+        <div className="absolute -inset-4 rounded-full border-2 border-cyan-400/30 animate-spin" style={{animationDuration: '8s'}}></div>
+        <div className="absolute -inset-2 rounded-full border border-blue-400/20 animate-spin" style={{animationDuration: '6s', animationDirection: 'reverse'}}></div>
         
-        <div className="relative bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-3 shadow-2xl">
-          <div className="flex items-center">
+        {/* Campo de búsqueda */}
+        <div className="relative bg-black/40 backdrop-blur-2xl border border-cyan-400/30 rounded-full p-2 shadow-2xl">
+          <div className="flex items-center bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-full">
             <div className="flex-shrink-0 pl-6">
-              <MagnifyingGlassIcon className="h-6 w-6 text-white/70" />
+              <MagnifyingGlassIcon className="h-6 w-6 text-cyan-400" />
             </div>
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar trámites, servicios, información..."
-              className="flex-1 px-6 py-5 bg-transparent text-white text-lg placeholder-white/60 focus:outline-none font-medium"
+              placeholder="Buscar en el sistema neural..."
+              className="flex-1 px-6 py-4 bg-transparent text-white text-lg placeholder-cyan-300/60 focus:outline-none font-medium"
             />
-            <button className="flex-shrink-0 mr-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-2xl font-bold text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border border-white/20">
-              Buscar
+            <button className="flex-shrink-0 mr-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-full font-bold text-base hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-xl hover:shadow-cyan-500/50 hover:scale-105">
+              <span className="flex items-center gap-2">
+                <CpuChipIcon className="h-5 w-5" />
+                Procesar
+              </span>
             </button>
           </div>
         </div>
@@ -163,86 +162,107 @@ const MagicSearchSection = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
-// Componente de tarjeta mágica - MÁS ANCHA Y MENOS ALTA
-const MagicCard = ({ category, isExpanded, onToggle }) => {
-  const glowColors = {
-    blue: 'shadow-blue-500/20 hover:shadow-blue-500/30',
-    purple: 'shadow-purple-500/20 hover:shadow-purple-500/30',
-    emerald: 'shadow-emerald-500/20 hover:shadow-emerald-500/30',
-    orange: 'shadow-orange-500/20 hover:shadow-orange-500/30',
-    indigo: 'shadow-indigo-500/20 hover:shadow-indigo-500/30',
-    amber: 'shadow-amber-500/20 hover:shadow-amber-500/30',
-    rose: 'shadow-rose-500/20 hover:shadow-rose-500/30',
-    slate: 'shadow-slate-500/20 hover:shadow-slate-500/30'
-  };
-
+// Componente de tarjeta hexagonal futurista
+const HexagonalCard = ({ category, isExpanded, onToggle }) => {
   return (
-    <div className="group relative h-full">
-      {/* Glow effect mágico */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${category.gradient} rounded-2xl blur-lg opacity-15 group-hover:opacity-25 transition duration-500`}></div>
-      
-      <div 
-        className={`relative overflow-hidden rounded-2xl bg-white/8 backdrop-blur-xl border border-white/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer h-full flex ${glowColors[category.glowColor]} shadow-xl hover:shadow-2xl ${
-          isExpanded ? 'ring-2 ring-white/20' : ''
-        }`}
-        onClick={onToggle}
-        style={{ minHeight: '280px' }} // ALTURA REDUCIDA
-      >
-        {/* Header compacto - LADO IZQUIERDO */}
-        <div className={`bg-gradient-to-br ${category.gradient} flex-shrink-0 w-48 flex flex-col items-center justify-center text-center relative overflow-hidden`}>
-          {/* Efectos de fondo sutiles */}
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="absolute -top-10 -right-10 w-20 h-20 bg-white/10 rounded-full blur-2xl"></div>
-          <div className="absolute -bottom-10 -left-10 w-20 h-20 bg-white/10 rounded-full blur-2xl"></div>
-          
-          {/* Patrón geométrico sutil */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-2 left-2 w-4 h-4 border border-white rotate-45"></div>
-            <div className="absolute top-2 right-2 w-3 h-3 border border-white rounded-full"></div>
-            <div className="absolute bottom-2 left-2 w-2 h-2 bg-white rounded-full"></div>
-            <div className="absolute bottom-2 right-2 w-3 h-3 border border-white"></div>
+    <div className="group relative" onClick={onToggle}>
+      {/* Contenedor hexagonal */}
+      <div className="relative w-full h-80 cursor-pointer">
+        {/* Hexágono de fondo */}
+        <div 
+          className="absolute inset-0 transition-all duration-500 group-hover:scale-105"
+          style={{
+            clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+            background: `linear-gradient(135deg, ${category.color}20, ${category.color}40)`,
+            border: `2px solid ${category.color}60`
+          }}
+        >
+          {/* Efectos de luz */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{
+              background: `radial-gradient(circle at center, ${category.color}30, transparent 70%)`
+            }}
+          ></div>
+        </div>
+
+        {/* Contenido */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10">
+          {/* Icono central */}
+          <div 
+            className="w-16 h-16 rounded-full flex items-center justify-center mb-4 border-2 transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
+            style={{
+              backgroundColor: `${category.color}20`,
+              borderColor: category.color,
+              boxShadow: `0 0 20px ${category.color}40`
+            }}
+          >
+            <category.icon className="h-8 w-8 text-white" />
           </div>
-          
-          {/* Contenido del header */}
-          <div className="relative z-10 p-6">
-            <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-xl border border-white/30 group-hover:scale-110 group-hover:rotate-2 transition-all duration-500">
-              <category.icon className="h-8 w-8 text-white drop-shadow-lg" />
-            </div>
-            <h3 className="text-base font-black text-white tracking-wide drop-shadow-xl leading-tight">
-              {category.title}
-            </h3>
+
+          {/* Título */}
+          <h3 className="text-white font-black text-lg mb-4 tracking-wide leading-tight">
+            {category.title}
+          </h3>
+
+          {/* Contador de servicios */}
+          <div 
+            className="px-4 py-2 rounded-full text-sm font-bold text-white border transition-all duration-300"
+            style={{
+              backgroundColor: `${category.color}30`,
+              borderColor: category.color
+            }}
+          >
+            {category.services.length} servicios
+          </div>
+
+          {/* Indicador de expansión */}
+          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <ChevronRightIcon 
+              className={`h-6 w-6 text-white transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} 
+            />
           </div>
         </div>
 
-        {/* Lista de servicios - LADO DERECHO MÁS ANCHO */}
-        <div className="flex-1 bg-white/5 backdrop-blur-md flex flex-col border-l border-white/10">
-          <div className="p-4 flex-1">
-            {/* Grid de servicios en 2 columnas para aprovechar el ancho */}
-            <div className={`grid gap-2 ${category.services.length > 4 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+        {/* Partículas flotantes */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute top-4 left-4 w-2 h-2 rounded-full animate-pulse"
+            style={{ backgroundColor: category.color }}
+          ></div>
+          <div 
+            className="absolute top-8 right-6 w-1 h-1 rounded-full animate-pulse delay-300"
+            style={{ backgroundColor: category.color }}
+          ></div>
+          <div 
+            className="absolute bottom-6 left-8 w-1.5 h-1.5 rounded-full animate-pulse delay-700"
+            style={{ backgroundColor: category.color }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Panel de servicios expandible */}
+      {isExpanded && (
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-80 z-20">
+          <div 
+            className="bg-black/80 backdrop-blur-xl rounded-2xl border-2 p-6 shadow-2xl"
+            style={{ borderColor: `${category.color}60` }}
+          >
+            <div className="space-y-3">
               {category.services.map((service, idx) => (
                 <div 
                   key={idx}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-white/10 transition-all duration-300 group/item cursor-pointer border border-transparent hover:border-white/20 hover:shadow-sm backdrop-blur-sm"
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-white/20"
                 >
-                  <span className="text-white/90 font-medium group-hover/item:text-white transition-colors text-sm leading-relaxed flex-1">
-                    {service}
-                  </span>
-                  <ChevronRightIcon className="h-4 w-4 text-white/50 group-hover/item:text-white group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 ml-2" />
+                  <span className="text-white font-medium text-sm">{service}</span>
+                  <ChevronRightIcon className="h-4 w-4 text-white/60 hover:text-white transition-colors" />
                 </div>
               ))}
             </div>
           </div>
-          
-          {/* Footer compacto */}
-          <div className="px-4 py-2 border-t border-white/10">
-            <div className="text-center">
-              <span className="text-white/50 text-xs font-medium">
-                {category.services.length} servicios
-              </span>
-            </div>
-          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -261,77 +281,92 @@ export default function Autogestion() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Fondo mágico con gradientes animados */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"></div>
+      {/* Fondo espacial */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"></div>
       
-      {/* Efectos de fondo mágicos */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-500/15 to-pink-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-spin" style={{animationDuration: '30s'}}></div>
+      {/* Estrellas animadas */}
+      <div className="absolute inset-0">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          ></div>
+        ))}
       </div>
 
-      {/* Patrón de puntos sutil */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-        backgroundSize: '40px 40px'
-      }}></div>
+      {/* Ondas de energía */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 border border-cyan-400/20 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 border border-purple-400/20 rounded-full animate-ping" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+      </div>
 
-      {/* Hero Section compacto */}
+      {/* Hero Section futurista */}
       <section className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          {/* Badge superior */}
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 mb-8 shadow-xl group hover:scale-105 transition-all duration-300">
-            <SparklesIcon className="h-5 w-5 text-blue-400" />
-            <span className="text-white font-bold text-base tracking-wide uppercase">Centro de Autogestión Digital</span>
-            <LightBulbIcon className="h-5 w-5 text-purple-400" />
+          {/* Badge holográfico */}
+          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-xl border border-cyan-400/30 mb-8 shadow-2xl group hover:scale-105 transition-all duration-300">
+            <RocketLaunchIcon className="h-6 w-6 text-cyan-400 animate-bounce" />
+            <span className="text-cyan-300 font-bold text-lg tracking-wide uppercase">Sistema Neural ATM</span>
+            <CpuChipIcon className="h-6 w-6 text-blue-400 animate-pulse" />
           </div>
 
-          {/* Título principal compacto */}
-          <h1 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight">
-            AUTOGESTIÓN
-            <span className="block text-4xl md:text-5xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              INTELIGENTE
+          {/* Título holográfico */}
+          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight leading-none">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl">
+              AUTO
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl">
+              GESTIÓN
+            </span>
+            <br />
+            <span className="text-4xl md:text-5xl bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+              NEURAL
             </span>
           </h1>
 
-          {/* Subtítulo compacto */}
-          <p className="text-lg md:text-xl text-white/80 mb-12 max-w-4xl mx-auto font-medium leading-relaxed">
-            Plataforma digital avanzada para gestionar todos tus trámites tributarios de manera 
-            <span className="text-blue-300 font-semibold"> rápida</span>, 
-            <span className="text-purple-300 font-semibold"> segura</span> y 
-            <span className="text-pink-300 font-semibold"> eficiente</span>
+          {/* Subtítulo futurista */}
+          <p className="text-xl md:text-2xl text-cyan-100 mb-16 max-w-4xl mx-auto font-light leading-relaxed">
+            Interfaz de gestión tributaria de próxima generación.
+            <br />
+            <span className="text-cyan-300 font-medium">Potenciado por IA avanzada</span> para una experiencia sin precedentes.
           </p>
 
           {/* Barra de búsqueda */}
-          <MagicSearchSection searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <FuturisticSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-          {/* Banner informativo compacto */}
-          <div className="relative group mb-16">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-            <div className="relative bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl">
-              <div className="flex items-center justify-center gap-3 text-white">
-                <InformationCircleIcon className="h-6 w-6 animate-pulse text-blue-300" />
+          {/* Banner de estado del sistema */}
+          <div className="relative group mb-20">
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-cyan-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+            <div className="relative bg-gradient-to-r from-green-500/20 to-cyan-500/20 backdrop-blur-xl rounded-2xl p-6 border border-green-400/30 shadow-xl">
+              <div className="flex items-center justify-center gap-4 text-white">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-lg font-bold">
-                  🚀 ¡Ahora disponible! Manuales interactivos y asistencia en tiempo real
+                  🤖 Sistema Neural Activo - Todos los servicios operativos
                 </span>
-                <SparklesIcon className="h-6 w-6 animate-pulse text-purple-300" />
+                <SparklesIcon className="h-6 w-6 animate-pulse text-cyan-300" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Grid de categorías mágico - GRID MÁS ANCHO */}
+      {/* Grid hexagonal de categorías */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
           {filteredCategories.map((category, index) => (
             <div 
               key={category.id}
               className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <MagicCard
+              <HexagonalCard
                 category={category}
                 isExpanded={expandedCategory === category.id}
                 onToggle={() => setExpandedCategory(
@@ -344,63 +379,63 @@ export default function Autogestion() {
 
         {/* Mensaje cuando no hay resultados */}
         {filteredCategories.length === 0 && searchTerm && (
-          <div className="text-center py-16">
-            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl flex items-center justify-center shadow-xl border border-white/20">
-              <MagnifyingGlassIcon className="h-16 w-16 text-white/50" />
+          <div className="text-center py-20">
+            <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 backdrop-blur-xl flex items-center justify-center shadow-xl border border-red-400/30">
+              <MagnifyingGlassIcon className="h-16 w-16 text-red-400" />
             </div>
-            <h3 className="text-3xl font-bold text-white mb-4">No se encontraron resultados</h3>
-            <p className="text-white/70 mb-8 text-lg">Intentá con otros términos de búsqueda</p>
+            <h3 className="text-4xl font-bold text-white mb-6">Sistema no encontró coincidencias</h3>
+            <p className="text-cyan-200 mb-10 text-xl">Recalibrando parámetros de búsqueda...</p>
             <button 
               onClick={() => setSearchTerm('')}
-              className="px-10 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl font-bold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 text-lg border border-white/20"
+              className="px-12 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-bold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-xl hover:shadow-cyan-500/50 hover:scale-105 text-lg border border-cyan-400/30"
             >
-              Limpiar búsqueda
+              Reiniciar Sistema
             </button>
           </div>
         )}
       </section>
 
-      {/* Sección de ayuda compacta */}
-      <section className="relative z-10 py-16 mt-16">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/30 backdrop-blur-sm"></div>
+      {/* Panel de asistencia futurista */}
+      <section className="relative z-10 py-20 mt-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/60 backdrop-blur-sm"></div>
         <div className="relative max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-black text-white mb-12 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            ¿Necesitás Asistencia?
+          <h2 className="text-5xl font-black text-white mb-16 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            Centro de Asistencia Neural
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <a 
               href="tel:0810-444-5505"
               className="group relative"
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-              <div className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/10">
-                <PhoneIcon className="h-16 w-16 mx-auto mb-6 text-green-400 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-white mb-4">Contacto Directo</h3>
-                <p className="text-white/70 mb-4 text-base">Asistencia inmediata</p>
-                <span className="text-3xl font-black text-green-400">0810-444-5505</span>
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative p-10 bg-black/40 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105 border border-green-400/30">
+                <PhoneIcon className="h-20 w-20 mx-auto mb-8 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">Línea Directa</h3>
+                <p className="text-green-200 mb-6 text-lg">Conexión inmediata</p>
+                <span className="text-4xl font-black text-green-400">0810-444-5505</span>
               </div>
             </a>
 
             <div className="group relative cursor-pointer">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-              <div className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/10">
-                <QuestionMarkCircleIcon className="h-16 w-16 mx-auto mb-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-white mb-4">FAQ Inteligente</h3>
-                <p className="text-white/70 mb-4 text-base">Respuestas instantáneas</p>
-                <div className="flex items-center justify-center gap-2 text-blue-400 font-bold text-lg group-hover:text-blue-300 transition-colors">
-                  Explorar <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative p-10 bg-black/40 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105 border border-blue-400/30">
+                <QuestionMarkCircleIcon className="h-20 w-20 mx-auto mb-8 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">IA Asistente</h3>
+                <p className="text-blue-200 mb-6 text-lg">Respuestas inteligentes</p>
+                <div className="flex items-center justify-center gap-2 text-blue-400 font-bold text-xl group-hover:text-blue-300 transition-colors">
+                  Activar <ArrowRightIcon className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </div>
 
             <div className="group relative cursor-pointer">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-              <div className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-white/10">
-                <BookOpenIcon className="h-16 w-16 mx-auto mb-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-white mb-4">Guías Interactivas</h3>
-                <p className="text-white/70 mb-4 text-base">Tutoriales paso a paso</p>
-                <div className="flex items-center justify-center gap-2 text-purple-400 font-bold text-lg group-hover:text-purple-300 transition-colors">
-                  Acceder <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative p-10 bg-black/40 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 border border-purple-400/30">
+                <BookOpenIcon className="h-20 w-20 mx-auto mb-8 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">Base de Datos</h3>
+                <p className="text-purple-200 mb-6 text-lg">Conocimiento total</p>
+                <div className="flex items-center justify-center gap-2 text-purple-400 font-bold text-xl group-hover:text-purple-300 transition-colors">
+                  Acceder <ArrowRightIcon className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </div>
@@ -408,11 +443,11 @@ export default function Autogestion() {
         </div>
       </section>
 
-      {/* Botón flotante mágico */}
+      {/* Botón flotante holográfico */}
       <button className="fixed bottom-8 right-8 z-50 group">
-        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition duration-300"></div>
-        <div className="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center border border-white/20">
-          <QuestionMarkCircleIcon className="h-7 w-7 text-white group-hover:scale-110 transition-transform" />
+        <div className="absolute -inset-2 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition duration-300 animate-pulse"></div>
+        <div className="relative w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-2 border-cyan-400/50">
+          <QuestionMarkCircleIcon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
         </div>
       </button>
     </div>
