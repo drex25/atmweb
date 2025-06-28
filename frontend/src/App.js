@@ -17,6 +17,7 @@ import Sellos from './pages/Sellos';
 import PadronesProductores from './pages/PadronesProductores';
 import Excenciones from './pages/Exenciones';
 import BeneficiosATM from './pages/BeneficiosATM';
+import Autogestion from './pages/Autogestion';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/post/:slug" element={<PostDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/autogestion" element={<Autogestion />} />
             <Route path="/tramites/ingresos-brutos" element={<IngresosBrutos />} />
             <Route path="/tramites/inmobiliario" element={<ImpuestoInmobiliario />} />
             <Route path="/tramites/control-fiscal" element={<ControlFiscal/>} />
