@@ -14,7 +14,9 @@ import {
   QuestionMarkCircleIcon,
   BookOpenIcon,
   ChevronRightIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  SparklesIcon,
+  LightBulbIcon
 } from '@heroicons/react/24/outline';
 
 // Datos exactos de las categorías según la imagen
@@ -23,8 +25,8 @@ const mainCategories = [
     id: 'ingresos-brutos',
     title: 'INGRESOS BRUTOS',
     icon: DocumentTextIcon,
-    color: 'from-[#023F5E] to-[#2563eb]',
-    iconBg: 'from-purple-100 to-pink-100',
+    gradient: 'from-blue-600 via-blue-700 to-indigo-800',
+    glowColor: 'blue',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -37,8 +39,8 @@ const mainCategories = [
     id: 'inmobiliario',
     title: 'INMOBILIARIO',
     icon: HomeIcon,
-    color: 'from-[#023F5E] to-[#612247]',
-    iconBg: 'from-blue-100 to-purple-100',
+    gradient: 'from-purple-600 via-purple-700 to-pink-800',
+    glowColor: 'purple',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -49,8 +51,8 @@ const mainCategories = [
     id: 'automotor',
     title: 'AUTOMOTOR',
     icon: TruckIcon,
-    color: 'from-[#612247] to-[#2563eb]',
-    iconBg: 'from-pink-100 to-blue-100',
+    gradient: 'from-emerald-600 via-teal-700 to-cyan-800',
+    glowColor: 'emerald',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -61,8 +63,8 @@ const mainCategories = [
     id: 'sellos',
     title: 'SELLOS',
     icon: DocumentIcon,
-    color: 'from-[#2563eb] to-[#023F5E]',
-    iconBg: 'from-indigo-100 to-purple-100',
+    gradient: 'from-orange-600 via-red-600 to-pink-700',
+    glowColor: 'orange',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -73,8 +75,8 @@ const mainCategories = [
     id: 'cfr',
     title: 'CFR',
     icon: ClipboardDocumentListIcon,
-    color: 'from-[#023F5E] to-[#612247]',
-    iconBg: 'from-green-100 to-teal-100',
+    gradient: 'from-indigo-600 via-blue-700 to-purple-800',
+    glowColor: 'indigo',
     services: [
       'Trámites y Gestiones',
       'Información General',
@@ -85,8 +87,8 @@ const mainCategories = [
     id: 'tramites-frecuentes',
     title: 'TRÁMITES FRECUENTES',
     icon: ClipboardDocumentListIcon,
-    color: 'from-[#612247] to-[#023F5E]',
-    iconBg: 'from-yellow-100 to-orange-100',
+    gradient: 'from-amber-600 via-orange-600 to-red-700',
+    glowColor: 'amber',
     services: [
       'SR-311 Inscripción',
       'SR-368 Clave Fiscal',
@@ -101,8 +103,8 @@ const mainCategories = [
     id: 'contacto',
     title: 'CONTACTO',
     icon: EnvelopeIcon,
-    color: 'from-[#2563eb] to-[#612247]',
-    iconBg: 'from-red-100 to-pink-100',
+    gradient: 'from-rose-600 via-pink-700 to-purple-800',
+    glowColor: 'rose',
     services: [
       'Encuesta de Satisfacción',
       'Reclamos, Quejas y Sugerencias',
@@ -116,8 +118,8 @@ const mainCategories = [
     id: 'otros',
     title: 'OTROS',
     icon: EllipsisHorizontalIcon,
-    color: 'from-[#023F5E] to-[#2563eb]',
-    iconBg: 'from-gray-100 to-slate-100',
+    gradient: 'from-slate-600 via-gray-700 to-zinc-800',
+    glowColor: 'slate',
     services: [
       'Clave Fiscal',
       'Legajo Único',
@@ -131,69 +133,109 @@ const mainCategories = [
   }
 ];
 
-// Componente de búsqueda mejorado
-const SearchSection = ({ searchTerm, setSearchTerm }) => {
+// Componente de búsqueda ultra moderno
+const UltraSearchSection = ({ searchTerm, setSearchTerm }) => {
   return (
-    <div className="relative max-w-3xl mx-auto mb-12">
-      <div className="relative">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Ingresá palabras claves para encontrar tu trámite..."
-          className="w-full px-6 py-5 pl-14 pr-20 text-lg rounded-2xl border-2 border-white/30 bg-white/90 backdrop-blur-md shadow-xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 focus:border-pink-400 transition-all duration-300 placeholder-gray-500"
-        />
-        <MagnifyingGlassIcon className="absolute left-5 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
-        <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
-          Buscar
-        </button>
+    <div className="relative max-w-4xl mx-auto mb-16">
+      <div className="relative group">
+        {/* Glow effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+        
+        <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-2 shadow-2xl">
+          <div className="flex items-center">
+            <div className="flex-shrink-0 pl-6">
+              <MagnifyingGlassIcon className="h-7 w-7 text-white/70" />
+            </div>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Buscar trámites, servicios, información..."
+              className="flex-1 px-6 py-6 bg-transparent text-white text-xl placeholder-white/60 focus:outline-none font-medium"
+            />
+            <button className="flex-shrink-0 mr-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border border-white/20">
+              Buscar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-// Componente de tarjeta de categoría con altura uniforme
-const CategoryCard = ({ category, isExpanded, onToggle }) => {
+// Componente de tarjeta ultra moderna
+const UltraModernCard = ({ category, isExpanded, onToggle }) => {
+  const glowColors = {
+    blue: 'shadow-blue-500/25 hover:shadow-blue-500/40',
+    purple: 'shadow-purple-500/25 hover:shadow-purple-500/40',
+    emerald: 'shadow-emerald-500/25 hover:shadow-emerald-500/40',
+    orange: 'shadow-orange-500/25 hover:shadow-orange-500/40',
+    indigo: 'shadow-indigo-500/25 hover:shadow-indigo-500/40',
+    amber: 'shadow-amber-500/25 hover:shadow-amber-500/40',
+    rose: 'shadow-rose-500/25 hover:shadow-rose-500/40',
+    slate: 'shadow-slate-500/25 hover:shadow-slate-500/40'
+  };
+
   return (
     <div className="group relative h-full">
+      {/* Glow effect */}
+      <div className={`absolute -inset-1 bg-gradient-to-r ${category.gradient} rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500`}></div>
+      
       <div 
-        className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-pink-200/50 cursor-pointer h-full flex flex-col min-h-[420px] ${
-          isExpanded ? 'ring-4 ring-pink-300/50' : ''
+        className={`relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-500 hover:scale-[1.02] cursor-pointer h-full flex flex-col min-h-[480px] ${glowColors[category.glowColor]} shadow-2xl hover:shadow-3xl ${
+          isExpanded ? 'ring-2 ring-white/30' : ''
         }`}
         onClick={onToggle}
       >
-        {/* Header con gradiente mejorado - altura fija */}
-        <div className={`bg-gradient-to-r ${category.color} p-6 text-center relative overflow-hidden flex-shrink-0`}>
-          {/* Efectos de fondo sutiles */}
-          <div className="absolute inset-0 bg-black/10"></div>
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+        {/* Header con diseño futurista */}
+        <div className={`bg-gradient-to-br ${category.gradient} p-8 text-center relative overflow-hidden flex-shrink-0`}>
+          {/* Efectos de fondo animados */}
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          {/* Patrón geométrico de fondo */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-4 left-4 w-8 h-8 border-2 border-white rotate-45"></div>
+            <div className="absolute top-4 right-4 w-6 h-6 border-2 border-white rounded-full"></div>
+            <div className="absolute bottom-4 left-4 w-4 h-4 bg-white rounded-full"></div>
+            <div className="absolute bottom-4 right-4 w-6 h-6 border-2 border-white"></div>
+          </div>
           
           {/* Contenido del header */}
           <div className="relative z-10">
-            <div className={`w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br ${category.iconBg} flex items-center justify-center shadow-xl border-4 border-white/30 group-hover:scale-110 transition-transform duration-300`}>
-              <category.icon className="h-8 w-8 text-[#612247]" />
+            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center shadow-2xl border border-white/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+              <category.icon className="h-10 w-10 text-white drop-shadow-lg" />
             </div>
-            <h3 className="text-lg font-extrabold text-white tracking-wide drop-shadow-lg leading-tight">
+            <h3 className="text-xl font-black text-white tracking-wide drop-shadow-2xl leading-tight">
               {category.title}
             </h3>
           </div>
         </div>
 
-        {/* Lista de servicios con altura flexible pero controlada */}
-        <div className="bg-white/95 backdrop-blur-md flex-1 flex flex-col">
-          <div className="p-4 space-y-1 flex-1">
+        {/* Lista de servicios con diseño glassmorphism */}
+        <div className="bg-white/5 backdrop-blur-md flex-1 flex flex-col border-t border-white/10">
+          <div className="p-6 space-y-2 flex-1">
             {category.services.map((service, idx) => (
               <div 
                 key={idx}
-                className="flex items-center justify-between p-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all duration-300 group/item cursor-pointer border border-transparent hover:border-pink-200 hover:shadow-sm"
+                className="flex items-center justify-between p-4 rounded-2xl hover:bg-white/10 transition-all duration-300 group/item cursor-pointer border border-transparent hover:border-white/20 hover:shadow-lg backdrop-blur-sm"
               >
-                <span className="text-gray-700 font-medium group-hover/item:text-gray-900 transition-colors flex-1 text-sm leading-tight">
+                <span className="text-white/90 font-medium group-hover/item:text-white transition-colors flex-1 text-sm leading-relaxed">
                   {service}
                 </span>
-                <ChevronRightIcon className="h-4 w-4 text-gray-400 group-hover/item:text-pink-500 group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 ml-2" />
+                <ChevronRightIcon className="h-5 w-5 text-white/50 group-hover/item:text-white group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 ml-3" />
               </div>
             ))}
+          </div>
+          
+          {/* Footer con efecto brillante */}
+          <div className="p-4 border-t border-white/10">
+            <div className="text-center">
+              <span className="text-white/60 text-xs font-medium">
+                {category.services.length} servicios disponibles
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -214,59 +256,80 @@ export default function Autogestion() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
-      {/* Efectos de fondo decorativos mejorados */}
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Fondo ultra moderno con gradientes animados */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"></div>
+      
+      {/* Efectos de fondo animados */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-pink-100/10 via-purple-100/10 to-blue-100/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-spin" style={{animationDuration: '20s'}}></div>
       </div>
 
-      {/* Hero Section mejorado */}
-      <section className="relative z-10 pt-20 pb-16 px-4">
+      {/* Patrón de puntos */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }}></div>
+
+      {/* Hero Section ultra futurista */}
+      <section className="relative z-10 pt-24 pb-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          {/* Badge superior con mejor diseño */}
-          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-2 border-pink-200/50 mb-8 backdrop-blur-md shadow-lg">
-            <UserGroupIcon className="h-6 w-6 text-pink-600" />
-            <span className="text-pink-700 font-bold text-base tracking-wide uppercase">Centro de Autogestión</span>
+          {/* Badge superior con efectos */}
+          <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 mb-12 shadow-2xl group hover:scale-105 transition-all duration-300">
+            <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse"></div>
+            <SparklesIcon className="h-6 w-6 text-blue-400" />
+            <span className="text-white font-bold text-lg tracking-wide uppercase">Centro de Autogestión Digital</span>
+            <LightBulbIcon className="h-6 w-6 text-purple-400" />
+            <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse delay-500"></div>
           </div>
 
-          {/* Título principal con mejor tipografía */}
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 bg-gradient-to-r from-[#023F5E] via-[#612247] to-[#2563eb] bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight">
-            CENTRO DE AUTOGESTIÓN
+          {/* Título principal con efectos de texto */}
+          <h1 className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight">
+            AUTOGESTIÓN
+            <span className="block text-5xl md:text-7xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              INTELIGENTE
+            </span>
           </h1>
 
           {/* Subtítulo mejorado */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto font-medium leading-relaxed">
-            Gestioná todos tus trámites tributarios de manera rápida, segura y eficiente desde un solo lugar
+          <p className="text-xl md:text-2xl text-white/80 mb-16 max-w-4xl mx-auto font-medium leading-relaxed">
+            Plataforma digital avanzada para gestionar todos tus trámites tributarios de manera 
+            <span className="text-blue-300 font-semibold"> rápida</span>, 
+            <span className="text-purple-300 font-semibold"> segura</span> y 
+            <span className="text-pink-300 font-semibold"> eficiente</span>
           </p>
 
           {/* Barra de búsqueda */}
-          <SearchSection searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <UltraSearchSection searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-          {/* Banner informativo mejorado */}
-          <div className="bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-md rounded-2xl p-6 mb-16 shadow-2xl border border-white/20 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
-            <div className="relative flex items-center justify-center gap-3 text-white">
-              <InformationCircleIcon className="h-6 w-6 animate-pulse" />
-              <span className="text-lg font-semibold">
-                ¡Ahora! 👉 leos, manuales y mucho más para facilitar tus trámites!
-              </span>
+          {/* Banner informativo futurista */}
+          <div className="relative group mb-20">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+              <div className="flex items-center justify-center gap-4 text-white">
+                <InformationCircleIcon className="h-8 w-8 animate-pulse text-blue-300" />
+                <span className="text-xl font-bold">
+                  🚀 ¡Ahora disponible! Manuales interactivos, guías paso a paso y asistencia en tiempo real
+                </span>
+                <SparklesIcon className="h-8 w-8 animate-pulse text-purple-300" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Grid de categorías mejorado con tarjetas más anchas y altura uniforme */}
-      <section className="relative z-10 max-w-7xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 auto-rows-fr">
+      {/* Grid de categorías ultra moderno */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 auto-rows-fr">
           {filteredCategories.map((category, index) => (
             <div 
               key={category.id}
               className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ animationDelay: `${index * 150}ms` }}
             >
-              <CategoryCard
+              <UltraModernCard
                 category={category}
                 isExpanded={expandedCategory === category.id}
                 onToggle={() => setExpandedCategory(
@@ -277,17 +340,17 @@ export default function Autogestion() {
           ))}
         </div>
 
-        {/* Mensaje cuando no hay resultados mejorado */}
+        {/* Mensaje cuando no hay resultados */}
         {filteredCategories.length === 0 && searchTerm && (
-          <div className="text-center py-16">
-            <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-xl">
-              <MagnifyingGlassIcon className="h-16 w-16 text-gray-400" />
+          <div className="text-center py-20">
+            <div className="w-40 h-40 mx-auto mb-8 rounded-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl flex items-center justify-center shadow-2xl border border-white/20">
+              <MagnifyingGlassIcon className="h-20 w-20 text-white/50" />
             </div>
-            <h3 className="text-3xl font-bold text-gray-700 mb-4">No se encontraron resultados</h3>
-            <p className="text-gray-500 mb-8 text-lg">Intentá con otros términos de búsqueda</p>
+            <h3 className="text-4xl font-bold text-white mb-6">No se encontraron resultados</h3>
+            <p className="text-white/70 mb-10 text-xl">Intentá con otros términos de búsqueda</p>
             <button 
               onClick={() => setSearchTerm('')}
-              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-2xl font-bold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 text-lg"
+              className="px-12 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-3xl font-bold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 text-xl border border-white/20"
             >
               Limpiar búsqueda
             </button>
@@ -295,46 +358,47 @@ export default function Autogestion() {
         )}
       </section>
 
-      {/* Sección de ayuda adicional mejorada */}
-      <section className="relative z-10 bg-gradient-to-r from-[#023F5E]/5 to-[#612247]/5 py-20 mt-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-12 bg-gradient-to-r from-[#023F5E] to-[#612247] bg-clip-text text-transparent">
-            ¿Necesitás ayuda adicional?
+      {/* Sección de ayuda ultra moderna */}
+      <section className="relative z-10 py-24 mt-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-black/40 backdrop-blur-sm"></div>
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-5xl font-black text-white mb-16 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            ¿Necesitás Asistencia?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <a 
               href="tel:0810-444-5505"
-              className="group p-8 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl hover:shadow-pink-200/50 transition-all duration-300 hover:scale-105 border border-white/50 relative overflow-hidden"
+              className="group relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-emerald-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative z-10">
-                <PhoneIcon className="h-16 w-16 mx-auto mb-6 text-green-600 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Contacto Directo</h3>
-                <p className="text-gray-600 mb-4 text-lg">Llamanos para asistencia inmediata</p>
-                <span className="text-3xl font-bold text-green-600">0810-444-5505</span>
+              <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative p-10 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border border-white/10">
+                <PhoneIcon className="h-20 w-20 mx-auto mb-8 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">Contacto Directo</h3>
+                <p className="text-white/70 mb-6 text-lg">Asistencia inmediata las 24 horas</p>
+                <span className="text-4xl font-black text-green-400">0810-444-5505</span>
               </div>
             </a>
 
-            <div className="group p-8 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl hover:shadow-blue-200/50 transition-all duration-300 hover:scale-105 border border-white/50 relative overflow-hidden cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative z-10">
-                <QuestionMarkCircleIcon className="h-16 w-16 mx-auto mb-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Preguntas Frecuentes</h3>
-                <p className="text-gray-600 mb-4 text-lg">Encontrá respuestas rápidas</p>
-                <div className="flex items-center justify-center gap-2 text-blue-600 font-bold text-lg group-hover:text-blue-700 transition-colors">
-                  Ver FAQ <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <div className="group relative cursor-pointer">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative p-10 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border border-white/10">
+                <QuestionMarkCircleIcon className="h-20 w-20 mx-auto mb-8 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">FAQ Inteligente</h3>
+                <p className="text-white/70 mb-6 text-lg">Respuestas instantáneas con IA</p>
+                <div className="flex items-center justify-center gap-3 text-blue-400 font-bold text-xl group-hover:text-blue-300 transition-colors">
+                  Explorar <ArrowRightIcon className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
             </div>
 
-            <div className="group p-8 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl hover:shadow-purple-200/50 transition-all duration-300 hover:scale-105 border border-white/50 relative overflow-hidden cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-pink-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative z-10">
-                <BookOpenIcon className="h-16 w-16 mx-auto mb-6 text-purple-600 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Manuales y Guías</h3>
-                <p className="text-gray-600 mb-4 text-lg">Documentación completa</p>
-                <div className="flex items-center justify-center gap-2 text-purple-600 font-bold text-lg group-hover:text-purple-700 transition-colors">
-                  Descargar <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <div className="group relative cursor-pointer">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative p-10 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border border-white/10">
+                <BookOpenIcon className="h-20 w-20 mx-auto mb-8 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-3xl font-bold text-white mb-6">Guías Interactivas</h3>
+                <p className="text-white/70 mb-6 text-lg">Tutoriales paso a paso</p>
+                <div className="flex items-center justify-center gap-3 text-purple-400 font-bold text-xl group-hover:text-purple-300 transition-colors">
+                  Acceder <ArrowRightIcon className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
             </div>
@@ -342,9 +406,12 @@ export default function Autogestion() {
         </div>
       </section>
 
-      {/* Botón flotante de ayuda mejorado */}
-      <button className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group border-4 border-white/30">
-        <QuestionMarkCircleIcon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
+      {/* Botón flotante futurista */}
+      <button className="fixed bottom-8 right-8 z-50 group">
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition duration-300"></div>
+        <div className="relative w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border border-white/20">
+          <QuestionMarkCircleIcon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
+        </div>
       </button>
     </div>
   );
