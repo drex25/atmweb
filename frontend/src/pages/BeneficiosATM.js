@@ -143,21 +143,25 @@ const sectores = [
   },
 ];
 
-// Componente contador animado mejorado con efectos de partículas
+// Componente contador animado REPETITIVO - Se reinicia cada vez que entra en vista
 function AnimatedCounter({ value, prefix = '', suffix = '', duration = 2000, className = '', particles, onComplete }) {
   const ref = useRef();
   const [showParticles, setShowParticles] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0); // Key para forzar re-render
   
   useEffect(() => {
     const element = ref.current;
-    if (!element || hasStarted) return;
+    if (!element) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setHasStarted(true);
+          // REINICIAR ESTADO cada vez que entra en vista
+          setShowParticles(false);
+          setIsComplete(false);
+          setAnimationKey(prev => prev + 1); // Forzar nueva animación
+          
           let startTime = null;
           
           function animate(ts) {
@@ -187,15 +191,17 @@ function AnimatedCounter({ value, prefix = '', suffix = '', duration = 2000, cla
             }
           }
           requestAnimationFrame(animate);
-          observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { 
+        threshold: 0.5,
+        // IMPORTANTE: No desconectar el observer para que funcione repetitivamente
+      }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [value, prefix, suffix, duration, onComplete, hasStarted]);
+  }, [value, prefix, suffix, duration, onComplete, animationKey]);
 
   const createConfetti = () => {
     const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'];
@@ -226,11 +232,15 @@ function AnimatedCounter({ value, prefix = '', suffix = '', duration = 2000, cla
   
   return (
     <div className="relative">
-      <span ref={ref} className={`${className} ${isComplete ? 'animate-pulse' : ''} transition-all duration-300`}>
-        {prefix}{value.toLocaleString()}{suffix}
+      <span 
+        ref={ref} 
+        key={animationKey} // Key para forzar re-render
+        className={`${className} ${isComplete ? 'animate-pulse' : ''} transition-all duration-300`}
+      >
+        {prefix}0{suffix}
       </span>
       {showParticles && particles && (
-        <div className="absolute -top-4 -right-4 text-3xl animate-bounce">
+        <div className="absolute -top-4 -right-4 text-3xl animate-bounce" key={`particles-${animationKey}`}>
           {particles}
         </div>
       )}
