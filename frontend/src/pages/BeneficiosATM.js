@@ -78,13 +78,13 @@ const metrics = [
   },
 ];
 
-// Sectores beneficiados con diseño mejorado
+// Sectores beneficiados con contenido original de las imágenes
 const sectores = [
   {
     icon: UserGroupIcon, 
     label: 'Productores Primarios', 
     value: '+9,000', 
-    desc: 'Beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', 
+    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', 
     href: '/requisitos/productores-primarios',
     color: '#059669',
     gradient: 'from-emerald-600 to-green-600'
@@ -93,7 +93,7 @@ const sectores = [
     icon: UserIcon, 
     label: 'Jubilados y Pensionados', 
     value: '+4,080', 
-    desc: 'Beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', 
+    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', 
     href: '/requisitos/jubilados-pensionados',
     color: '#DC2626',
     gradient: 'from-red-600 to-rose-600'
@@ -102,7 +102,7 @@ const sectores = [
     icon: IdentificationIcon, 
     label: 'Personas con CUD', 
     value: '+1,222', 
-    desc: 'Beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', 
+    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', 
     href: '/requisitos/personas-cud',
     color: '#7C3AED',
     gradient: 'from-violet-600 to-purple-600'
@@ -111,7 +111,7 @@ const sectores = [
     icon: KeyIcon, 
     label: 'Adjudicatarios Vivienda IPRODHA', 
     value: '+20,781', 
-    desc: 'Beneficios del Impuesto Inmobiliario Básico para adjudicatarios de primera vivienda del IPRODHA.', 
+    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Inmobiliario Básico destinados a adjudicatarios de primera vivienda del IPRODHA.', 
     href: '/requisitos/adjudicatarios-vivienda',
     color: '#0891B2',
     gradient: 'from-cyan-600 to-blue-600'
@@ -120,7 +120,7 @@ const sectores = [
     icon: ScaleIcon, 
     label: 'Otras Exenciones y Bonificaciones', 
     value: '+26,000', 
-    desc: 'Otras exenciones impositivas para diversas actividades y grupos.', 
+    desc: 'Conocé sobre las demás exenciones impositivas disponibles para diversas actividades y grupos.', 
     href: '/requisitos/otras-exenciones',
     color: '#EA580C',
     gradient: 'from-orange-600 to-amber-600'
@@ -228,61 +228,58 @@ const SpaceMetricCard = ({ metric, index }) => (
   </div>
 );
 
-// Componente de sector beneficiado con altura uniforme
-const SectorCard = ({ sector, index }) => (
+// Componente de sector beneficiado estilo fondo blanco con altura uniforme
+const SectorCardWhite = ({ sector, index }) => (
   <a
     href={sector.href}
     className="group relative block scroll-animate opacity-0 translate-y-10 transition-all duration-700"
     style={{transitionDelay: `${index * 150}ms`}}
   >
-    {/* Efecto de halo */}
-    <div className="absolute -inset-2 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500"
-         style={{background: `linear-gradient(135deg, ${sector.color}, transparent)`}}></div>
-    
-    {/* Contenedor principal con altura fija */}
-    <div className="relative h-[340px] bg-black/40 backdrop-blur-xl rounded-3xl border-2 shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden"
-         style={{borderColor: `${sector.color}40`, boxShadow: `0 15px 35px ${sector.color}15`}}>
+    {/* Contenedor principal con altura fija y fondo blanco */}
+    <div className="relative h-[420px] bg-white/95 backdrop-blur-xl rounded-3xl border-2 border-gray-200/50 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden group-hover:border-gray-300">
       
-      {/* Efectos de fondo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-      <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-10 animate-pulse"
+      {/* Efectos de fondo sutiles */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white rounded-3xl"></div>
+      <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-5 animate-pulse"
            style={{backgroundColor: sector.color}}></div>
       
-      {/* Sección superior: Icono */}
-      <div className="mb-4">
-        <div className="relative flex items-center justify-center w-20 h-20 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
+      {/* Sección superior: Icono con círculo de color */}
+      <div className="mb-6">
+        <div className="relative flex items-center justify-center w-20 h-20 rounded-full border-4 shadow-lg group-hover:scale-110 transition-transform duration-300 bg-white"
              style={{
-               backgroundColor: `${sector.color}20`,
                borderColor: sector.color,
-               boxShadow: `0 0 25px ${sector.color}30`
+               boxShadow: `0 8px 25px ${sector.color}20`
              }}>
           <sector.icon className="h-10 w-10" style={{color: sector.color}} />
         </div>
       </div>
       
       {/* Sección central: Valor y etiqueta */}
-      <div className="flex flex-col items-center mb-4">
-        <div className="text-3xl font-black mb-2 drop-shadow-xl" style={{color: sector.color}}>
+      <div className="flex flex-col items-center mb-6">
+        <div className="text-4xl font-black mb-3 drop-shadow-sm" style={{color: sector.color}}>
           <AnimatedCounter value={parseInt(sector.value.replace(/[^\d]/g, ''))} 
                           prefix={sector.value.match(/^[^\d]+/)?.[0] || ''} 
                           suffix={sector.value.match(/[^\d]+$/)?.[0] || ''} />
         </div>
         
-        <div className="text-lg font-bold mb-3 text-white uppercase tracking-wide leading-tight text-center">
+        <div className="text-xl font-bold mb-4 text-gray-800 uppercase tracking-wide leading-tight text-center">
           {sector.label}
         </div>
       </div>
       
       {/* Sección inferior: Descripción y acción */}
       <div className="flex-1 flex flex-col justify-between w-full">
-        <div className="text-sm text-white/80 font-medium leading-relaxed text-center mb-4">
+        <div className="text-base text-gray-600 font-medium leading-relaxed text-center mb-6">
           {sector.desc}
         </div>
         
-        {/* Indicador de acción */}
-        <div className="flex items-center justify-center gap-2 text-white/60 group-hover:text-white transition-colors">
-          <span className="text-sm font-semibold">Ver más</span>
-          <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
+        {/* Botón de acción */}
+        <div className="flex items-center justify-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all duration-300 group-hover:scale-105 shadow-lg"
+               style={{backgroundColor: sector.color}}>
+            <span className="text-sm">Ver más</span>
+            <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
+          </div>
         </div>
       </div>
     </div>
@@ -465,15 +462,29 @@ export default function BeneficiosATM() {
         </div>
       </section>
 
-      {/* SECTORES BENEFICIADOS */}
-      <section id="sectores" className="relative z-10 w-[95%] mx-auto py-20 px-0">
-        <h2 className="text-4xl md:text-5xl font-black mb-16 text-center bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl scroll-animate opacity-0 translate-y-10 transition-all duration-700">
-          Sectores Beneficiados
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {sectores.map((sector, i) => (
-            <SectorCard key={i} sector={sector} index={i} />
-          ))}
+      {/* SECTORES BENEFICIADOS - 3 COLUMNAS CON FONDO BLANCO */}
+      <section id="sectores" className="relative z-10 py-20 px-4">
+        {/* Fondo blanco para la sección */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-blue-50"></div>
+        
+        <div className="relative max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black mb-16 text-center bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent drop-shadow-xl scroll-animate opacity-0 translate-y-10 transition-all duration-700">
+            Sectores Beneficiados
+          </h2>
+          
+          {/* Grid de 3 columnas para los primeros 3 elementos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {sectores.slice(0, 3).map((sector, i) => (
+              <SectorCardWhite key={i} sector={sector} index={i} />
+            ))}
+          </div>
+          
+          {/* Grid de 2 columnas centradas para los últimos 2 elementos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {sectores.slice(3, 5).map((sector, i) => (
+              <SectorCardWhite key={i + 3} sector={sector} index={i + 3} />
+            ))}
+          </div>
         </div>
       </section>
 
