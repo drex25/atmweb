@@ -228,7 +228,7 @@ const SpaceMetricCard = ({ metric, index }) => (
   </div>
 );
 
-// Componente de sector beneficiado como enlace completo con altura uniforme
+// Componente de sector beneficiado como enlace completo con altura uniforme y textos más visibles
 const SectorCardWhite = ({ sector, index }) => (
   <a
     href={sector.href}
@@ -236,7 +236,7 @@ const SectorCardWhite = ({ sector, index }) => (
     style={{transitionDelay: `${index * 150}ms`}}
   >
     {/* Contenedor principal con altura fija y fondo blanco */}
-    <div className="relative h-[380px] bg-white/95 backdrop-blur-xl rounded-3xl border-2 border-gray-200/50 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden group-hover:border-gray-300 group-hover:shadow-xl">
+    <div className="relative h-[380px] bg-white/98 backdrop-blur-xl rounded-3xl border-2 border-gray-200/50 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden group-hover:border-gray-300 group-hover:shadow-xl">
       
       {/* Efectos de fondo sutiles */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white rounded-3xl"></div>
@@ -262,14 +262,16 @@ const SectorCardWhite = ({ sector, index }) => (
                           suffix={sector.value.match(/[^\d]+$/)?.[0] || ''} />
         </div>
         
-        <div className="text-xl font-bold mb-4 text-gray-800 uppercase tracking-wide leading-tight text-center">
+        {/* TÍTULO MÁS VISIBLE - Color más oscuro y mayor contraste */}
+        <div className="text-xl font-black mb-4 text-gray-900 uppercase tracking-wide leading-tight text-center">
           {sector.label}
         </div>
       </div>
       
-      {/* Sección inferior: Descripción optimizada */}
+      {/* Sección inferior: Descripción optimizada con mejor contraste */}
       <div className="flex-1 flex flex-col justify-center w-full">
-        <div className="text-base text-gray-600 font-medium leading-relaxed text-center">
+        {/* DESCRIPCIÓN MÁS VISIBLE - Color más oscuro y mayor peso de fuente */}
+        <div className="text-base text-gray-800 font-semibold leading-relaxed text-center">
           {sector.desc}
         </div>
       </div>
