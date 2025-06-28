@@ -169,38 +169,44 @@ export default function ProHeroSlider({ cardMode, height }) {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={`slide-${slide.id}-${index}`}>
+            {/* TODO EL SLIDE USA EL MISMO FONDO - SIN CONTENEDORES SEPARADOS */}
             <div 
-              className={`w-full h-full flex items-center justify-center transition-all duration-500 rounded-2xl bg-gradient-to-br ${getBgColor(slide, index)}`}
+              className={`w-full h-full flex items-center justify-center transition-all duration-500 rounded-2xl bg-gradient-to-br ${getBgColor(slide, index)} p-6 md:p-12`}
             >
-              <div className="w-full flex flex-col md:flex-row items-center justify-between p-6 md:p-12 h-full gap-6 md:gap-12">
-                {/* Columna izquierda: textos - SIN FONDO NI SOMBRA */}
+              {/* CONTENIDO DIRECTO SIN CONTENEDORES ADICIONALES */}
+              <div className="w-full flex flex-col md:flex-row items-center justify-between h-full gap-6 md:gap-12 max-w-7xl mx-auto">
+                
+                {/* Columna izquierda: textos - INTEGRADOS CON EL FONDO */}
                 <div className="flex-1 flex flex-col justify-center items-start text-center md:text-left">
-                  {/* Badge demo */}
+                  {/* Badge - Con fondo semi-transparente para contraste */}
                   {slide.acf?.badge && (
-                    <span className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-white/90 text-gray-800 font-semibold text-sm shadow-lg">
+                    <span className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white font-semibold text-sm border border-white/30 shadow-lg">
                       <span className="mr-2">✨</span> {slide.acf.badge}
                     </span>
                   )}
                   
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
+                  {/* Título - Texto blanco con sombra */}
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 drop-shadow-xl leading-tight">
                     {slide.title.rendered}
                   </h2>
                   
+                  {/* Descripción - COMPLETAMENTE INTEGRADA */}
                   {slide.acf?.descripcion && (
                     <div className="mb-6 w-full">
-                      {/* DESCRIPCIÓN SIN FONDO - Solo texto blanco con sombra */}
-                      <div className="text-white/95 text-sm md:text-base font-medium leading-relaxed drop-shadow-md">
+                      {/* SIN FONDO - Solo texto blanco con sombra para legibilidad */}
+                      <div className="text-white/95 text-base md:text-lg font-medium leading-relaxed drop-shadow-lg">
                         {slide.acf.descripcion.split('\n').map((line, idx) => (
-                          <div key={idx} className="mb-1 last:mb-0">{line}</div>
+                          <div key={idx} className="mb-2 last:mb-0">{line}</div>
                         ))}
                       </div>
                     </div>
                   )}
                   
+                  {/* Botón de acción */}
                   {slide.acf?.link && (
                     <a
                       href={slide.acf.link}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-base md:text-lg shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                      className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-base md:text-lg shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -212,7 +218,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                   )}
                 </div>
                 
-                {/* Columna derecha: imagen - SIN FONDO NI SOMBRA */}
+                {/* Columna derecha: imagen - TAMBIÉN INTEGRADA */}
                 <div className="flex-1 flex items-center justify-center w-full h-full">
                   {images[slide.id] ? (
                     <img
@@ -226,7 +232,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                       }}
                     />
                   ) : (
-                    <div className="w-48 h-48 md:w-64 md:h-64 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-48 h-48 md:w-64 md:h-64 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
                       <span className="text-white/60 text-sm font-medium">Sin imagen</span>
                     </div>
                   )}
