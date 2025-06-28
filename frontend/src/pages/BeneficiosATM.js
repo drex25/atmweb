@@ -57,78 +57,6 @@ const useScrollAnimation = () => {
   }, []);
 };
 
-// Hook para partículas interactivas que siguen el mouse
-const useInteractiveParticles = () => {
-  useEffect(() => {
-    const particles = [];
-    const particleCount = 15;
-    
-    // Crear partículas
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.cssText = `
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background: radial-gradient(circle, #60a5fa, #3b82f6);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 0;
-        transition: all 0.3s ease;
-        box-shadow: 0 0 10px #3b82f6;
-      `;
-      document.body.appendChild(particle);
-      particles.push({
-        element: particle,
-        x: 0,
-        y: 0,
-        targetX: 0,
-        targetY: 0,
-        delay: i * 50
-      });
-    }
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    const handleMouseMove = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-
-    const animateParticles = () => {
-      particles.forEach((particle, index) => {
-        // Crear efecto de seguimiento con retraso
-        particle.targetX = mouseX + Math.sin(Date.now() * 0.001 + index) * 20;
-        particle.targetY = mouseY + Math.cos(Date.now() * 0.001 + index) * 20;
-        
-        // Interpolación suave
-        particle.x += (particle.targetX - particle.x) * 0.1;
-        particle.y += (particle.targetY - particle.y) * 0.1;
-        
-        particle.element.style.left = particle.x + 'px';
-        particle.element.style.top = particle.y + 'px';
-        particle.element.style.opacity = '0.6';
-      });
-      requestAnimationFrame(animateParticles);
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    animateParticles();
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      particles.forEach(particle => {
-        if (particle.element.parentNode) {
-          particle.element.parentNode.removeChild(particle.element);
-        }
-      });
-    };
-  }, []);
-};
-
 // Métricas con textos ajustados perfectamente
 const metrics = [
   {
@@ -417,9 +345,9 @@ const SpaceMetricCard = ({ metric, index }) => {
             {metric.label}
           </div>
           
-          {/* Sublabel para la caja del medio si existe */}
+          {/* Sublabel para la caja del medio - TEXTO AJUSTADO PERFECTAMENTE */}
           {metric.sublabel && (
-            <div className="text-sm md:text-base text-white/90 text-center font-medium relative z-10 leading-snug px-2 mb-2">
+            <div className="text-sm md:text-base text-white/90 text-center font-medium relative z-10 leading-snug px-4 mb-2 max-w-full">
               {metric.sublabel}
             </div>
           )}
@@ -598,7 +526,7 @@ const SectorCardWhite = ({ sector, index }) => {
   );
 };
 
-// Componente de moratoria mejorado con efectos avanzados
+// Componente de moratoria mejorado con FONDO BLANCO
 const MoratoriaSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef();
@@ -621,85 +549,82 @@ const MoratoriaSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative z-10 w-[95%] mx-auto flex justify-center py-20 px-0">
-      <div className="group relative w-full scroll-animate opacity-0 translate-y-20 transition-all duration-700">
-        {/* Anillos de energía múltiples con diferentes velocidades */}
-        <div className="absolute -inset-6 rounded-3xl border-2 border-blue-400/20 animate-spin opacity-30 group-hover:opacity-60 transition-opacity" style={{animationDuration: '15s'}}></div>
-        <div className="absolute -inset-4 rounded-3xl border border-purple-400/30 animate-spin opacity-40 group-hover:opacity-70 transition-opacity" style={{animationDuration: '12s', animationDirection: 'reverse'}}></div>
-        <div className="absolute -inset-2 rounded-3xl border border-pink-400/20 animate-spin opacity-20 group-hover:opacity-50 transition-opacity" style={{animationDuration: '8s'}}></div>
-        
-        {/* Contenedor principal mejorado */}
-        <div className="relative w-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-xl border-2 border-blue-400/40 rounded-3xl shadow-2xl flex flex-col items-center p-16 text-center overflow-hidden group-hover:shadow-blue-500/30 transition-all duration-500 transform-gpu">
+    <section ref={sectionRef} className="relative z-10 py-24 px-4">
+      {/* FONDO BLANCO PARA CONTRASTE */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-blue-50"></div>
+      
+      {/* Efectos decorativos sutiles en fondo blanco */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 right-10 w-32 h-32 bg-blue-100/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-24 h-24 bg-purple-100/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
+
+      <div className="relative w-[95%] mx-auto flex justify-center">
+        <div className="group relative w-full scroll-animate opacity-0 translate-y-20 transition-all duration-700">
+          {/* Anillos de energía sutiles para fondo blanco */}
+          <div className="absolute -inset-6 rounded-3xl border-2 border-blue-300/30 animate-spin opacity-20 group-hover:opacity-40 transition-opacity" style={{animationDuration: '15s'}}></div>
+          <div className="absolute -inset-4 rounded-3xl border border-purple-300/40 animate-spin opacity-30 group-hover:opacity-50 transition-opacity" style={{animationDuration: '12s', animationDirection: 'reverse'}}></div>
           
-          {/* Efectos de fondo mejorados con ondas */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl"></div>
-          <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-pink-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-          
-          {/* Ondas concéntricas animadas */}
-          {isVisible && (
-            <>
-              <div className="absolute inset-0 border border-blue-300/30 rounded-3xl animate-ping" style={{animationDuration: '3s'}}></div>
-              <div className="absolute inset-4 border border-purple-300/20 rounded-3xl animate-ping" style={{animationDuration: '4s', animationDelay: '1s'}}></div>
-            </>
-          )}
-          
-          {/* Icono principal mejorado con rotación */}
-          <div className="relative mb-8 flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/30 to-purple-500/30 border-4 border-blue-400 shadow-inner group-hover:scale-110 transition-transform duration-500 transform-gpu">
-            <ScaleIcon className="h-16 w-16 text-blue-300 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 transform-gpu" />
+          {/* Contenedor principal con fondo blanco */}
+          <div className="relative w-full bg-white/95 backdrop-blur-xl border-2 border-blue-200/60 rounded-3xl shadow-2xl flex flex-col items-center p-16 text-center overflow-hidden group-hover:shadow-blue-300/40 transition-all duration-500 transform-gpu">
             
-            {/* Partículas orbitales mejoradas con diferentes tamaños */}
-            <div className="absolute inset-0 animate-spin" style={{animationDuration: '10s'}}>
-              <div className="absolute -top-3 left-1/2 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/2 -right-3 w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-              <div className="absolute -bottom-3 left-1/2 w-2 h-2 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-              <div className="absolute top-1/4 -left-3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
-            </div>
+            {/* Efectos de fondo sutiles para blanco */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-3xl"></div>
+            <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-200/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
             
-            {/* Anillo interno pulsante */}
-            <div className="absolute inset-4 border-2 border-white/40 rounded-full animate-ping" style={{animationDuration: '2s'}}></div>
-          </div>
-          
-          {/* Título con efectos mejorados y gradiente animado */}
-          <h2 className="relative text-4xl md:text-6xl font-black mb-6 z-10 bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl group-hover:scale-105 transition-transform duration-300 transform-gpu">
-            ALIVIO FISCAL Moratoria 2024
-          </h2>
-          
-          {/* Estadística principal con efectos */}
-          <div className="relative text-3xl md:text-5xl font-black mb-8 z-10 text-blue-300 drop-shadow-xl">
-            <AnimatedCounter value={10883} suffix=" planes por $5.528 millones" particles="💫" />
-          </div>
-          
-          {/* Descripción adicional con animación */}
-          <div className="relative text-lg text-blue-200 mb-8 z-10 max-w-2xl leading-relaxed animate-fade-in">
-            Facilitamos el cumplimiento tributario con planes de pago accesibles y beneficios especiales para contribuyentes.
-          </div>
-          
-          {/* Botón de acción mejorado con efectos 3D */}
-          <button className="relative z-10 group/btn transform-gpu">
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover/btn:opacity-60 transition-opacity animate-pulse"></div>
-            <div className="relative px-12 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl rounded-full shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 border-2 border-blue-400/50 transform-gpu">
-              <span className="flex items-center gap-3">
-                <RocketLaunchIcon className="h-7 w-7 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all transform-gpu" />
-                Más información
-                <SparklesIcon className="h-6 w-6 animate-pulse" />
-              </span>
-            </div>
-          </button>
-          
-          {/* Indicadores de beneficios con animaciones escalonadas */}
-          <div className="relative flex flex-wrap justify-center gap-4 mt-8 z-10">
-            {['Planes flexibles', 'Sin intereses', 'Fácil gestión'].map((benefit, index) => (
-              <div 
-                key={index} 
-                className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full border border-white/20 animate-fade-in transform-gpu"
-                style={{animationDelay: `${index * 0.2}s`}}
-              >
-                <CheckCircleIcon className="h-5 w-5 text-green-400 animate-pulse" />
-                <span className="text-white font-medium">{benefit}</span>
+            {/* Icono principal con colores para fondo blanco */}
+            <div className="relative mb-8 flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 border-4 border-blue-400 shadow-lg group-hover:scale-110 transition-transform duration-500 transform-gpu">
+              <ScaleIcon className="h-16 w-16 text-blue-600 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 transform-gpu" />
+              
+              {/* Partículas orbitales para fondo blanco */}
+              <div className="absolute inset-0 animate-spin" style={{animationDuration: '10s'}}>
+                <div className="absolute -top-3 left-1/2 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="absolute top-1/2 -right-3 w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                <div className="absolute -bottom-3 left-1/2 w-2 h-2 bg-pink-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
               </div>
-            ))}
+            </div>
+            
+            {/* Título con colores para fondo blanco */}
+            <h2 className="relative text-4xl md:text-6xl font-black mb-6 z-10 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm group-hover:scale-105 transition-transform duration-300 transform-gpu">
+              ALIVIO FISCAL Moratoria 2024
+            </h2>
+            
+            {/* Estadística principal */}
+            <div className="relative text-3xl md:text-5xl font-black mb-8 z-10 text-blue-600 drop-shadow-sm">
+              <AnimatedCounter value={10883} suffix=" planes por $5.528 millones" particles="💫" />
+            </div>
+            
+            {/* Descripción */}
+            <div className="relative text-lg text-gray-700 mb-8 z-10 max-w-2xl leading-relaxed animate-fade-in font-medium">
+              Facilitamos el cumplimiento tributario con planes de pago accesibles y beneficios especiales para contribuyentes.
+            </div>
+            
+            {/* Botón de acción */}
+            <button className="relative z-10 group/btn transform-gpu">
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-lg opacity-30 group-hover/btn:opacity-50 transition-opacity animate-pulse"></div>
+              <div className="relative px-12 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl rounded-full shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 border-2 border-blue-300/50 transform-gpu">
+                <span className="flex items-center gap-3">
+                  <RocketLaunchIcon className="h-7 w-7 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all transform-gpu" />
+                  Más información
+                  <SparklesIcon className="h-6 w-6 animate-pulse" />
+                </span>
+              </div>
+            </button>
+            
+            {/* Indicadores de beneficios */}
+            <div className="relative flex flex-wrap justify-center gap-4 mt-8 z-10">
+              {['Planes flexibles', 'Sin intereses', 'Fácil gestión'].map((benefit, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-200 animate-fade-in transform-gpu"
+                  style={{animationDelay: `${index * 0.2}s`}}
+                >
+                  <CheckCircleIcon className="h-5 w-5 text-green-500 animate-pulse" />
+                  <span className="text-gray-700 font-medium">{benefit}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -825,7 +750,6 @@ const SorteosSection = () => {
 
 export default function BeneficiosATM() {
   useScrollAnimation();
-  useInteractiveParticles();
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -877,7 +801,7 @@ export default function BeneficiosATM() {
         ))}
       </section>
 
-      {/* MORATORIA ESPACIAL */}
+      {/* MORATORIA CON FONDO BLANCO */}
       <MoratoriaSection />
 
       {/* SORTEOS ESPACIALES */}
@@ -955,10 +879,6 @@ export default function BeneficiosATM() {
         
         .cascade-item {
           transition-delay: inherit;
-        }
-        
-        .particle {
-          will-change: transform, opacity;
         }
         
         .transform-gpu {
