@@ -31,7 +31,7 @@ export default function ProFullScreenSliderLayout() {
   }, []);
 
   return (
-    {/* ✅ FONDO UNIFICADO - Sin colores diferentes en bordes */}
+    // ✅ FONDO UNIFICADO - Sin colores diferentes en bordes
     <div className="w-full min-h-[500px] bg-gradient-to-br from-purple-400 to-indigo-500 flex flex-col justify-center">
       {/* Bloque principal sin padding que cause bordes */}
       <div className="flex flex-col md:flex-row items-stretch justify-center flex-1 h-full">
