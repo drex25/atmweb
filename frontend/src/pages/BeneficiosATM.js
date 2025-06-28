@@ -1,40 +1,113 @@
 import React from 'react';
-import { TrophyIcon, UsersIcon, ScaleIcon, GiftIcon, CalendarIcon, ArrowUpCircleIcon, HomeIcon, UserGroupIcon, KeyIcon, UserIcon, IdentificationIcon } from '@heroicons/react/24/outline';
+import { 
+  TrophyIcon, 
+  UsersIcon, 
+  ScaleIcon, 
+  GiftIcon, 
+  CalendarIcon, 
+  ArrowUpCircleIcon, 
+  HomeIcon, 
+  UserGroupIcon, 
+  KeyIcon, 
+  UserIcon, 
+  IdentificationIcon,
+  SparklesIcon,
+  StarIcon,
+  FireIcon,
+  BoltIcon,
+  CurrencyDollarIcon,
+  ChartBarIcon,
+  RocketLaunchIcon
+} from '@heroicons/react/24/outline';
 import HeroBeneficiosATM from '../components/HeroBeneficiosATM';
 
-const azulATM = 'text-atm-primary';
+// Métricas con efectos visuales mejorados
 const metrics = [
   {
-    icon: <TrophyIcon className={`h-12 w-12 mx-auto mb-2 ${azulATM}`} />, label: 'Premios Entregados', value: 465, explanation: 'Premios y reconocimientos entregados a contribuyentes destacados.'
+    icon: TrophyIcon, 
+    label: 'Premios Entregados', 
+    value: 465, 
+    color: '#F59E0B',
+    bgGradient: 'from-yellow-500/20 to-orange-500/20',
+    explanation: 'Premios y reconocimientos entregados a contribuyentes destacados.',
+    particles: '🏆'
   },
   {
-    icon: <UsersIcon className={`h-12 w-12 mx-auto mb-2 ${azulATM}`} />, label: 'Eximidos Impositivamente', value: 5400, prefix: '+ $', suffix: ' millones anuales', explanation: 'Monto anual eximido en impuestos a beneficiarios.'
+    icon: CurrencyDollarIcon, 
+    label: 'Eximidos Impositivamente', 
+    value: 5400, 
+    prefix: '+ $', 
+    suffix: ' millones anuales', 
+    color: '#10B981',
+    bgGradient: 'from-emerald-500/20 to-green-500/20',
+    explanation: 'Monto anual eximido en impuestos a beneficiarios.',
+    particles: '💰'
   },
   {
-    icon: <ScaleIcon className={`h-12 w-12 mx-auto mb-2 ${azulATM}`} />, label: 'Exenciones Impositivas Otorgadas', value: 61000, explanation: 'Cantidad de exenciones impositivas otorgadas por ATM.'
-  },
-];
-const sectores = [
-  {
-    icon: <UserGroupIcon className={`h-8 w-8 ${azulATM}`} />, label: 'Productores Primarios', value: '+9,000', desc: 'Beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', href: '/requisitos/productores-primarios'
-  },
-  {
-    icon: <UserIcon className={`h-8 w-8 ${azulATM}`} />, label: 'Jubilados y Pensionados', value: '+4,080', desc: 'Beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', href: '/requisitos/jubilados-pensionados'
-  },
-  {
-    icon: <IdentificationIcon className={`h-8 w-8 ${azulATM}`} />, label: 'Personas con CUD', value: '+1,222', desc: 'Beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', href: '/requisitos/personas-cud'
-  },
-  {
-    icon: <KeyIcon className={`h-8 w-8 ${azulATM}`} />, label: 'Adjudicatarios Vivienda IPRODHA', value: '+20,781', desc: 'Beneficios del Impuesto Inmobiliario Básico para adjudicatarios de primera vivienda del IPRODHA.', href: '/requisitos/adjudicatarios-vivienda'
-  },
-  {
-    icon: <ScaleIcon className={`h-8 w-8 ${azulATM}`} />, label: 'Otras Exenciones y Bonificaciones', value: '+26,000', desc: 'Otras exenciones impositivas para diversas actividades y grupos.', href: '/requisitos/otras-exenciones'
+    icon: ScaleIcon, 
+    label: 'Exenciones Impositivas Otorgadas', 
+    value: 61000, 
+    color: '#8B5CF6',
+    bgGradient: 'from-purple-500/20 to-violet-500/20',
+    explanation: 'Cantidad de exenciones impositivas otorgadas por ATM.',
+    particles: '⚖️'
   },
 ];
 
-// Componente contador animado
-function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1200, className = '' }) {
+// Sectores beneficiados con diseño mejorado
+const sectores = [
+  {
+    icon: UserGroupIcon, 
+    label: 'Productores Primarios', 
+    value: '+9,000', 
+    desc: 'Beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', 
+    href: '/requisitos/productores-primarios',
+    color: '#059669',
+    gradient: 'from-emerald-600 to-green-600'
+  },
+  {
+    icon: UserIcon, 
+    label: 'Jubilados y Pensionados', 
+    value: '+4,080', 
+    desc: 'Beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', 
+    href: '/requisitos/jubilados-pensionados',
+    color: '#DC2626',
+    gradient: 'from-red-600 to-rose-600'
+  },
+  {
+    icon: IdentificationIcon, 
+    label: 'Personas con CUD', 
+    value: '+1,222', 
+    desc: 'Beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', 
+    href: '/requisitos/personas-cud',
+    color: '#7C3AED',
+    gradient: 'from-violet-600 to-purple-600'
+  },
+  {
+    icon: KeyIcon, 
+    label: 'Adjudicatarios Vivienda IPRODHA', 
+    value: '+20,781', 
+    desc: 'Beneficios del Impuesto Inmobiliario Básico para adjudicatarios de primera vivienda del IPRODHA.', 
+    href: '/requisitos/adjudicatarios-vivienda',
+    color: '#0891B2',
+    gradient: 'from-cyan-600 to-blue-600'
+  },
+  {
+    icon: ScaleIcon, 
+    label: 'Otras Exenciones y Bonificaciones', 
+    value: '+26,000', 
+    desc: 'Otras exenciones impositivas para diversas actividades y grupos.', 
+    href: '/requisitos/otras-exenciones',
+    color: '#EA580C',
+    gradient: 'from-orange-600 to-amber-600'
+  },
+];
+
+// Componente contador animado mejorado
+function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1200, className = '', particles }) {
   const ref = React.useRef();
+  const [showParticles, setShowParticles] = React.useState(false);
+  
   React.useEffect(() => {
     let startTime = null;
     function animate(ts) {
@@ -43,104 +116,341 @@ function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1200, cla
       const current = Math.floor(progress * value);
       if (ref.current) ref.current.textContent = prefix + current.toLocaleString() + (suffix || '');
       if (progress < 1) requestAnimationFrame(animate);
-      else if (ref.current) ref.current.textContent = prefix + value.toLocaleString() + (suffix || '');
+      else {
+        if (ref.current) ref.current.textContent = prefix + value.toLocaleString() + (suffix || '');
+        setShowParticles(true);
+      }
     }
     requestAnimationFrame(animate);
   }, [value, prefix, suffix, duration]);
-  return <span ref={ref} className={className}>{prefix}{value.toLocaleString()}{suffix}</span>;
+  
+  return (
+    <div className="relative">
+      <span ref={ref} className={className}>{prefix}{value.toLocaleString()}{suffix}</span>
+      {showParticles && particles && (
+        <div className="absolute -top-2 -right-2 text-2xl animate-bounce">
+          {particles}
+        </div>
+      )}
+    </div>
+  );
 }
+
+// Componente de métrica espacial
+const SpaceMetricCard = ({ metric, index }) => (
+  <div 
+    className="group relative animate-fade-in"
+    style={{animationDelay: `${index * 200}ms`}}
+  >
+    {/* Anillo de energía */}
+    <div className="absolute -inset-4 rounded-full border-2 opacity-30 animate-spin group-hover:opacity-60 transition-opacity duration-500" 
+         style={{borderColor: metric.color, animationDuration: '8s'}}></div>
+    
+    {/* Contenedor principal */}
+    <div className={`relative rounded-3xl bg-gradient-to-br ${metric.bgGradient} backdrop-blur-xl border-2 shadow-2xl p-10 flex flex-col items-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden`}
+         style={{borderColor: `${metric.color}40`, boxShadow: `0 20px 40px ${metric.color}20`}}>
+      
+      {/* Efectos de fondo */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl"></div>
+      <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-20 animate-pulse"
+           style={{backgroundColor: metric.color}}></div>
+      
+      {/* Icono con halo */}
+      <div className="relative mb-6 flex items-center justify-center w-24 h-24 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
+           style={{
+             backgroundColor: `${metric.color}20`,
+             borderColor: metric.color,
+             boxShadow: `0 0 30px ${metric.color}40`
+           }}>
+        <metric.icon className="h-12 w-12" style={{color: metric.color}} />
+        
+        {/* Partículas orbitales */}
+        <div className="absolute inset-0 animate-spin" style={{animationDuration: '10s'}}>
+          <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full" style={{backgroundColor: metric.color}}></div>
+        </div>
+      </div>
+      
+      {/* Valor principal */}
+      <div className="text-5xl font-black mb-3 drop-shadow-xl relative z-10" style={{color: metric.color}}>
+        <AnimatedCounter 
+          value={metric.value} 
+          prefix={metric.prefix} 
+          suffix={metric.suffix}
+          particles={metric.particles}
+        />
+      </div>
+      
+      {/* Etiqueta */}
+      <div className="text-lg font-bold mb-2 text-center text-white uppercase tracking-wide relative z-10">
+        {metric.label}
+      </div>
+      
+      {/* Descripción */}
+      <div className="text-sm text-white/80 text-center font-medium relative z-10">
+        {metric.explanation}
+      </div>
+      
+      {/* Barra de progreso decorativa */}
+      <div className="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
+        <div className="h-full rounded-full animate-pulse" 
+             style={{backgroundColor: metric.color, width: '100%'}}></div>
+      </div>
+    </div>
+  </div>
+);
+
+// Componente de sector beneficiado
+const SectorCard = ({ sector, index }) => (
+  <a
+    href={sector.href}
+    className="group relative block animate-fade-in"
+    style={{animationDelay: `${index * 150}ms`}}
+  >
+    {/* Efecto de halo */}
+    <div className="absolute -inset-2 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+         style={{background: `linear-gradient(135deg, ${sector.color}, transparent)`}}></div>
+    
+    {/* Contenedor principal */}
+    <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl border-2 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden min-h-[320px]"
+         style={{borderColor: `${sector.color}40`, boxShadow: `0 15px 35px ${sector.color}15`}}>
+      
+      {/* Efectos de fondo */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
+      <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-10 animate-pulse"
+           style={{backgroundColor: sector.color}}></div>
+      
+      {/* Icono */}
+      <div className="relative mb-6 flex items-center justify-center w-20 h-20 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
+           style={{
+             backgroundColor: `${sector.color}20`,
+             borderColor: sector.color,
+             boxShadow: `0 0 25px ${sector.color}30`
+           }}>
+        <sector.icon className="h-10 w-10" style={{color: sector.color}} />
+      </div>
+      
+      {/* Valor */}
+      <div className="text-3xl font-black mb-2 drop-shadow-xl" style={{color: sector.color}}>
+        <AnimatedCounter value={parseInt(sector.value.replace(/[^\d]/g, ''))} 
+                        prefix={sector.value.match(/^[^\d]+/)?.[0] || ''} 
+                        suffix={sector.value.match(/[^\d]+$/)?.[0] || ''} />
+      </div>
+      
+      {/* Etiqueta */}
+      <div className="text-lg font-bold mb-3 text-white uppercase tracking-wide leading-tight">
+        {sector.label}
+      </div>
+      
+      {/* Descripción */}
+      <div className="text-sm text-white/80 font-medium leading-relaxed flex-1">
+        {sector.desc}
+      </div>
+      
+      {/* Indicador de acción */}
+      <div className="mt-4 flex items-center gap-2 text-white/60 group-hover:text-white transition-colors">
+        <span className="text-sm font-semibold">Ver más</span>
+        <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
+      </div>
+    </div>
+  </a>
+);
 
 export default function BeneficiosATM() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-x-hidden">
-      {/* HERO INSTITUCIONAL */}
-      <HeroBeneficiosATM badge="Agencia tributaria misiones" />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Fondo espacial */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"></div>
+      
+      {/* Estrellas animadas */}
+      <div className="absolute inset-0">
+        {[...Array(100)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          ></div>
+        ))}
+      </div>
 
-      {/* MÉTRICAS */}
-      <section className="relative z-10 w-[95%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 py-14 px-0">
-        {metrics.map((m, i) => (
-          <div key={i} className="rounded-3xl bg-white/60 backdrop-blur-xl border-2 border-gradient-to-br from-atm-primary via-pink-500 to-atm-accent shadow-2xl p-10 flex flex-col items-center hover:scale-105 hover:shadow-3xl transition-all duration-300 group relative overflow-hidden animate-fade-in" style={{animationDelay: `${i * 80}ms`}}>
-            <div className="mb-4 flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 border-b-4 border-atm-accent shadow-inner group-hover:scale-110 transition-transform">
-              <span className="text-[#8F3260]">{React.cloneElement(m.icon, { className: m.icon.props.className + ' text-[#8F3260]' })}</span>
-            </div>
-            <div className="text-4xl font-extrabold mb-2 text-[#8F3260] drop-shadow-xl">
-              <AnimatedCounter value={m.value} prefix={m.prefix} suffix={m.suffix} />
-            </div>
-            <div className="text-base font-semibold mb-1 text-center bg-gradient-to-r from-[#50376F] to-[#007CB6] bg-clip-text text-transparent uppercase tracking-wide">{m.label}</div>
-            <div className="text-xs text-gray-600 text-center mt-1 font-medium">{m.explanation}</div>
-          </div>
+      {/* Ondas de energía */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 border border-cyan-400/20 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 border border-purple-400/20 rounded-full animate-ping" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-pink-400/10 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
+      </div>
+
+      {/* HERO INSTITUCIONAL */}
+      <div className="relative z-10">
+        <HeroBeneficiosATM 
+          badge="🚀 Agencia Tributaria Misiones"
+          title="Beneficios otorgados por la Agencia Tributaria de Misiones"
+          subtitle="Exenciones, bonificaciones, sorteos y más. Descubrí cómo aprovechar estas oportunidades espaciales."
+        />
+      </div>
+
+      {/* MÉTRICAS ESPACIALES */}
+      <section className="relative z-10 w-[95%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 py-20 px-0">
+        {metrics.map((metric, i) => (
+          <SpaceMetricCard key={i} metric={metric} index={i} />
         ))}
       </section>
 
-      {/* MORATORIA */}
-      <section className="relative z-10 w-[95%] mx-auto flex justify-center py-12 px-0">
-        <div className="w-full bg-gradient-to-br from-blue-100 via-white to-pink-100 border border-blue-200 rounded-3xl shadow-2xl flex flex-col items-center p-12 text-center relative overflow-hidden animate-fade-in backdrop-blur-md">
-          <div className="absolute -top-10 -left-10 opacity-20 pointer-events-none select-none">
-            <svg width="160" height="160"><circle cx="80" cy="80" r="80" fill="#2563eb" /></svg>
+      {/* MORATORIA ESPACIAL */}
+      <section className="relative z-10 w-[95%] mx-auto flex justify-center py-16 px-0">
+        <div className="group relative w-full">
+          {/* Anillo de energía */}
+          <div className="absolute -inset-4 rounded-3xl border-2 border-blue-400/30 animate-spin opacity-50 group-hover:opacity-80 transition-opacity" style={{animationDuration: '12s'}}></div>
+          
+          {/* Contenedor principal */}
+          <div className="relative w-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-xl border-2 border-blue-400/40 rounded-3xl shadow-2xl flex flex-col items-center p-12 text-center overflow-hidden">
+            
+            {/* Efectos de fondo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl"></div>
+            <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+            
+            {/* Icono principal */}
+            <div className="relative mb-6 flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br from-blue-500/30 to-purple-500/30 border-4 border-blue-400 shadow-inner group-hover:scale-110 transition-transform duration-500">
+              <ScaleIcon className="h-14 w-14 text-blue-300" />
+              
+              {/* Partículas orbitales */}
+              <div className="absolute inset-0 animate-spin" style={{animationDuration: '8s'}}>
+                <div className="absolute -top-2 left-1/2 w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="absolute top-1/2 -right-2 w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+              </div>
+            </div>
+            
+            {/* Título */}
+            <h2 className="relative text-4xl md:text-5xl font-black mb-4 z-10 bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl">
+              ALIVIO FISCAL Moratoria 2024
+            </h2>
+            
+            {/* Estadística principal */}
+            <div className="relative text-3xl md:text-4xl font-black mb-6 z-10 text-blue-300 drop-shadow-xl">
+              <AnimatedCounter value={10883} suffix=" planes por $5.528 millones" particles="💫" />
+            </div>
+            
+            {/* Botón de acción */}
+            <button className="relative z-10 group/btn">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover/btn:opacity-60 transition-opacity"></div>
+              <div className="relative px-10 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 border border-blue-400/50">
+                <span className="flex items-center gap-2">
+                  <RocketLaunchIcon className="h-6 w-6" />
+                  Más información
+                </span>
+              </div>
+            </button>
           </div>
-          <span className="z-10 text-[#8F3260]">
-            <ScaleIcon className="h-14 w-14 mb-2 text-[#8F3260]" />
-          </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-2 z-10 bg-gradient-to-r from-[#50376F] to-[#007CB6] bg-clip-text text-transparent">ALIVIO FISCAL Moratoria 2024</h2>
-          <div className="text-2xl md:text-3xl font-extrabold mb-2 z-10 text-[#8F3260]">10.883 planes por $5.528 millones</div>
-          <a href="#" className="mt-4 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-atm-accent text-white font-bold text-lg shadow hover:scale-105 hover:shadow-2xl transition z-10">Más información</a>
         </div>
       </section>
 
-      {/* SORTEOS */}
-      <section className="relative z-10 w-[95%] mx-auto flex justify-center py-14 px-0">
-        <div className="w-full bg-white/80 border-2 border-gradient-to-br from-pink-500 via-purple-500 to-atm-accent rounded-3xl shadow-2xl p-12 text-center relative overflow-hidden animate-fade-in backdrop-blur-md">
-          {/* Fondo confeti SVG */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-10" viewBox="0 0 600 200" fill="none"><circle cx="100" cy="60" r="30" fill="#fbbf24" /><circle cx="500" cy="140" r="20" fill="#2563eb" /><rect x="250" y="80" width="60" height="20" rx="10" fill="#f472b6" /></svg>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-3 z-10 bg-gradient-to-r from-[#50376F] to-[#007CB6] bg-clip-text text-transparent">¡Sorteos de ATM!</h2>
-          <div className="flex flex-col gap-1 mb-4 z-10">
-            <div className="flex items-center justify-center gap-2 text-base font-medium">
-              <span className="text-[#8F3260]"><GiftIcon className="h-6 w-6 text-[#8F3260]" /></span> Sorteos de Consumidores Finales y Cumplidores del Impuesto Inmobiliario <span className="text-[#8F3260]"><HomeIcon className="h-5 w-5 text-[#8F3260]" /></span>
+      {/* SORTEOS ESPACIALES */}
+      <section className="relative z-10 w-[95%] mx-auto flex justify-center py-16 px-0">
+        <div className="group relative w-full">
+          {/* Efectos de confeti espacial */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 rounded-full animate-bounce"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  backgroundColor: ['#F59E0B', '#EF4444', '#8B5CF6', '#10B981'][i % 4],
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${2 + Math.random()}s`
+                }}
+              ></div>
+            ))}
+          </div>
+          
+          {/* Contenedor principal */}
+          <div className="relative w-full bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-orange-500/20 backdrop-blur-xl border-2 border-pink-400/40 rounded-3xl shadow-2xl p-12 text-center overflow-hidden">
+            
+            {/* Efectos de fondo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl"></div>
+            
+            {/* Título con efectos */}
+            <h2 className="relative text-4xl md:text-5xl font-black mb-6 z-10 bg-gradient-to-r from-pink-300 via-purple-300 to-orange-300 bg-clip-text text-transparent drop-shadow-xl">
+              🎉 ¡Sorteos de ATM! 🎉
+            </h2>
+            
+            {/* Información de sorteos */}
+            <div className="relative flex flex-col gap-4 mb-8 z-10">
+              <div className="flex items-center justify-center gap-3 text-lg font-bold text-white">
+                <GiftIcon className="h-6 w-6 text-pink-400" />
+                <span>Sorteos de Consumidores Finales y Cumplidores del Impuesto Inmobiliario</span>
+                <HomeIcon className="h-6 w-6 text-purple-400" />
+              </div>
+              
+              <div className="flex items-center justify-center gap-3 text-xl font-bold text-pink-300">
+                <SparklesIcon className="h-6 w-6 animate-pulse" />
+                <span>Los sorteos han finalizado. Gracias por participar.</span>
+                <SparklesIcon className="h-6 w-6 animate-pulse" />
+              </div>
+              
+              <div className="flex items-center justify-center gap-2 text-base text-white/80">
+                <CalendarIcon className="h-5 w-5 text-cyan-400" />
+                <span>Próximamente anunciaremos nuevas fechas para los próximos sorteos.</span>
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-2 text-lg font-semibold text-blue-700"><span role="img" aria-label="party">🎉</span> Los sorteos han finalizado. Gracias por participar. <span role="img" aria-label="party">🎉</span></div>
-            <div className="flex items-center justify-center gap-2 text-sm font-normal text-gray-500"><CalendarIcon className={`h-5 w-5 ${azulATM}`} /> Próximamente anunciaremos nuevas fechas para los próximos sorteos.</div>
-          </div>
-          <a href="#" className="relative z-10 inline-block px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-atm-accent text-white font-bold text-lg shadow hover:scale-105 hover:shadow-2xl transition mb-2">Ver los resultados de los Sorteos 2025</a>
-          <div className="flex flex-col md:flex-row gap-3 mt-2 justify-center z-10">
-            <button className="px-6 py-2 rounded-full border border-atm-accent text-atm-accent font-semibold bg-white/80 hover:bg-blue-50 transition flex items-center gap-2 shadow group hover:scale-105">
-              <GiftIcon className="h-5 w-5 group-hover:text-pink-500 transition-colors" /> Sorteo Consumidores Finales
+            
+            {/* Botón principal */}
+            <button className="relative z-10 group/btn mb-6">
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-orange-600 rounded-full blur-lg opacity-40 group-hover/btn:opacity-60 transition-opacity"></div>
+              <div className="relative px-10 py-4 bg-gradient-to-r from-pink-500 to-orange-500 text-white font-bold text-lg rounded-full shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 border border-pink-400/50">
+                Ver los resultados de los Sorteos 2025
+              </div>
             </button>
-            <button className="px-6 py-2 rounded-full border border-atm-accent text-atm-accent font-semibold bg-white/80 hover:bg-blue-50 transition flex items-center gap-2 shadow group hover:scale-105">
-              <GiftIcon className="h-5 w-5 group-hover:text-pink-500 transition-colors" /> Sorteo Cumplidores Inmobiliarios
-            </button>
+            
+            {/* Botones secundarios */}
+            <div className="relative flex flex-col md:flex-row gap-4 justify-center z-10">
+              <button className="group/secondary px-8 py-3 rounded-full border-2 border-pink-400/50 text-pink-300 font-bold bg-black/20 hover:bg-pink-500/20 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-105">
+                <GiftIcon className="h-5 w-5 group-hover/secondary:text-pink-200 transition-colors" />
+                Sorteo Consumidores Finales
+              </button>
+              
+              <button className="group/secondary px-8 py-3 rounded-full border-2 border-purple-400/50 text-purple-300 font-bold bg-black/20 hover:bg-purple-500/20 transition-all duration-300 flex items-center gap-2 justify-center hover:scale-105">
+                <GiftIcon className="h-5 w-5 group-hover/secondary:text-purple-200 transition-colors" />
+                Sorteo Cumplidores Inmobiliarios
+              </button>
+            </div>
+            
+            {/* Mensaje final */}
+            <div className="relative mt-6 text-base text-white/70 z-10">
+              ¡Exigí tu factura o mantené tu impuesto al día y participá automáticamente!
+            </div>
           </div>
-          <div className="mt-4 text-sm text-gray-500 z-10">¡Exigí tu factura o mantené tu impuesto al día y participá automáticamente!</div>
         </div>
       </section>
 
       {/* SECTORES BENEFICIADOS */}
-      <section id="sectores" className="relative z-10 w-[95%] mx-auto py-16 px-0">
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-12 text-center text-gray-900 bg-gradient-to-r from-pink-500 via-purple-500 to-atm-accent bg-clip-text text-transparent drop-shadow-xl">Sectores Beneficiados</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-          {sectores.map((s, i) => (
-            <a
-              key={i}
-              href={s.href}
-              className="bg-white/70 rounded-3xl border-2 border-gradient-to-br from-atm-primary via-pink-500 to-atm-accent shadow-2xl p-10 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl hover:border-pink-500 transition-all duration-300 relative overflow-hidden animate-fade-in focus:outline-none focus:ring-2 focus:ring-pink-500"
-              style={{animationDelay: `${i * 80}ms`} }
-            >
-              <div className="mb-5 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 via-pink-100 to-purple-100 border-b-4 border-atm-accent shadow-inner">
-                <span className="text-[#8F3260]">{React.cloneElement(s.icon, { className: s.icon.props.className + ' text-[#8F3260]' })}</span>
-              </div>
-              <div className="text-2xl font-extrabold mb-1 text-[#8F3260] drop-shadow-xl">
-                <AnimatedCounter value={parseInt(s.value.replace(/[^\d]/g, ''))} prefix={s.value.match(/^[^\d]+/)?.[0] || ''} suffix={s.value.match(/[^\d]+$/)?.[0] || ''} />
-              </div>
-              <div className="text-lg font-bold mb-1 text-black uppercase tracking-wide">{s.label}</div>
-              <div className="text-base text-gray-600 mb-3 font-medium">{s.desc}</div>
-            </a>
+      <section id="sectores" className="relative z-10 w-[95%] mx-auto py-20 px-0">
+        <h2 className="text-4xl md:text-5xl font-black mb-16 text-center bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl">
+          Sectores Beneficiados
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {sectores.map((sector, i) => (
+            <SectorCard key={i} sector={sector} index={i} />
           ))}
         </div>
       </section>
 
-      {/* BOTÓN IR ARRIBA */}
-      <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-8 right-8 z-50 bg-gradient-to-br from-pink-500 via-purple-500 to-atm-accent p-4 rounded-full shadow-2xl hover:scale-110 hover:shadow-3xl transition-all duration-300 border-2 border-white/40 backdrop-blur-md animate-bounce">
-        <ArrowUpCircleIcon className="h-8 w-8 text-white" />
+      {/* BOTÓN FLOTANTE ESPACIAL */}
+      <button 
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+        className="fixed bottom-8 right-8 z-50 group"
+      >
+        <div className="absolute -inset-3 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity animate-pulse"></div>
+        <div className="relative w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-2 border-cyan-400/50">
+          <ArrowUpCircleIcon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
+        </div>
       </button>
     </div>
   );
-} 
+}
