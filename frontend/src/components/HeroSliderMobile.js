@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/modules';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Import Swiper styles
@@ -30,14 +30,25 @@ export default function HeroSliderMobile() {
   const [slides, setSlides] = useState([]);
   const [images, setImages] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSlides = async () => {
       try {
         setLoading(true);
+        setError(null);
         console.log('Fetching slides...');
+        
         const data = await wordpressService.getSlides();
         console.log('Slides recibidos:', data);
+        
+        if (!data || data.length === 0) {
+          console.log('No slides found');
+          setSlides([]);
+          setLoading(false);
+          return;
+        }
+        
         setSlides(data);
         
         // Cargar imágenes para todos los slides
@@ -48,10 +59,16 @@ export default function HeroSliderMobile() {
           if (slide.acf?.image_del_slide) {
             if (typeof slide.acf.image_del_slide === 'number') {
               console.log('Image ID is a number:', slide.acf.image_del_slide);
-              imagesObj[slide.id] = await getImageUrlFromId(slide.acf.image_del_slide);
-            } else if (slide.acf.image_del_slide.url) {
+              const imageUrl = await getImageUrlFromId(slide.acf.image_del_slide);
+              if (imageUrl) {
+                imagesObj[slide.id] = imageUrl;
+              }
+            } else if (slide.acf.image_del_slide?.url) {
               console.log('Image has URL:', slide.acf.image_del_slide.url);
               imagesObj[slide.id] = slide.acf.image_del_slide.url;
+            } else if (typeof slide.acf.image_del_slide === 'string') {
+              console.log('Image is string URL:', slide.acf.image_del_slide);
+              imagesObj[slide.id] = slide.acf.image_del_slide;
             } else {
               console.log('Image data structure:', slide.acf.image_del_slide);
             }
@@ -59,10 +76,12 @@ export default function HeroSliderMobile() {
             console.log('No image data found for slide:', slide.id);
           }
         }
+        
         console.log('Imágenes resueltas:', imagesObj);
         setImages(imagesObj);
       } catch (error) {
         console.error('Error fetching slides:', error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -72,13 +91,22 @@ export default function HeroSliderMobile() {
   }, []);
 
   // Log en cada render
-  console.log('Render HeroSliderMobile:', { slides, images, loading });
+  console.log('Render HeroSliderMobile:', { slides: slides.length, images: Object.keys(images).length, loading, error });
 
   if (loading) {
     return (
       <div className="text-center py-8">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
         <p className="mt-2 text-gray-600">Cargando slides...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-red-600 font-semibold">Error al cargar slides</p>
+        <p className="text-sm text-gray-500 mt-1">{error}</p>
       </div>
     );
   }
@@ -98,17 +126,30 @@ export default function HeroSliderMobile() {
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
+        navigation={{
+          nextEl: '.hero-swiper .swiper-button-next',
+          prevEl: '.hero-swiper .swiper-button-prev',
+        }}
+        pagination={{ 
+          clickable: true,
+          el: '.hero-swiper .swiper-pagination'
+        }}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
-        loop={true}
+        loop={slides.length > 1}
         className="hero-swiper"
+        onSlideChange={(swiper) => {
+          console.log('Mobile slide changed to:', swiper.activeIndex);
+        }}
+        onSwiper={(swiper) => {
+          console.log('Mobile swiper initialized:', swiper);
+        }}
       >
-        {slides.map(slide => (
-          <SwiperSlide key={slide.id}>
+        {slides.map((slide, index) => (
+          <SwiperSlide key={`mobile-slide-${slide.id}-${index}`}>
             <div className="slide-content p-6 flex flex-col items-center text-center">
               {images[slide.id] && (
                 <img
@@ -138,7 +179,16 @@ export default function HeroSliderMobile() {
             </div>
           </SwiperSlide>
         ))}
+        
+        {/* Controles solo si hay múltiples slides */}
+        {slides.length > 1 && (
+          <>
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
+            <div className="swiper-pagination"></div>
+          </>
+        )}
       </Swiper>
     </div>
   );
-} 
+}
