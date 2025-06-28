@@ -31,12 +31,13 @@ export default function ProFullScreenSliderLayout() {
   }, []);
 
   return (
-    <div className="w-full min-h-[500px] bg-gradient-to-br from-blue-100 to-indigo-100 flex flex-col justify-center">
-      {/* Bloque principal centrado horizontal y verticalmente */}
+    {/* ✅ FONDO UNIFICADO - Sin colores diferentes en bordes */}
+    <div className="w-full min-h-[500px] bg-gradient-to-br from-purple-400 to-indigo-500 flex flex-col justify-center">
+      {/* Bloque principal sin padding que cause bordes */}
       <div className="flex flex-col md:flex-row items-stretch justify-center flex-1 h-full">
-        {/* Slider protagonista a la izquierda */}
+        {/* Slider protagonista - SIN FONDO ADICIONAL */}
         <main
-          className="flex-1 flex items-stretch justify-center p-4 bg-gradient-to-br from-blue-400 to-cyan-400 order-2 md:order-1"
+          className="flex-1 flex items-stretch justify-center order-2 md:order-1"
           style={{ minHeight: Math.max(loginHeight, 500) }}
         >
           <div className="flex-1 flex items-center justify-center h-full w-full">
