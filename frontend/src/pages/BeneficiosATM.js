@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { 
   TrophyIcon, 
   UsersIcon, 
@@ -20,6 +20,30 @@ import {
   RocketLaunchIcon
 } from '@heroicons/react/24/outline';
 import HeroBeneficiosATM from '../components/HeroBeneficiosATM';
+
+// Hook para efectos de scroll
+const useScrollAnimation = () => {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+};
 
 // Métricas con efectos visuales mejorados
 const metrics = [
@@ -105,7 +129,7 @@ const sectores = [
 
 // Componente contador animado mejorado
 function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1200, className = '', particles }) {
-  const ref = React.useRef();
+  const ref = useRef();
   const [showParticles, setShowParticles] = React.useState(false);
   
   React.useEffect(() => {
@@ -136,18 +160,18 @@ function AnimatedCounter({ value, prefix = '', suffix = '', duration = 1200, cla
   );
 }
 
-// Componente de métrica espacial
+// Componente de métrica espacial con altura uniforme
 const SpaceMetricCard = ({ metric, index }) => (
   <div 
-    className="group relative animate-fade-in"
-    style={{animationDelay: `${index * 200}ms`}}
+    className="group relative scroll-animate opacity-0 translate-y-10 transition-all duration-700"
+    style={{transitionDelay: `${index * 200}ms`}}
   >
     {/* Anillo de energía */}
     <div className="absolute -inset-4 rounded-full border-2 opacity-30 animate-spin group-hover:opacity-60 transition-opacity duration-500" 
          style={{borderColor: metric.color, animationDuration: '8s'}}></div>
     
-    {/* Contenedor principal */}
-    <div className={`relative rounded-3xl bg-gradient-to-br ${metric.bgGradient} backdrop-blur-xl border-2 shadow-2xl p-10 flex flex-col items-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden`}
+    {/* Contenedor principal con altura fija */}
+    <div className={`relative h-[380px] rounded-3xl bg-gradient-to-br ${metric.bgGradient} backdrop-blur-xl border-2 shadow-2xl p-8 flex flex-col items-center justify-between hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden`}
          style={{borderColor: `${metric.color}40`, boxShadow: `0 20px 40px ${metric.color}20`}}>
       
       {/* Efectos de fondo */}
@@ -155,63 +179,68 @@ const SpaceMetricCard = ({ metric, index }) => (
       <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full opacity-20 animate-pulse"
            style={{backgroundColor: metric.color}}></div>
       
-      {/* Icono con halo */}
-      <div className="relative mb-6 flex items-center justify-center w-24 h-24 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
-           style={{
-             backgroundColor: `${metric.color}20`,
-             borderColor: metric.color,
-             boxShadow: `0 0 30px ${metric.color}40`
-           }}>
-        <metric.icon className="h-12 w-12" style={{color: metric.color}} />
-        
-        {/* Partículas orbitales */}
-        <div className="absolute inset-0 animate-spin" style={{animationDuration: '10s'}}>
-          <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full" style={{backgroundColor: metric.color}}></div>
+      {/* Sección superior: Icono */}
+      <div className="flex flex-col items-center">
+        <div className="relative mb-6 flex items-center justify-center w-24 h-24 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
+             style={{
+               backgroundColor: `${metric.color}20`,
+               borderColor: metric.color,
+               boxShadow: `0 0 30px ${metric.color}40`
+             }}>
+          <metric.icon className="h-12 w-12" style={{color: metric.color}} />
+          
+          {/* Partículas orbitales */}
+          <div className="absolute inset-0 animate-spin" style={{animationDuration: '10s'}}>
+            <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full" style={{backgroundColor: metric.color}}></div>
+          </div>
         </div>
       </div>
       
-      {/* Valor principal */}
-      <div className="text-5xl font-black mb-3 drop-shadow-xl relative z-10" style={{color: metric.color}}>
-        <AnimatedCounter 
-          value={metric.value} 
-          prefix={metric.prefix} 
-          suffix={metric.suffix}
-          particles={metric.particles}
-        />
+      {/* Sección central: Valor y etiqueta */}
+      <div className="flex flex-col items-center text-center flex-1 justify-center">
+        <div className="text-5xl font-black mb-3 drop-shadow-xl relative z-10" style={{color: metric.color}}>
+          <AnimatedCounter 
+            value={metric.value} 
+            prefix={metric.prefix} 
+            suffix={metric.suffix}
+            particles={metric.particles}
+          />
+        </div>
+        
+        <div className="text-lg font-bold mb-4 text-center text-white uppercase tracking-wide relative z-10 leading-tight">
+          {metric.label}
+        </div>
       </div>
       
-      {/* Etiqueta */}
-      <div className="text-lg font-bold mb-2 text-center text-white uppercase tracking-wide relative z-10">
-        {metric.label}
-      </div>
-      
-      {/* Descripción */}
-      <div className="text-sm text-white/80 text-center font-medium relative z-10">
-        {metric.explanation}
-      </div>
-      
-      {/* Barra de progreso decorativa */}
-      <div className="w-full h-1 bg-white/20 rounded-full mt-4 overflow-hidden">
-        <div className="h-full rounded-full animate-pulse" 
-             style={{backgroundColor: metric.color, width: '100%'}}></div>
+      {/* Sección inferior: Descripción y barra */}
+      <div className="w-full">
+        <div className="text-sm text-white/80 text-center font-medium relative z-10 mb-4 leading-relaxed">
+          {metric.explanation}
+        </div>
+        
+        {/* Barra de progreso decorativa */}
+        <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+          <div className="h-full rounded-full animate-pulse" 
+               style={{backgroundColor: metric.color, width: '100%'}}></div>
+        </div>
       </div>
     </div>
   </div>
 );
 
-// Componente de sector beneficiado
+// Componente de sector beneficiado con altura uniforme
 const SectorCard = ({ sector, index }) => (
   <a
     href={sector.href}
-    className="group relative block animate-fade-in"
-    style={{animationDelay: `${index * 150}ms`}}
+    className="group relative block scroll-animate opacity-0 translate-y-10 transition-all duration-700"
+    style={{transitionDelay: `${index * 150}ms`}}
   >
     {/* Efecto de halo */}
     <div className="absolute -inset-2 rounded-3xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-500"
          style={{background: `linear-gradient(135deg, ${sector.color}, transparent)`}}></div>
     
-    {/* Contenedor principal */}
-    <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl border-2 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden min-h-[320px]"
+    {/* Contenedor principal con altura fija */}
+    <div className="relative h-[340px] bg-black/40 backdrop-blur-xl rounded-3xl border-2 shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden"
          style={{borderColor: `${sector.color}40`, boxShadow: `0 15px 35px ${sector.color}15`}}>
       
       {/* Efectos de fondo */}
@@ -219,43 +248,50 @@ const SectorCard = ({ sector, index }) => (
       <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-10 animate-pulse"
            style={{backgroundColor: sector.color}}></div>
       
-      {/* Icono */}
-      <div className="relative mb-6 flex items-center justify-center w-20 h-20 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
-           style={{
-             backgroundColor: `${sector.color}20`,
-             borderColor: sector.color,
-             boxShadow: `0 0 25px ${sector.color}30`
-           }}>
-        <sector.icon className="h-10 w-10" style={{color: sector.color}} />
+      {/* Sección superior: Icono */}
+      <div className="mb-4">
+        <div className="relative flex items-center justify-center w-20 h-20 rounded-full border-4 shadow-inner group-hover:scale-110 transition-transform duration-300"
+             style={{
+               backgroundColor: `${sector.color}20`,
+               borderColor: sector.color,
+               boxShadow: `0 0 25px ${sector.color}30`
+             }}>
+          <sector.icon className="h-10 w-10" style={{color: sector.color}} />
+        </div>
       </div>
       
-      {/* Valor */}
-      <div className="text-3xl font-black mb-2 drop-shadow-xl" style={{color: sector.color}}>
-        <AnimatedCounter value={parseInt(sector.value.replace(/[^\d]/g, ''))} 
-                        prefix={sector.value.match(/^[^\d]+/)?.[0] || ''} 
-                        suffix={sector.value.match(/[^\d]+$/)?.[0] || ''} />
+      {/* Sección central: Valor y etiqueta */}
+      <div className="flex flex-col items-center mb-4">
+        <div className="text-3xl font-black mb-2 drop-shadow-xl" style={{color: sector.color}}>
+          <AnimatedCounter value={parseInt(sector.value.replace(/[^\d]/g, ''))} 
+                          prefix={sector.value.match(/^[^\d]+/)?.[0] || ''} 
+                          suffix={sector.value.match(/[^\d]+$/)?.[0] || ''} />
+        </div>
+        
+        <div className="text-lg font-bold mb-3 text-white uppercase tracking-wide leading-tight text-center">
+          {sector.label}
+        </div>
       </div>
       
-      {/* Etiqueta */}
-      <div className="text-lg font-bold mb-3 text-white uppercase tracking-wide leading-tight">
-        {sector.label}
-      </div>
-      
-      {/* Descripción */}
-      <div className="text-sm text-white/80 font-medium leading-relaxed flex-1">
-        {sector.desc}
-      </div>
-      
-      {/* Indicador de acción */}
-      <div className="mt-4 flex items-center gap-2 text-white/60 group-hover:text-white transition-colors">
-        <span className="text-sm font-semibold">Ver más</span>
-        <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
+      {/* Sección inferior: Descripción y acción */}
+      <div className="flex-1 flex flex-col justify-between w-full">
+        <div className="text-sm text-white/80 font-medium leading-relaxed text-center mb-4">
+          {sector.desc}
+        </div>
+        
+        {/* Indicador de acción */}
+        <div className="flex items-center justify-center gap-2 text-white/60 group-hover:text-white transition-colors">
+          <span className="text-sm font-semibold">Ver más</span>
+          <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
+        </div>
       </div>
     </div>
   </a>
 );
 
 export default function BeneficiosATM() {
+  useScrollAnimation();
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Fondo espacial */}
@@ -302,7 +338,7 @@ export default function BeneficiosATM() {
 
       {/* MORATORIA ESPACIAL */}
       <section className="relative z-10 w-[95%] mx-auto flex justify-center py-16 px-0">
-        <div className="group relative w-full">
+        <div className="group relative w-full scroll-animate opacity-0 translate-y-10 transition-all duration-700">
           {/* Anillo de energía */}
           <div className="absolute -inset-4 rounded-3xl border-2 border-blue-400/30 animate-spin opacity-50 group-hover:opacity-80 transition-opacity" style={{animationDuration: '12s'}}></div>
           
@@ -351,7 +387,7 @@ export default function BeneficiosATM() {
 
       {/* SORTEOS ESPACIALES */}
       <section className="relative z-10 w-[95%] mx-auto flex justify-center py-16 px-0">
-        <div className="group relative w-full">
+        <div className="group relative w-full scroll-animate opacity-0 translate-y-10 transition-all duration-700">
           {/* Efectos de confeti espacial */}
           <div className="absolute inset-0 pointer-events-none">
             {[...Array(20)].map((_, i) => (
@@ -431,10 +467,10 @@ export default function BeneficiosATM() {
 
       {/* SECTORES BENEFICIADOS */}
       <section id="sectores" className="relative z-10 w-[95%] mx-auto py-20 px-0">
-        <h2 className="text-4xl md:text-5xl font-black mb-16 text-center bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl">
+        <h2 className="text-4xl md:text-5xl font-black mb-16 text-center bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent drop-shadow-xl scroll-animate opacity-0 translate-y-10 transition-all duration-700">
           Sectores Beneficiados
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {sectores.map((sector, i) => (
             <SectorCard key={i} sector={sector} index={i} />
           ))}
@@ -451,6 +487,14 @@ export default function BeneficiosATM() {
           <ArrowUpCircleIcon className="h-8 w-8 text-white group-hover:scale-110 transition-transform" />
         </div>
       </button>
+
+      {/* CSS personalizado para animaciones */}
+      <style jsx>{`
+        .animate-slide-up {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </div>
   );
 }
