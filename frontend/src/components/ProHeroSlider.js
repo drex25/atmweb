@@ -173,7 +173,7 @@ export default function ProHeroSlider({ cardMode, height }) {
               className={`w-full h-full flex items-center justify-center transition-all duration-500 rounded-2xl bg-gradient-to-br ${getBgColor(slide, index)}`}
             >
               <div className="w-full flex flex-col md:flex-row items-center justify-between p-6 md:p-12 h-full gap-6 md:gap-12">
-                {/* Columna izquierda: textos */}
+                {/* Columna izquierda: textos - SIN FONDO NI SOMBRA */}
                 <div className="flex-1 flex flex-col justify-center items-start text-center md:text-left">
                   {/* Badge demo */}
                   {slide.acf?.badge && (
@@ -188,7 +188,8 @@ export default function ProHeroSlider({ cardMode, height }) {
                   
                   {slide.acf?.descripcion && (
                     <div className="mb-6 w-full">
-                      <div className="inline-block px-4 md:px-6 py-3 rounded-2xl bg-white/80 text-gray-800 text-sm md:text-base font-medium backdrop-blur-md leading-relaxed shadow-lg">
+                      {/* DESCRIPCIÓN SIN FONDO - Solo texto blanco con sombra */}
+                      <div className="text-white/95 text-sm md:text-base font-medium leading-relaxed drop-shadow-md">
                         {slide.acf.descripcion.split('\n').map((line, idx) => (
                           <div key={idx} className="mb-1 last:mb-0">{line}</div>
                         ))}
@@ -211,13 +212,13 @@ export default function ProHeroSlider({ cardMode, height }) {
                   )}
                 </div>
                 
-                {/* Columna derecha: imagen */}
+                {/* Columna derecha: imagen - SIN FONDO NI SOMBRA */}
                 <div className="flex-1 flex items-center justify-center w-full h-full">
                   {images[slide.id] ? (
                     <img
                       src={images[slide.id]}
                       alt={slide.title.rendered}
-                      className="max-h-[200px] md:max-h-[300px] lg:max-h-[360px] w-auto rounded-2xl object-contain shadow-2xl"
+                      className="max-h-[200px] md:max-h-[300px] lg:max-h-[360px] w-auto rounded-2xl object-contain drop-shadow-2xl"
                       style={{ minWidth: 180 }}
                       onError={(e) => {
                         console.error('Error loading image:', e.target.src);
