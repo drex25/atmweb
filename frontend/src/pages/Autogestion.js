@@ -42,7 +42,9 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones'
+      'Exenciones y Bonificaciones',
+      'Consultas de Estado',
+      'Emisión de Boletas'
     ]
   },
   {
@@ -54,7 +56,9 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones'
+      'Exenciones y Bonificaciones',
+      'Impuesto Provincial',
+      'Transferencias'
     ]
   },
   {
@@ -66,7 +70,9 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones'
+      'Exenciones y Bonificaciones',
+      'Autoliquidación',
+      'Estado del Sellado'
     ]
   },
   {
@@ -78,7 +84,9 @@ const mainCategories = [
     services: [
       'Trámites y Gestiones',
       'Información General',
-      'Exenciones y Bonificaciones'
+      'Exenciones y Bonificaciones',
+      'Control Fiscal',
+      'Formularios'
     ]
   },
   {
@@ -92,9 +100,7 @@ const mainCategories = [
       'SR-368 Clave Fiscal',
       'SR-178 Multimotivo',
       'SR-388 Domicilio Fiscal',
-      'SR-341 Pago a cuenta',
-      'SR-318 DDJJ IIBB mensual',
-      'SR-320 DDJJ IIBB anual'
+      'SR-341 Pago a cuenta'
     ]
   },
   {
@@ -105,11 +111,10 @@ const mainCategories = [
     iconBg: 'from-red-100 to-pink-100',
     services: [
       'Encuesta de Satisfacción',
-      'Reclamos, Quejas y Sugerencias',
+      'Reclamos y Sugerencias',
       'Curriculum Vitae',
       'Mesa de Ayuda',
-      'Atención al Público',
-      'Gestión Externa'
+      'Atención al Público'
     ]
   },
   {
@@ -123,9 +128,6 @@ const mainCategories = [
       'Legajo Único',
       'Domicilio Fiscal',
       'Medios de Pago',
-      'Agentes',
-      'SIRTAC',
-      'Notarios',
       'Manuales de Usuario'
     ]
   }
@@ -134,17 +136,17 @@ const mainCategories = [
 // Componente de búsqueda mejorado
 const SearchSection = ({ searchTerm, setSearchTerm }) => {
   return (
-    <div className="relative max-w-2xl mx-auto mb-12">
+    <div className="relative max-w-3xl mx-auto mb-12">
       <div className="relative">
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Ingresá palabras claves para encontrar tu trámite..."
-          className="w-full px-6 py-4 pl-14 pr-16 text-lg rounded-2xl border-2 border-white/30 bg-white/90 backdrop-blur-md shadow-xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 focus:border-pink-400 transition-all duration-300 placeholder-gray-500"
+          className="w-full px-6 py-5 pl-14 pr-20 text-lg rounded-2xl border-2 border-white/30 bg-white/90 backdrop-blur-md shadow-xl focus:outline-none focus:ring-4 focus:ring-pink-300/50 focus:border-pink-400 transition-all duration-300 placeholder-gray-500"
         />
-        <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
-        <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <MagnifyingGlassIcon className="absolute left-5 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
+        <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
           Buscar
         </button>
       </div>
@@ -152,18 +154,18 @@ const SearchSection = ({ searchTerm, setSearchTerm }) => {
   );
 };
 
-// Componente de tarjeta de categoría completamente rediseñado
+// Componente de tarjeta de categoría con altura fija
 const CategoryCard = ({ category, isExpanded, onToggle }) => {
   return (
-    <div className="group relative">
+    <div className="group relative h-full">
       <div 
-        className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-pink-200/50 cursor-pointer ${
+        className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-pink-200/50 cursor-pointer h-full flex flex-col ${
           isExpanded ? 'ring-4 ring-pink-300/50' : ''
         }`}
         onClick={onToggle}
       >
-        {/* Header con gradiente mejorado */}
-        <div className={`bg-gradient-to-r ${category.color} p-8 text-center relative overflow-hidden`}>
+        {/* Header con gradiente mejorado - altura fija */}
+        <div className={`bg-gradient-to-r ${category.color} p-6 text-center relative overflow-hidden flex-shrink-0`}>
           {/* Efectos de fondo sutiles */}
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
@@ -171,27 +173,27 @@ const CategoryCard = ({ category, isExpanded, onToggle }) => {
           
           {/* Contenido del header */}
           <div className="relative z-10">
-            <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br ${category.iconBg} flex items-center justify-center shadow-xl border-4 border-white/30 group-hover:scale-110 transition-transform duration-300`}>
-              <category.icon className="h-10 w-10 text-[#612247]" />
+            <div className={`w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br ${category.iconBg} flex items-center justify-center shadow-xl border-4 border-white/30 group-hover:scale-110 transition-transform duration-300`}>
+              <category.icon className="h-8 w-8 text-[#612247]" />
             </div>
-            <h3 className="text-xl font-extrabold text-white tracking-wide drop-shadow-lg">
+            <h3 className="text-lg font-extrabold text-white tracking-wide drop-shadow-lg leading-tight">
               {category.title}
             </h3>
           </div>
         </div>
 
-        {/* Lista de servicios completamente rediseñada */}
-        <div className="bg-white/95 backdrop-blur-md">
-          <div className="p-6 space-y-2">
+        {/* Lista de servicios con altura flexible pero controlada */}
+        <div className="bg-white/95 backdrop-blur-md flex-1 flex flex-col">
+          <div className="p-4 space-y-1 flex-1">
             {category.services.map((service, idx) => (
               <div 
                 key={idx}
-                className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all duration-300 group/item cursor-pointer border border-transparent hover:border-pink-200 hover:shadow-md"
+                className="flex items-center justify-between p-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all duration-300 group/item cursor-pointer border border-transparent hover:border-pink-200 hover:shadow-sm"
               >
-                <span className="text-gray-700 font-medium group-hover/item:text-gray-900 transition-colors flex-1">
+                <span className="text-gray-700 font-medium group-hover/item:text-gray-900 transition-colors flex-1 text-sm leading-tight">
                   {service}
                 </span>
-                <ChevronRightIcon className="h-5 w-5 text-gray-400 group-hover/item:text-pink-500 group-hover/item:translate-x-1 transition-all duration-200" />
+                <ChevronRightIcon className="h-4 w-4 text-gray-400 group-hover/item:text-pink-500 group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 ml-2" />
               </div>
             ))}
           </div>
@@ -257,13 +259,13 @@ export default function Autogestion() {
         </div>
       </section>
 
-      {/* Grid de categorías mejorado */}
+      {/* Grid de categorías mejorado con tarjetas más anchas y altura uniforme */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 auto-rows-fr">
           {filteredCategories.map((category, index) => (
             <div 
               key={category.id}
-              className="animate-fade-in"
+              className="animate-fade-in min-h-[420px]"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CategoryCard
