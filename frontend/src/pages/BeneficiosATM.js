@@ -84,7 +84,7 @@ const sectores = [
     icon: UserGroupIcon, 
     label: 'Productores Primarios', 
     value: '+9,000', 
-    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', 
+    desc: 'Beneficios del Impuesto sobre los Ingresos Brutos para productores primarios.', 
     href: '/requisitos/productores-primarios',
     color: '#059669',
     gradient: 'from-emerald-600 to-green-600'
@@ -93,7 +93,7 @@ const sectores = [
     icon: UserIcon, 
     label: 'Jubilados y Pensionados', 
     value: '+4,080', 
-    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', 
+    desc: 'Beneficios del Impuesto Inmobiliario Básico para jubilados y pensionados.', 
     href: '/requisitos/jubilados-pensionados',
     color: '#DC2626',
     gradient: 'from-red-600 to-rose-600'
@@ -102,7 +102,7 @@ const sectores = [
     icon: IdentificationIcon, 
     label: 'Personas con CUD', 
     value: '+1,222', 
-    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', 
+    desc: 'Beneficios del Impuesto Provincial Automotor para personas con discapacidad permanente.', 
     href: '/requisitos/personas-cud',
     color: '#7C3AED',
     gradient: 'from-violet-600 to-purple-600'
@@ -111,7 +111,7 @@ const sectores = [
     icon: KeyIcon, 
     label: 'Adjudicatarios Vivienda IPRODHA', 
     value: '+20,781', 
-    desc: 'Conocé los requisitos para acceder a los beneficios del Impuesto Inmobiliario Básico destinados a adjudicatarios de primera vivienda del IPRODHA.', 
+    desc: 'Beneficios del Impuesto Inmobiliario Básico para adjudicatarios de primera vivienda del IPRODHA.', 
     href: '/requisitos/adjudicatarios-vivienda',
     color: '#0891B2',
     gradient: 'from-cyan-600 to-blue-600'
@@ -120,7 +120,7 @@ const sectores = [
     icon: ScaleIcon, 
     label: 'Otras Exenciones y Bonificaciones', 
     value: '+26,000', 
-    desc: 'Conocé sobre las demás exenciones impositivas disponibles para diversas actividades y grupos.', 
+    desc: 'Otras exenciones impositivas para diversas actividades y grupos.', 
     href: '/requisitos/otras-exenciones',
     color: '#EA580C',
     gradient: 'from-orange-600 to-amber-600'
@@ -228,19 +228,19 @@ const SpaceMetricCard = ({ metric, index }) => (
   </div>
 );
 
-// Componente de sector beneficiado estilo fondo blanco con altura uniforme
+// Componente de sector beneficiado como enlace completo con altura uniforme
 const SectorCardWhite = ({ sector, index }) => (
   <a
     href={sector.href}
-    className="group relative block scroll-animate opacity-0 translate-y-10 transition-all duration-700"
+    className="group relative block scroll-animate opacity-0 translate-y-10 transition-all duration-700 focus:outline-none focus:ring-4 focus:ring-blue-300/50 rounded-3xl"
     style={{transitionDelay: `${index * 150}ms`}}
   >
     {/* Contenedor principal con altura fija y fondo blanco */}
-    <div className="relative h-[420px] bg-white/95 backdrop-blur-xl rounded-3xl border-2 border-gray-200/50 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden group-hover:border-gray-300">
+    <div className="relative h-[380px] bg-white/95 backdrop-blur-xl rounded-3xl border-2 border-gray-200/50 shadow-2xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-3xl transition-all duration-500 overflow-hidden group-hover:border-gray-300 group-hover:shadow-xl">
       
       {/* Efectos de fondo sutiles */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white rounded-3xl"></div>
-      <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-5 animate-pulse"
+      <div className="absolute top-4 right-4 w-16 h-16 rounded-full opacity-5 animate-pulse group-hover:opacity-10 transition-opacity"
            style={{backgroundColor: sector.color}}></div>
       
       {/* Sección superior: Icono con círculo de color */}
@@ -267,21 +267,26 @@ const SectorCardWhite = ({ sector, index }) => (
         </div>
       </div>
       
-      {/* Sección inferior: Descripción y acción */}
-      <div className="flex-1 flex flex-col justify-between w-full">
-        <div className="text-base text-gray-600 font-medium leading-relaxed text-center mb-6">
+      {/* Sección inferior: Descripción optimizada */}
+      <div className="flex-1 flex flex-col justify-center w-full">
+        <div className="text-base text-gray-600 font-medium leading-relaxed text-center">
           {sector.desc}
         </div>
-        
-        {/* Botón de acción */}
-        <div className="flex items-center justify-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all duration-300 group-hover:scale-105 shadow-lg"
-               style={{backgroundColor: sector.color}}>
-            <span className="text-sm">Ver más</span>
-            <ArrowUpCircleIcon className="h-4 w-4 rotate-90 group-hover:translate-x-1 transition-transform" />
-          </div>
+      </div>
+      
+      {/* Indicador de hover sutil */}
+      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="w-8 h-8 rounded-full flex items-center justify-center"
+             style={{backgroundColor: `${sector.color}20`}}>
+          <ArrowUpCircleIcon className="h-5 w-5 rotate-90" style={{color: sector.color}} />
         </div>
       </div>
+      
+      {/* Efecto de brillo en hover */}
+      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+           style={{
+             background: `linear-gradient(135deg, transparent 0%, ${sector.color}10 50%, transparent 100%)`
+           }}></div>
     </div>
   </a>
 );
