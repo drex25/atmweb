@@ -184,7 +184,7 @@ const ExencionCard = ({ exencion, index }) => {
                         borderColor: `${exencion.color}30`
                       }}>
                   <ShieldCheckIcon className="h-4 w-4" />
-                  EXENCIÓN FISCAL
+                  EXENCIÓN IMPOSITIVAS
                 </span>
               </div>
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight">
@@ -306,7 +306,7 @@ const StatsSection = () => {
           ].map((stat, index) => (
             <div key={index} className="group relative scroll-animate opacity-0 translate-y-10"
                  style={{transitionDelay: `${index * 200}ms`}}>
-              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 text-center shadow-2xl border border-gray-200 hover:scale-105 transition-all duration-500">
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 text-center shadow-2xl border border-gray-200 hover:scale-105 transition-all duration-500 min-h-[340px]">
                 <div className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center border-2 shadow-lg"
                      style={{
                        backgroundColor: `${stat.color}20`,
@@ -346,12 +346,12 @@ export default function Exenciones() {
       </div>
       
       {/* Sección principal de exenciones */}
-      <section className="relative py-20 px-4">
+      <section id="tipos-exenciones" className="relative py-20 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Título de la sección */}
           <div className="text-center mb-20 scroll-animate opacity-0 translate-y-10">
             <h2 className="text-4xl md:text-6xl font-black mb-8 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Tipos de Exenciones Fiscales
+              Tipos de Exenciones Impositivas
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Explorá las diferentes categorías de exenciones disponibles y conocé los requisitos específicos para cada una

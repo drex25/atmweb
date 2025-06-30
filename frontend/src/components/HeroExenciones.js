@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default function HeroExenciones({
-  title = 'EXENCIONES FISCALES',
+  title = 'EXENCIONES IMPOSITIVAS',
   subtitle = 'Beneficios Tributarios para Contribuyentes',
   description = 'Conocé todas las exenciones impositivas vigentes en Misiones. Accedé a los requisitos y normativa para cada tributo.',
   backgroundImage = '/sellos.png',
@@ -19,7 +19,7 @@ export default function HeroExenciones({
   ],
 }) {
   return (
-    <section className="relative h-[420px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden py-12 md:py-20">
       {/* Fondo con imagen */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
