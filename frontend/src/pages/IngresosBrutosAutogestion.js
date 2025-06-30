@@ -19,51 +19,51 @@ import {
   LightBulbIcon
 } from '@heroicons/react/24/outline';
 
-// Secciones con los IDs reales de la taxonomía "Trámite" en WordPress
+// Secciones con los IDs reales de la taxonomía "Trámite"
 const SECTIONS = [
   { 
     name: "Trámites y Gestiones", 
     id: 5,
     icon: DocumentTextIcon,
-    color: '#3B82F6',
-    gradient: 'from-blue-500 via-blue-600 to-indigo-600',
-    lightGradient: 'from-blue-50 to-indigo-50',
+    color: '#023F5E',
+    gradient: 'from-[#023F5E] via-[#005C91] to-[#009DDD]',
+    lightGradient: 'from-blue-50 to-cyan-50',
     description: 'Gestiona todos tus trámites de manera eficiente y rápida'
   },
   { 
     name: "Declaración Jurada", 
     id: 7,
     icon: ClipboardDocumentListIcon,
-    color: '#10B981',
-    gradient: 'from-emerald-500 via-green-600 to-teal-600',
-    lightGradient: 'from-emerald-50 to-teal-50',
+    color: '#612247',
+    gradient: 'from-[#612247] via-[#023F5E] to-[#005C91]',
+    lightGradient: 'from-purple-50 to-blue-50',
     description: 'Presenta tus declaraciones juradas de forma digital'
   },
   { 
     name: "Certificado", 
     id: 6,
     icon: ShieldCheckIcon,
-    color: '#8B5CF6',
-    gradient: 'from-purple-500 via-violet-600 to-purple-600',
-    lightGradient: 'from-purple-50 to-violet-50',
+    color: '#005C91',
+    gradient: 'from-[#005C91] via-[#009DDD] to-[#023F5E]',
+    lightGradient: 'from-cyan-50 to-blue-50',
     description: 'Obtén certificados y constancias oficiales al instante'
   },
   { 
     name: "Información General", 
     id: 9,
     icon: InformationCircleIcon,
-    color: '#F59E0B',
-    gradient: 'from-amber-500 via-orange-600 to-yellow-600',
-    lightGradient: 'from-amber-50 to-orange-50',
+    color: '#009DDD',
+    gradient: 'from-[#009DDD] via-[#005C91] to-[#023F5E]',
+    lightGradient: 'from-cyan-50 to-blue-50',
     description: 'Consulta información importante y actualizada'
   },
   { 
     name: "Exenciones", 
     id: 8,
     icon: ExclamationTriangleIcon,
-    color: '#EF4444',
-    gradient: 'from-red-500 via-pink-600 to-rose-600',
-    lightGradient: 'from-red-50 to-pink-50',
+    color: '#023F5E',
+    gradient: 'from-[#023F5E] via-[#612247] to-[#005C91]',
+    lightGradient: 'from-blue-50 to-purple-50',
     description: 'Conoce las exenciones y beneficios disponibles'
   },
 ];
@@ -147,16 +147,16 @@ export default function IngresosBrutosAutogestion() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Efectos de fondo decorativos */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-200/5 via-purple-200/5 to-pink-200/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-[#023F5E]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#612247]/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#005C91]/5 via-[#009DDD]/5 to-[#023F5E]/5 rounded-full blur-3xl"></div>
       </div>
 
       {/* Hero Section Mejorado */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         <HeroSellos
           title="Ingresos Brutos - Autogestión"
           description="Plataforma digital avanzada para la gestión integral de todos tus trámites de Ingresos Brutos de manera rápida, segura y eficiente."
@@ -169,47 +169,49 @@ export default function IngresosBrutosAutogestion() {
         />
       </div>
 
-      {/* Barra de búsqueda ultra moderna */}
-      <div className="relative -mt-20 z-20 max-w-7xl mx-auto px-4">
-        <div className="group relative">
-          {/* Anillo de energía */}
-          <div className="absolute -inset-4 rounded-3xl border-2 border-blue-400/30 animate-spin opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{animationDuration: '8s'}}></div>
-          
-          <div className="relative bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/50 p-8 mb-12 hover:shadow-3xl transition-all duration-500">
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="flex-1 relative group/search">
-                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-lg opacity-0 group-hover/search:opacity-20 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <MagnifyingGlassIcon className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-blue-500 z-10" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar trámites, certificados, información..."
-                    className="w-full pl-16 pr-8 py-5 text-lg border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-300/50 focus:border-blue-400 bg-gray-50 hover:bg-white transition-all duration-300 font-medium placeholder-gray-500"
-                  />
-                  {searchTerm && (
-                    <button
-                      onClick={() => setSearchTerm('')}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gray-200 hover:bg-red-100 rounded-full flex items-center justify-center transition-all duration-200"
-                    >
-                      <span className="text-gray-600 hover:text-red-600 font-bold">×</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200/50">
-                  <FunnelIcon className="h-5 w-5 text-blue-600" />
-                  <span className="font-bold text-blue-700">
-                    {filteredSections.length} de {SECTIONS.length} secciones
-                  </span>
+      {/* Barra de búsqueda ultra moderna - FULL WIDTH */}
+      <div className="relative -mt-20 z-20 w-full px-4">
+        <div className="max-w-none mx-auto">
+          <div className="group relative">
+            {/* Anillo de energía */}
+            <div className="absolute -inset-4 rounded-3xl border-2 border-[#005C91]/30 animate-spin opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{animationDuration: '8s'}}></div>
+            
+            <div className="relative bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/50 p-8 mb-12 hover:shadow-3xl transition-all duration-500">
+              <div className="flex flex-col md:flex-row gap-6 items-center">
+                <div className="flex-1 relative group/search">
+                  <div className="absolute -inset-2 bg-gradient-to-r from-[#023F5E] to-[#612247] rounded-2xl blur-lg opacity-0 group-hover/search:opacity-20 transition-opacity duration-300"></div>
+                  <div className="relative">
+                    <MagnifyingGlassIcon className="absolute left-6 top-1/2 transform -translate-y-1/2 h-7 w-7 text-[#005C91] z-10" />
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Buscar trámites, certificados, información..."
+                      className="w-full pl-16 pr-8 py-5 text-lg border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#005C91]/50 focus:border-[#005C91] bg-gray-50 hover:bg-white transition-all duration-300 font-medium placeholder-gray-500"
+                    />
+                    {searchTerm && (
+                      <button
+                        onClick={() => setSearchTerm('')}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gray-200 hover:bg-red-100 rounded-full flex items-center justify-center transition-all duration-200"
+                      >
+                        <span className="text-gray-600 hover:text-red-600 font-bold">×</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
                 
-                <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-xl border border-green-200">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-green-700 font-medium text-sm">Sistema Online</span>
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#023F5E]/10 to-[#005C91]/10 rounded-2xl border border-[#005C91]/20">
+                    <FunnelIcon className="h-5 w-5 text-[#005C91]" />
+                    <span className="font-bold text-[#023F5E]">
+                      {filteredSections.length} de {SECTIONS.length} secciones
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-xl border border-green-200">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-green-700 font-medium text-sm">Sistema Online</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -217,16 +219,17 @@ export default function IngresosBrutosAutogestion() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex gap-8 py-8 px-4">
+      {/* Contenedor principal FULL WIDTH */}
+      <div className="relative z-10 w-full flex gap-8 py-8 px-4">
         {/* Menú lateral ultra moderno */}
         <aside className="w-80 flex-shrink-0 sticky top-24 self-start">
           <div className="group relative">
             {/* Efecto de brillo */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#023F5E] to-[#612247] rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
             
             <nav className="relative bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 overflow-hidden">
               {/* Header del menú ultra moderno */}
-              <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-8 text-white overflow-hidden">
+              <div className="relative bg-gradient-to-r from-[#023F5E] via-[#612247] to-[#005C91] p-8 text-white overflow-hidden">
                 {/* Efectos decorativos */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
@@ -357,33 +360,33 @@ export default function IngresosBrutosAutogestion() {
           </div>
         </aside>
 
-        {/* Contenido principal ultra moderno */}
-        <main className="flex-1">
+        {/* Contenido principal ultra moderno - FULL WIDTH */}
+        <main className="flex-1 w-full">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-32">
               <div className="relative mb-8">
                 {/* Spinner principal */}
-                <div className="w-20 h-20 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                <div className="w-20 h-20 border-4 border-[#005C91]/20 border-t-[#005C91] rounded-full animate-spin"></div>
                 {/* Spinner secundario */}
-                <div className="absolute inset-0 w-20 h-20 border-4 border-transparent border-r-purple-600 rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+                <div className="absolute inset-0 w-20 h-20 border-4 border-transparent border-r-[#612247] rounded-full animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
                 {/* Punto central */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-pulse"></div>
+                  <div className="w-4 h-4 bg-gradient-to-r from-[#023F5E] to-[#612247] rounded-full animate-pulse"></div>
                 </div>
               </div>
               
               <h3 className="text-2xl font-bold text-gray-800 mb-3">Cargando trámites...</h3>
               <p className="text-gray-600 mb-6 text-center max-w-md">
-                Conectando con la base de datos de WordPress para obtener la información más actualizada
+                Conectando con la base de datos para obtener la información más actualizada
               </p>
               
-              <div className="flex items-center gap-3 px-6 py-3 bg-blue-50 rounded-2xl border border-blue-200">
-                <BoltIcon className="h-5 w-5 text-blue-600 animate-pulse" />
-                <span className="text-blue-700 font-medium">Procesando datos...</span>
+              <div className="flex items-center gap-3 px-6 py-3 bg-[#005C91]/10 rounded-2xl border border-[#005C91]/20">
+                <BoltIcon className="h-5 w-5 text-[#005C91] animate-pulse" />
+                <span className="text-[#023F5E] font-medium">Procesando datos...</span>
               </div>
             </div>
           ) : (
-            <div className="space-y-12">
+            <div className="space-y-12 w-full">
               {filteredSections.map((section, sectionIndex) => {
                 const sectionData = getSectionData(section.name);
                 const items = itemsBySection[section.name] || [];
@@ -392,15 +395,15 @@ export default function IngresosBrutosAutogestion() {
                   <section
                     key={section.id}
                     ref={el => (sectionRefs.current[section.name] = el)}
-                    className="scroll-mt-24 animate-fade-in"
+                    className="scroll-mt-24 animate-fade-in w-full"
                     style={{animationDelay: `${sectionIndex * 200}ms`}}
                   >
                     {/* Header de sección ultra moderno */}
-                    <div className="relative mb-10 group">
+                    <div className="relative mb-10 group w-full">
                       {/* Efecto de brillo */}
-                      <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute -inset-4 bg-gradient-to-r from-[#023F5E]/20 to-[#612247]/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      <div className={`relative bg-gradient-to-r ${sectionData.gradient} rounded-3xl p-10 text-white shadow-2xl overflow-hidden border border-white/20`}>
+                      <div className={`relative bg-gradient-to-r ${sectionData.gradient} rounded-3xl p-10 text-white shadow-2xl overflow-hidden border border-white/20 w-full`}>
                         {/* Efectos decorativos mejorados */}
                         <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
                         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
@@ -453,12 +456,12 @@ export default function IngresosBrutosAutogestion() {
                       </div>
                     </div>
 
-                    {/* Contenido de la sección ultra moderno */}
-                    <div className="relative group">
+                    {/* Contenido de la sección ultra moderno - FULL WIDTH */}
+                    <div className="relative group w-full">
                       {/* Efecto de brillo sutil */}
-                      <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute -inset-2 bg-gradient-to-r from-[#023F5E]/10 to-[#612247]/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      <div className="relative bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 overflow-hidden">
+                      <div className="relative bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 overflow-hidden w-full">
                         {items.length > 0 ? (
                           <div className="divide-y divide-gray-100">
                             {items.map((item, index) => {
@@ -469,7 +472,7 @@ export default function IngresosBrutosAutogestion() {
                                   {/* Header del item ultra moderno */}
                                   <button
                                     onClick={() => toggleItem(section.name, item.id)}
-                                    className="w-full p-8 text-left hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-blue-300/50 relative overflow-hidden"
+                                    className="w-full p-8 text-left hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-[#005C91]/50 relative overflow-hidden"
                                   >
                                     {/* Efecto de hover */}
                                     <div className={`absolute inset-0 bg-gradient-to-r ${sectionData.gradient} opacity-0 group-hover/item:opacity-5 transition-opacity duration-300`}></div>
@@ -489,7 +492,7 @@ export default function IngresosBrutosAutogestion() {
                                         
                                         {/* Contenido del título */}
                                         <div className="flex-1">
-                                          <h3 className="text-xl font-bold text-gray-900 group-hover/item:text-blue-600 transition-colors leading-tight mb-2">
+                                          <h3 className="text-xl font-bold text-gray-900 group-hover/item:text-[#005C91] transition-colors leading-tight mb-2">
                                             {item.title.rendered}
                                           </h3>
                                           <div className="flex items-center gap-4">
@@ -498,7 +501,7 @@ export default function IngresosBrutosAutogestion() {
                                             </p>
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${
                                               isOpen 
-                                                ? 'bg-blue-100 text-blue-700 border border-blue-200' 
+                                                ? 'bg-[#005C91]/10 text-[#005C91] border border-[#005C91]/20' 
                                                 : 'bg-gray-100 text-gray-600 border border-gray-200'
                                             }`}>
                                               {isOpen ? 'Expandido' : 'Contraído'}
@@ -544,7 +547,7 @@ export default function IngresosBrutosAutogestion() {
                                           </div>
                                         </div>
                                         
-                                        {/* Contenido del WordPress con fondo blanco */}
+                                        {/* Contenido con fondo blanco */}
                                         <div 
                                           className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700"
                                           dangerouslySetInnerHTML={{ __html: item.content.rendered }} 
@@ -586,7 +589,7 @@ export default function IngresosBrutosAutogestion() {
                               No hay trámites disponibles
                             </h3>
                             <p className="text-gray-500 mb-8 max-w-md mx-auto leading-relaxed">
-                              Esta sección no tiene trámites configurados en WordPress. 
+                              Esta sección no tiene trámites configurados. 
                               Contacta al administrador para más información.
                             </p>
                             <button className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-2xl font-bold hover:scale-105 transition-all duration-300 shadow-xl">
@@ -603,7 +606,7 @@ export default function IngresosBrutosAutogestion() {
 
               {/* Mensaje cuando no hay resultados de búsqueda */}
               {filteredSections.length === 0 && searchTerm && (
-                <div className="text-center py-32">
+                <div className="text-center py-32 w-full">
                   <div className="w-40 h-40 mx-auto mb-10 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full flex items-center justify-center shadow-2xl">
                     <MagnifyingGlassIcon className="h-20 w-20 text-gray-400" />
                   </div>
@@ -617,7 +620,7 @@ export default function IngresosBrutosAutogestion() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button 
                       onClick={() => setSearchTerm('')}
-                      className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-bold hover:scale-105 transition-all duration-300 shadow-xl"
+                      className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#023F5E] to-[#612247] text-white rounded-2xl font-bold hover:scale-105 transition-all duration-300 shadow-xl"
                     >
                       <ArrowRightIcon className="h-6 w-6" />
                       Limpiar búsqueda
@@ -638,10 +641,10 @@ export default function IngresosBrutosAutogestion() {
       {/* Botón flotante de ayuda ultra moderno */}
       <div className="fixed bottom-8 right-8 z-50 group">
         {/* Anillos de energía */}
-        <div className="absolute -inset-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity animate-pulse"></div>
-        <div className="absolute -inset-4 border-2 border-blue-400/30 rounded-full animate-spin" style={{animationDuration: '8s'}}></div>
+        <div className="absolute -inset-6 bg-gradient-to-r from-[#023F5E] to-[#612247] rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity animate-pulse"></div>
+        <div className="absolute -inset-4 border-2 border-[#005C91]/30 rounded-full animate-spin" style={{animationDuration: '8s'}}></div>
         
-        <button className="relative w-18 h-18 bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-2 border-white/30 backdrop-blur-sm">
+        <button className="relative w-18 h-18 bg-gradient-to-r from-[#023F5E] via-[#612247] to-[#005C91] rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center border-2 border-white/30 backdrop-blur-sm">
           <InformationCircleIcon className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
           
           {/* Indicador de notificación */}
