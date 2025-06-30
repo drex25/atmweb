@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { 
   MagnifyingGlassIcon,
   DocumentTextIcon,
@@ -341,15 +342,22 @@ export default function Autogestion() {
       {/* Grid de categorías con contenido visible */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {filteredCategories.map((category, index) => (
-            <div 
-              key={category.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ModernCard category={category} />
-            </div>
-          ))}
+          {filteredCategories.map((category, index) => {
+            const card = <ModernCard category={category} />;
+            return (
+              <div 
+                key={category.id}
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {category.id === 'ingresos-brutos' ? (
+                  <Link to="/autogestion/ingresos-brutos">{card}</Link>
+                ) : (
+                  card
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Mensaje cuando no hay resultados */}
