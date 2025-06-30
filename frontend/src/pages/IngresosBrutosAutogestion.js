@@ -19,28 +19,28 @@ const SECTIONS = [
   },
   { 
     name: "Declaración Jurada", 
-    id: 7,
+    id: 6,
     icon: "📄",
     color: "#005C91",
     description: "Presenta tus declaraciones"
   },
   { 
     name: "Certificado", 
-    id: 6,
+    id: 7,
     icon: "🏆",
     color: "#009DDD",
     description: "Obtén certificaciones oficiales"
   },
   { 
     name: "Información General", 
-    id: 9,
+    id: 8,
     icon: "💡",
     color: "#612247",
     description: "Consulta información importante"
   },
   { 
     name: "Exenciones", 
-    id: 8,
+    id: 9,
     icon: "⭐",
     color: "#7C3AED",
     description: "Conoce tus beneficios fiscales"
