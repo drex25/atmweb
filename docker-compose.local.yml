@@ -7,11 +7,13 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_HOST: "%"  # Permite conexiones desde cualquier host
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - atm_network
     ports:
+      # Exponer MySQL para conexiones remotas
       - "3306:3306"
     command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
     healthcheck:
@@ -80,6 +82,10 @@ services:
 networks:
   atm_network:
     driver: bridge
+    # Configuración para permitir conexiones externas
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
 
 volumes:
   wordpress_data:

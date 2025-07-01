@@ -1,0 +1,62 @@
+services:
+  # WordPress Backend (conecta a la base de datos del servidor principal)
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: ${SHARED_DB_HOST}  # IP del servidor principal (192.168.1.11)
+      WORDPRESS_DB_USER: ${SHARED_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${SHARED_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${SHARED_DB_NAME}
+      WORDPRESS_DEBUG: 1
+    env_file:
+      - .env.shared-db
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./backend/uploads:/var/www/html/wp-content/uploads
+    networks:
+      - atm_network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_WORDPRESS_API_URL=${REACT_APP_WORDPRESS_API_URL}
+      - REACT_APP_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./frontend/.env.development.docker
+    depends_on:
+      - wordpress
+    networks:
+      - atm_network
+
+  # Nginx for production
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./frontend/build:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - wordpress
+    networks:
+      - atm_network
+
+networks:
+  atm_network:
+    driver: bridge
+
+volumes:
+  wordpress_data: 
