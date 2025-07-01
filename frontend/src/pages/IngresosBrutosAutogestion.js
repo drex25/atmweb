@@ -6,8 +6,6 @@ import {
   CheckCircleIcon,
   ClockIcon,
   ShieldCheckIcon,
-  MagnifyingGlassIcon,
-  FunnelIcon,
   ArrowPathIcon,
   BookmarkIcon,
   Bars3Icon,
@@ -65,7 +63,6 @@ export default function IngresosBrutosAutogestion() {
   const [loading, setLoading] = useState(true);
   const [openItems, setOpenItems] = useState({});
   const [activeSection, setActiveSection] = useState(SECTIONS[0].name);
-  const [searchTerm, setSearchTerm] = useState("");
   const [bookmarkedItems, setBookmarkedItems] = useState(new Set());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const sectionRefs = useRef({});
@@ -133,15 +130,6 @@ export default function IngresosBrutosAutogestion() {
       }
       return newSet;
     });
-  };
-
-  // Filtrar items por búsqueda
-  const getFilteredItems = (items) => {
-    if (!searchTerm) return items;
-    return items.filter(item => 
-      item.title.rendered.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.content.rendered.toLowerCase().includes(searchTerm.toLowerCase())
-    );
   };
 
   if (loading) {
@@ -239,41 +227,6 @@ export default function IngresosBrutosAutogestion() {
         </div>
       </div>
 
-      {/* Barra de búsqueda profesional - RESPONSIVE */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-4 md:-mt-6 relative z-10">
-        <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 p-4 md:p-6 backdrop-blur-xl">
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
-            <div className="relative flex-1">
-              <MagnifyingGlassIcon className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Buscar trámites, certificados..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 md:pl-12 pr-3 md:pr-4 py-2.5 md:py-3 border border-gray-200 rounded-lg md:rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-700 placeholder-gray-500 text-sm md:text-base"
-              />
-            </div>
-            <button className="flex items-center justify-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg md:rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base">
-              <FunnelIcon className="h-3 w-3 md:h-4 md:w-4" />
-              <span className="hidden sm:inline">Filtrar</span>
-            </button>
-          </div>
-          
-          {searchTerm && (
-            <div className="mt-3 md:mt-4 flex items-center gap-2 text-xs md:text-sm text-gray-600">
-              <span>Buscando:</span>
-              <span className="px-2 md:px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-medium">"{searchTerm}"</span>
-              <button 
-                onClick={() => setSearchTerm("")}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* Botón menú móvil */}
       <div className="lg:hidden fixed top-4 right-4 z-50">
         <button
@@ -299,7 +252,7 @@ export default function IngresosBrutosAutogestion() {
       {/* Contenido Principal - RESPONSIVE */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
         <div className="flex gap-6 md:gap-8">
-          {/* Menú lateral ultra profesional - RESPONSIVE */}
+          {/* Menú lateral ultra profesional - RESPONSIVE - ARREGLADO EL NÚMERO */}
           <aside className={`w-full max-w-sm lg:w-80 flex-shrink-0 fixed lg:static top-0 left-0 h-full lg:h-auto bg-white lg:bg-transparent z-50 lg:z-auto transform transition-transform duration-300 ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}>
@@ -327,7 +280,6 @@ export default function IngresosBrutosAutogestion() {
                   {SECTIONS.map((section) => {
                     const isActive = activeSection === section.name;
                     const itemCount = itemsBySection[section.name]?.length || 0;
-                    const filteredCount = getFilteredItems(itemsBySection[section.name] || []).length;
                     
                     return (
                       <button
@@ -370,12 +322,13 @@ export default function IngresosBrutosAutogestion() {
                           </div>
                           
                           <div className="flex flex-col items-end gap-1 flex-shrink-0 ml-2">
-                            <div className={`px-2 py-0.5 md:px-2.5 md:py-1 rounded-full text-xs font-bold transition-all duration-300 ${
+                            {/* ARREGLADO: Caja más grande para números de 2 dígitos */}
+                            <div className={`min-w-[28px] md:min-w-[32px] h-6 md:h-7 px-2 md:px-2.5 py-0.5 md:py-1 rounded-full text-xs font-bold transition-all duration-300 flex items-center justify-center ${
                               isActive 
                                 ? 'bg-blue-100 text-blue-700 shadow-sm' 
                                 : 'bg-gray-100 text-gray-600 group-hover:bg-blue-50 group-hover:text-blue-600'
                             }`}>
-                              {searchTerm ? `${filteredCount}/${itemCount}` : itemCount}
+                              {itemCount}
                             </div>
                             <ChevronRightIcon className={`h-3 w-3 md:h-4 md:w-4 transition-all duration-300 ${
                               isActive 
@@ -408,7 +361,7 @@ export default function IngresosBrutosAutogestion() {
           {/* Contenido principal ultra refinado - RESPONSIVE - WIDTH 95% */}
           <main className="flex-1 min-w-0" style={{ width: '95%' }}>
             {SECTIONS.map((section) => {
-              const filteredItems = getFilteredItems(itemsBySection[section.name] || []);
+              const items = itemsBySection[section.name] || [];
               
               return (
                 <section
@@ -439,10 +392,8 @@ export default function IngresosBrutosAutogestion() {
                       </div>
                       
                       <div className="text-right flex-shrink-0">
-                        <div className="text-xl md:text-2xl font-bold text-gray-800">{filteredItems.length}</div>
-                        <div className="text-xs text-gray-500">
-                          {searchTerm ? 'resultados' : 'disponibles'}
-                        </div>
+                        <div className="text-xl md:text-2xl font-bold text-gray-800">{items.length}</div>
+                        <div className="text-xs text-gray-500">disponibles</div>
                       </div>
                     </div>
                     
@@ -461,9 +412,9 @@ export default function IngresosBrutosAutogestion() {
 
                   {/* Contenido de la sección ultra profesional - RESPONSIVE */}
                   <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden backdrop-blur-xl">
-                    {filteredItems.length > 0 ? (
+                    {items.length > 0 ? (
                       <div className="divide-y divide-gray-100">
-                        {filteredItems.map((item, index) => (
+                        {items.map((item, index) => (
                           <div key={item.id} className="group relative">
                             <button
                               onClick={() => toggleItem(section.name, item.id)}
@@ -550,22 +501,11 @@ export default function IngresosBrutosAutogestion() {
                           <DocumentTextIcon className="h-8 w-8 md:h-10 md:w-10 text-gray-400" />
                         </div>
                         <h3 className="text-lg md:text-xl font-semibold text-gray-600 mb-2 md:mb-3">
-                          {searchTerm ? 'No se encontraron resultados' : 'Esta sección no tiene trámites disponibles'}
+                          Esta sección no tiene trámites disponibles
                         </h3>
                         <p className="text-sm md:text-base text-gray-500 mb-4 md:mb-6">
-                          {searchTerm 
-                            ? `No hay trámites que coincidan con "${searchTerm}" en esta sección.`
-                            : 'Contacta al administrador para más información.'
-                          }
+                          Contacta al administrador para más información.
                         </p>
-                        {searchTerm && (
-                          <button
-                            onClick={() => setSearchTerm("")}
-                            className="px-4 md:px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm md:text-base"
-                          >
-                            Limpiar búsqueda
-                          </button>
-                        )}
                       </div>
                     )}
                   </div>
