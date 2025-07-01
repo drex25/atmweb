@@ -14,6 +14,13 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline';
 
+// Función para decodificar entidades HTML
+const decodeHtmlEntities = (text) => {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+};
+
 // Secciones con los IDs reales de la taxonomía "Trámite" en WordPress
 const SECTIONS = [
   { 
@@ -71,7 +78,21 @@ export default function IngresosBrutosAutogestion() {
           `http://localhost:8000/wp-json/wp/v2/item_autogestion?tramite=${section.id}&per_page=100`
         );
         const data = await res.json();
-        result[section.name] = data;
+        
+        // Decodificar entidades HTML en títulos y contenido
+        const decodedData = data.map(item => ({
+          ...item,
+          title: {
+            ...item.title,
+            rendered: decodeHtmlEntities(item.title.rendered)
+          },
+          content: {
+            ...item.content,
+            rendered: decodeHtmlEntities(item.content.rendered)
+          }
+        }));
+        
+        result[section.name] = decodedData;
       }
       setItemsBySection(result);
       setLoading(false);
