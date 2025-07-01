@@ -154,7 +154,7 @@ export default function IngresosBrutosAutogestion() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Hero Section Ultra Compacto y Profesional - RESPONSIVE */}
+      {/* Hero Section Ultra Compacto y Profesional - ALTURA REDUCIDA */}
       <div className="relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-gradient-to-r opacity-95"
@@ -165,18 +165,18 @@ export default function IngresosBrutosAutogestion() {
         
         {/* Efectos decorativos profesionales - RESPONSIVE */}
         <div className="absolute inset-0">
-          <div className="absolute top-4 left-4 md:top-8 md:left-8 w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-20 h-20 md:w-24 md:h-24 bg-white/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-2 left-4 md:top-4 md:left-8 w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-2 right-4 md:bottom-4 md:right-8 w-16 h-16 md:w-20 md:h-20 bg-white/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-white/5 rounded-full blur-3xl"></div>
           
           {/* Partículas flotantes - RESPONSIVE */}
-          {[...Array(6)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 bg-white/30 rounded-full animate-pulse hidden md:block"
               style={{
-                left: `${20 + i * 15}%`,
-                top: `${30 + (i % 2) * 40}%`,
+                left: `${25 + i * 20}%`,
+                top: `${40 + (i % 2) * 20}%`,
                 animationDelay: `${i * 0.5}s`,
                 animationDuration: '3s'
               }}
@@ -184,50 +184,31 @@ export default function IngresosBrutosAutogestion() {
           ))}
         </div>
         
-        <div className="relative px-4 sm:px-6 py-8 md:py-10 text-center text-white">
+        {/* CONTENIDO HERO MÁS COMPACTO - PADDING REDUCIDO */}
+        <div className="relative px-4 sm:px-6 py-6 md:py-8 text-center text-white">
           <div className="max-w-4xl mx-auto">
-            {/* Badge profesional más sofisticado - RESPONSIVE */}
-            <div className="inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-4 md:mb-6 shadow-xl">
+            {/* Badge profesional más pequeño - RESPONSIVE */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-3 md:mb-4 shadow-xl">
               <SparklesIcon className="h-3 w-3 md:h-4 md:w-4 animate-pulse" />
               <span className="font-semibold text-xs md:text-sm tracking-wide">Autogestión Digital</span>
               <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse"></div>
             </div>
             
-            {/* Título principal más impactante - RESPONSIVE */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-3 md:mb-4 leading-tight tracking-tight">
+            {/* Título principal más compacto - RESPONSIVE */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-2 md:mb-3 leading-tight tracking-tight">
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                 Ingresos Brutos
               </span>
-              <span className="block text-sm sm:text-base md:text-xl lg:text-2xl font-light text-white/90 mt-1 md:mt-2 tracking-normal">
+              <span className="block text-sm sm:text-base md:text-lg lg:text-xl font-light text-white/90 mt-1 tracking-normal">
                 Centro de Autogestión Inteligente
               </span>
             </h1>
             
-            {/* Descripción más persuasiva - RESPONSIVE */}
-            <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-4">
+            {/* Descripción más compacta - RESPONSIVE */}
+            <p className="text-sm sm:text-base md:text-lg text-white/90 mb-4 md:mb-6 max-w-2xl mx-auto leading-relaxed px-4">
               Experiencia digital para gestionar todos tus trámites de manera 
               <span className="font-semibold text-blue-200"> rápida, segura y eficiente</span>
             </p>
-            
-            {/* Indicadores de estado profesionales - RESPONSIVE */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3 text-xs md:text-sm px-4">
-              <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
-                <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="font-semibold">Sistema Activo</span>
-              </div>
-              <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm">
-                <ClockIcon className="h-2.5 w-2.5 md:h-3 md:w-3" />
-                <span className="font-semibold">24/7</span>
-              </div>
-              <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-purple-500/20 border border-purple-400/30 backdrop-blur-sm">
-                <ShieldCheckIcon className="h-2.5 w-2.5 md:h-3 md:w-3" />
-                <span className="font-semibold">Seguro</span>
-              </div>
-              <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-orange-500/20 border border-orange-400/30 backdrop-blur-sm">
-                <ArrowPathIcon className="h-2.5 w-2.5 md:h-3 md:w-3 animate-spin" />
-                <span className="font-semibold">Tiempo Real</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
