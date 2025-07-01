@@ -252,7 +252,7 @@ export default function IngresosBrutosAutogestion() {
       {/* Contenido Principal - RESPONSIVE */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
         <div className="flex gap-6 md:gap-8">
-          {/* Menú lateral ultra profesional - RESPONSIVE - ARREGLADO EL NÚMERO */}
+          {/* Menú lateral ultra profesional - RESPONSIVE - CAJA DE NÚMEROS ARREGLADA */}
           <aside className={`w-full max-w-sm lg:w-80 flex-shrink-0 fixed lg:static top-0 left-0 h-full lg:h-auto bg-white lg:bg-transparent z-50 lg:z-auto transform transition-transform duration-300 ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}>
@@ -297,9 +297,9 @@ export default function IngresosBrutosAutogestion() {
                         }`}></div>
                         
                         <div className="relative flex items-center justify-between">
-                          <div className="flex items-center gap-2 md:gap-3">
+                          <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
                             <div 
-                              className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center text-sm md:text-lg transition-all duration-300 shadow-sm border-2 ${
+                              className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center text-sm md:text-lg transition-all duration-300 shadow-sm border-2 flex-shrink-0 ${
                                 isActive ? 'scale-110 shadow-lg border-white' : 'group-hover:scale-105 border-transparent'
                               }`}
                               style={{
@@ -322,8 +322,8 @@ export default function IngresosBrutosAutogestion() {
                           </div>
                           
                           <div className="flex flex-col items-end gap-1 flex-shrink-0 ml-2">
-                            {/* ARREGLADO: Caja más grande para números de 2 dígitos */}
-                            <div className={`min-w-[28px] md:min-w-[32px] h-6 md:h-7 px-2 md:px-2.5 py-0.5 md:py-1 rounded-full text-xs font-bold transition-all duration-300 flex items-center justify-center ${
+                            {/* ✅ ARREGLADO: Caja más ancha y alta para números de 2 dígitos */}
+                            <div className={`min-w-[32px] md:min-w-[36px] h-7 md:h-8 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs md:text-sm font-bold transition-all duration-300 flex items-center justify-center ${
                               isActive 
                                 ? 'bg-blue-100 text-blue-700 shadow-sm' 
                                 : 'bg-gray-100 text-gray-600 group-hover:bg-blue-50 group-hover:text-blue-600'
