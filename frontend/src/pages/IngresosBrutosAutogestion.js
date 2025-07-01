@@ -9,7 +9,12 @@ import {
   ArrowPathIcon,
   BookmarkIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  ClipboardDocumentListIcon,
+  DocumentCheckIcon,
+  TrophyIcon,
+  LightBulbIcon,
+  StarIcon
 } from '@heroicons/react/24/outline';
 
 // Función para decodificar entidades HTML
@@ -24,35 +29,35 @@ const SECTIONS = [
   { 
     name: "Trámites y Gestiones", 
     id: 5,
-    icon: "📋",
+    icon: ClipboardDocumentListIcon,
     color: "#023F5E",
     description: "Gestiona tus trámites principales"
   },
   { 
     name: "Declaración Jurada", 
     id: 6,
-    icon: "📄",
+    icon: DocumentCheckIcon,
     color: "#005C91",
     description: "Presenta tus declaraciones"
   },
   { 
     name: "Certificado", 
     id: 7,
-    icon: "🏆",
+    icon: TrophyIcon,
     color: "#009DDD",
     description: "Obtén certificaciones"
   },
   { 
     name: "Información General", 
     id: 8,
-    icon: "💡",
+    icon: LightBulbIcon,
     color: "#612247",
     description: "Consulta información importante"
   },
   { 
     name: "Exenciones", 
     id: 9,
-    icon: "⭐",
+    icon: StarIcon,
     color: "#7C3AED",
     description: "Conoce tus beneficios fiscales"
   },
@@ -299,7 +304,7 @@ export default function IngresosBrutosAutogestion() {
                         <div className="relative flex items-center justify-between">
                           <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
                             <div 
-                              className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center text-sm md:text-lg transition-all duration-300 shadow-sm border-2 flex-shrink-0 ${
+                              className={`w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-300 shadow-sm border-2 flex-shrink-0 ${
                                 isActive ? 'scale-110 shadow-lg border-white' : 'group-hover:scale-105 border-transparent'
                               }`}
                               style={{
@@ -307,7 +312,9 @@ export default function IngresosBrutosAutogestion() {
                                 borderColor: isActive ? section.color : 'transparent'
                               }}
                             >
-                              {section.icon}
+                              <section.icon className={`h-4 w-4 md:h-6 md:w-6 transition-colors duration-300 ${
+                                isActive ? 'text-white' : 'text-gray-600'
+                              }`} style={{ color: isActive ? section.color : undefined }} />
                             </div>
                             <div className="min-w-0 flex-1">
                               <div className={`font-semibold text-sm md:text-base transition-colors truncate ${
@@ -374,14 +381,14 @@ export default function IngresosBrutosAutogestion() {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 md:mb-4 gap-3">
                       <div className="flex items-center gap-3 md:gap-4">
                         <div 
-                          className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-2xl shadow-lg border-2 relative overflow-hidden flex-shrink-0"
+                          className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg border-2 relative overflow-hidden flex-shrink-0"
                           style={{
                             backgroundColor: `${section.color}15`,
                             borderColor: `${section.color}30`
                           }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                          <span className="relative">{section.icon}</span>
+                          <section.icon className="relative h-5 w-5 md:h-7 md:w-7" style={{ color: section.color }} />
                         </div>
                         <div className="min-w-0 flex-1">
                           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 flex flex-wrap items-center gap-2 md:gap-3">
