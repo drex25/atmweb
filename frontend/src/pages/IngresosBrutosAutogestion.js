@@ -21,40 +21,35 @@ const SECTIONS = [
     id: 5,
     icon: "📋",
     color: "#023F5E",
-    description: "Gestiona tus trámites principales",
-    priority: "high"
+    description: "Gestiona tus trámites principales"
   },
   { 
     name: "Declaración Jurada", 
     id: 6,
     icon: "📄",
     color: "#005C91",
-    description: "Presenta tus declaraciones",
-    priority: "high"
+    description: "Presenta tus declaraciones"
   },
   { 
     name: "Certificado", 
     id: 7,
     icon: "🏆",
     color: "#009DDD",
-    description: "Obtén certificaciones oficiales",
-    priority: "medium"
+    description: "Obtén certificaciones"
   },
   { 
     name: "Información General", 
     id: 8,
     icon: "💡",
     color: "#612247",
-    description: "Consulta información importante",
-    priority: "medium"
+    description: "Consulta información importante"
   },
   { 
     name: "Exenciones", 
     id: 9,
     icon: "⭐",
     color: "#7C3AED",
-    description: "Conoce tus beneficios fiscales",
-    priority: "low"
+    description: "Conoce tus beneficios fiscales"
   },
 ];
 
@@ -136,8 +131,8 @@ export default function IngresosBrutosAutogestion() {
             <div className="w-16 h-16 md:w-20 md:h-20 border-4 border-blue-200 rounded-full animate-spin"></div>
             <div className="w-16 h-16 md:w-20 md:h-20 border-4 border-blue-600 border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
           </div>
-          <p className="text-lg md:text-xl text-gray-600 font-medium mt-6">Cargando experiencia premium...</p>
-          <p className="text-sm text-gray-500 mt-2">Preparando tu centro de autogestión</p>
+          <p className="text-lg md:text-xl text-gray-600 font-medium mt-6">Centro de Autogestión</p>
+          <p className="text-sm text-gray-500 mt-2">Cargando autogestión...</p>
         </div>
       </div>
     );
@@ -145,7 +140,7 @@ export default function IngresosBrutosAutogestion() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Hero Section Ultra Compacto y Premium - RESPONSIVE */}
+      {/* Hero Section Ultra Compacto y Profesional - RESPONSIVE */}
       <div className="relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-gradient-to-r opacity-95"
@@ -154,7 +149,7 @@ export default function IngresosBrutosAutogestion() {
           }}
         />
         
-        {/* Efectos decorativos premium - RESPONSIVE */}
+        {/* Efectos decorativos profesionales - RESPONSIVE */}
         <div className="absolute inset-0">
           <div className="absolute top-4 left-4 md:top-8 md:left-8 w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-20 h-20 md:w-24 md:h-24 bg-white/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
@@ -177,10 +172,10 @@ export default function IngresosBrutosAutogestion() {
         
         <div className="relative px-4 sm:px-6 py-8 md:py-10 text-center text-white">
           <div className="max-w-4xl mx-auto">
-            {/* Badge premium más sofisticado - RESPONSIVE */}
+            {/* Badge profesional más sofisticado - RESPONSIVE */}
             <div className="inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-4 md:mb-6 shadow-xl">
               <SparklesIcon className="h-3 w-3 md:h-4 md:w-4 animate-pulse" />
-              <span className="font-semibold text-xs md:text-sm tracking-wide">Autogestión Digital Premium</span>
+              <span className="font-semibold text-xs md:text-sm tracking-wide">Autogestión Digital</span>
               <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse"></div>
             </div>
             
@@ -196,11 +191,11 @@ export default function IngresosBrutosAutogestion() {
             
             {/* Descripción más persuasiva - RESPONSIVE */}
             <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-4">
-              Experiencia digital premium para gestionar todos tus trámites de manera 
+              Experiencia digital para gestionar todos tus trámites de manera 
               <span className="font-semibold text-blue-200"> rápida, segura y eficiente</span>
             </p>
             
-            {/* Indicadores de estado premium - RESPONSIVE */}
+            {/* Indicadores de estado profesionales - RESPONSIVE */}
             <div className="flex flex-wrap justify-center gap-2 md:gap-3 text-xs md:text-sm px-4">
               <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-green-500/20 border border-green-400/30 backdrop-blur-sm">
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -223,7 +218,7 @@ export default function IngresosBrutosAutogestion() {
         </div>
       </div>
 
-      {/* Barra de búsqueda premium - RESPONSIVE */}
+      {/* Barra de búsqueda profesional - RESPONSIVE */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-4 md:-mt-6 relative z-10">
         <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 p-4 md:p-6 backdrop-blur-xl">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
@@ -283,7 +278,7 @@ export default function IngresosBrutosAutogestion() {
       {/* Contenido Principal - RESPONSIVE */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
         <div className="flex gap-6 md:gap-8">
-          {/* Menú lateral ultra premium - RESPONSIVE */}
+          {/* Menú lateral ultra profesional - RESPONSIVE */}
           <aside className={`w-full max-w-sm lg:w-80 flex-shrink-0 fixed lg:static top-0 left-0 h-full lg:h-auto bg-white lg:bg-transparent z-50 lg:z-auto transform transition-transform duration-300 ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}>
@@ -323,13 +318,7 @@ export default function IngresosBrutosAutogestion() {
                             : 'hover:bg-gray-50 border-2 border-transparent hover:shadow-md hover:scale-[1.01]'
                         }`}
                       >
-                        {/* Indicador de prioridad */}
-                        <div className={`absolute top-2 right-2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${
-                          section.priority === 'high' ? 'bg-red-400' :
-                          section.priority === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
-                        }`}></div>
-                        
-                        {/* Efecto de brillo premium */}
+                        {/* Efecto de brillo profesional */}
                         <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 transition-all duration-700 ${
                           isActive ? 'translate-x-full' : '-translate-x-full group-hover:translate-x-full'
                         }`}></div>
@@ -379,7 +368,7 @@ export default function IngresosBrutosAutogestion() {
                   })}
                 </nav>
                 
-                {/* Footer del menú premium */}
+                {/* Footer del menú profesional */}
                 <div className="p-3 md:p-4 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-100">
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 text-gray-600">
@@ -395,8 +384,8 @@ export default function IngresosBrutosAutogestion() {
             </div>
           </aside>
 
-          {/* Contenido principal ultra refinado - RESPONSIVE */}
-          <main className="flex-1 min-w-0">
+          {/* Contenido principal ultra refinado - RESPONSIVE - WIDTH 95% */}
+          <main className="flex-1 min-w-0" style={{ width: '95%' }}>
             {SECTIONS.map((section) => {
               const filteredItems = getFilteredItems(itemsBySection[section.name] || []);
               
@@ -406,7 +395,7 @@ export default function IngresosBrutosAutogestion() {
                   ref={el => (sectionRefs.current[section.name] = el)}
                   className="mb-8 md:mb-12"
                 >
-                  {/* Header de sección premium - RESPONSIVE */}
+                  {/* Header de sección profesional - RESPONSIVE */}
                   <div className="mb-4 md:mb-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 md:mb-4 gap-3">
                       <div className="flex items-center gap-3 md:gap-4">
@@ -423,11 +412,6 @@ export default function IngresosBrutosAutogestion() {
                         <div className="min-w-0 flex-1">
                           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 flex flex-wrap items-center gap-2 md:gap-3">
                             <span className="truncate">{section.name}</span>
-                            {section.priority === 'high' && (
-                              <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full whitespace-nowrap">
-                                PRIORITARIO
-                              </span>
-                            )}
                           </h2>
                           <p className="text-gray-600 text-xs md:text-sm mt-1 truncate">{section.description}</p>
                         </div>
@@ -441,7 +425,7 @@ export default function IngresosBrutosAutogestion() {
                       </div>
                     </div>
                     
-                    {/* Línea decorativa premium - RESPONSIVE */}
+                    {/* Línea decorativa profesional - RESPONSIVE */}
                     <div className="flex items-center gap-2 md:gap-3">
                       <div 
                         className="h-1 md:h-1.5 w-16 md:w-24 rounded-full shadow-sm"
@@ -454,7 +438,7 @@ export default function IngresosBrutosAutogestion() {
                     </div>
                   </div>
 
-                  {/* Contenido de la sección ultra premium - RESPONSIVE */}
+                  {/* Contenido de la sección ultra profesional - RESPONSIVE */}
                   <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden backdrop-blur-xl">
                     {filteredItems.length > 0 ? (
                       <div className="divide-y divide-gray-100">
@@ -468,7 +452,7 @@ export default function IngresosBrutosAutogestion() {
                                   : 'hover:bg-gray-50'
                               }`}
                             >
-                              {/* Efecto de hover premium */}
+                              {/* Efecto de hover profesional */}
                               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50/50 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                               
                               <div className="relative flex items-center justify-between gap-3">
@@ -491,8 +475,6 @@ export default function IngresosBrutosAutogestion() {
                                       </div>
                                       <span className="text-xs text-gray-400 hidden sm:inline">•</span>
                                       <span className="text-xs text-gray-400 hidden sm:inline">Actualizado</span>
-                                      <span className="text-xs text-gray-400 hidden sm:inline">•</span>
-                                      <span className="text-xs text-blue-600 font-medium">Oficial</span>
                                     </div>
                                   </div>
                                 </div>
@@ -517,7 +499,7 @@ export default function IngresosBrutosAutogestion() {
                               </div>
                             </button>
                             
-                            {/* Contenido expandible con fondo blanco premium - RESPONSIVE */}
+                            {/* Contenido expandible con fondo blanco profesional - RESPONSIVE */}
                             <div className={`overflow-hidden transition-all duration-500 ${
                               openItems[section.name]?.[item.id] 
                                 ? 'max-h-[2000px] opacity-100' 
@@ -533,7 +515,7 @@ export default function IngresosBrutosAutogestion() {
                                 
                                 {/* Footer del contenido - RESPONSIVE */}
                                 <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs md:text-sm text-gray-500">
-                                  <span>Información oficial de ATM Misiones</span>
+                                  <span>Información de ATM Misiones</span>
                                   <span>Última actualización: Hoy</span>
                                 </div>
                               </div>
@@ -573,7 +555,7 @@ export default function IngresosBrutosAutogestion() {
         </div>
       </div>
 
-      {/* Botón flotante de ayuda premium - RESPONSIVE */}
+      {/* Botón flotante de ayuda profesional - RESPONSIVE */}
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40">
         <button className="group relative">
           <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity animate-pulse"></div>
