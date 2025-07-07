@@ -1,20 +1,23 @@
 services:
-  # WordPress Backend (conecta a la base de datos del servidor principal)
+  # WordPress Backend (sin MySQL local)
   wordpress:
     image: wordpress:latest
     ports:
-      - "8000:80"
+      - "8001:80"
     environment:
-      WORDPRESS_DB_HOST: 192.168.1.23
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: ${EXTERNAL_DB_HOST}
+      WORDPRESS_DB_USER: ${EXTERNAL_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${EXTERNAL_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${EXTERNAL_DB_NAME}
       WORDPRESS_DEBUG: 1
+      WORDPRESS_HOME_URL: ${WORDPRESS_HOME_URL}
+      WORDPRESS_SITE_URL: ${WORDPRESS_SITE_URL}
     volumes:
       - wordpress_data:/var/www/html
       - ./backend/uploads:/var/www/html/wp-content/uploads
     networks:
       - atm_network
+    restart: unless-stopped
 
   # React Frontend
   frontend:
@@ -22,7 +25,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -30,19 +33,19 @@ services:
       - NODE_ENV=development
       - REACT_APP_WORDPRESS_API_URL=${REACT_APP_WORDPRESS_API_URL}
       - REACT_APP_ENV=development
-      - CHOKIDAR_USEPOLLING=true
     env_file:
       - ./frontend/.env.development.docker
     depends_on:
       - wordpress
     networks:
       - atm_network
+    restart: unless-stopped
 
-  # Nginx for production
+  # Nginx para producción
   nginx:
     image: nginx:alpine
     ports:
-      - "8080:80"
+      - "81:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./frontend/build:/usr/share/nginx/html
@@ -51,6 +54,7 @@ services:
       - wordpress
     networks:
       - atm_network
+    restart: unless-stopped
 
 networks:
   atm_network:

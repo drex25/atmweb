@@ -131,7 +131,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full bg-white shadow-lg border-b border-gray-200">
+      <nav className="sticky top-0 z-50 w-full bg-white shadow-2xl border-b border-gray-200">
         {/* Contenedor principal con full width */}
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="flex items-center justify-between h-20">

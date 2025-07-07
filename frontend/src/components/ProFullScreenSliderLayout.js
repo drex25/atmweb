@@ -41,7 +41,7 @@ export default function ProFullScreenSliderLayout() {
           style={{ minHeight: Math.max(loginHeight, 500) }}
         >
           <div className="flex-1 flex items-center justify-center h-full w-full">
-            <div className="w-full h-full max-w-6xl">
+            <div className="w-full h-full">
               <ProHeroSlider cardMode height={loginHeight || 500} />
             </div>
           </div>

@@ -107,9 +107,9 @@ export default function ProHeroSlider({ cardMode, height }) {
 
   if (loading) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl">
+      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-blue-500 to-purple-600">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <div className="animate-spin h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
           <p className="text-white/90 font-medium">Cargando slides...</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function ProHeroSlider({ cardMode, height }) {
 
   if (error) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl">
+      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-red-500 to-pink-600">
         <div className="text-center p-8">
           <p className="text-white font-bold mb-2">Error al cargar slides</p>
           <p className="text-white/80 text-sm">{error}</p>
@@ -129,7 +129,7 @@ export default function ProHeroSlider({ cardMode, height }) {
 
   if (!slides.length) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-gray-500 to-gray-700 rounded-2xl">
+      <div className="w-full h-full flex items-center justify-center text-lg text-white bg-gradient-to-br from-gray-500 to-gray-700">
         <div className="text-center p-8">
           <p className="text-white font-bold mb-2">No hay slides para mostrar</p>
           <p className="text-white/80 text-sm">Verifica que existan slides en WordPress</p>
@@ -171,7 +171,7 @@ export default function ProHeroSlider({ cardMode, height }) {
           <SwiperSlide key={`slide-${slide.id}-${index}`}>
             {/* TODO EL SLIDE USA EL MISMO FONDO - SIN CONTENEDORES SEPARADOS */}
             <div 
-              className={`w-full h-full flex items-center justify-center transition-all duration-500 rounded-2xl bg-gradient-to-br ${getBgColor(slide, index)} p-6 md:p-12`}
+              className={`w-full h-full flex items-center justify-center transition-all duration-500 bg-gradient-to-br ${getBgColor(slide, index)} p-6 md:p-12`}
             >
               {/* CONTENIDO DIRECTO SIN CONTENEDORES ADICIONALES */}
               <div className="w-full flex flex-col md:flex-row items-center justify-between h-full gap-6 md:gap-12 max-w-7xl mx-auto">
@@ -180,7 +180,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                 <div className="flex-1 flex flex-col justify-center items-start text-center md:text-left">
                   {/* Badge - Con fondo semi-transparente para contraste */}
                   {slide.acf?.badge && (
-                    <span className="inline-flex items-center mb-4 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white font-semibold text-sm border border-white/30 shadow-lg">
+                    <span className="inline-flex items-center mb-4 px-4 py-2 bg-white/20 backdrop-blur-sm text-white font-semibold text-sm border border-white/30 shadow-lg">
                       <span className="mr-2">✨</span> {slide.acf.badge}
                     </span>
                   )}
@@ -206,7 +206,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                   {slide.acf?.link && (
                     <a
                       href={slide.acf.link}
-                      className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-base md:text-lg shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20"
+                      className="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 font-bold text-base md:text-lg shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-white/20"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -224,7 +224,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                     <img
                       src={images[slide.id]}
                       alt={slide.title.rendered}
-                      className="max-h-[200px] md:max-h-[300px] lg:max-h-[360px] w-auto rounded-2xl object-contain drop-shadow-2xl"
+                      className="max-h-[200px] md:max-h-[300px] lg:max-h-[360px] w-auto object-contain drop-shadow-2xl"
                       style={{ minWidth: 180 }}
                       onError={(e) => {
                         console.error('Error loading image:', e.target.src);
@@ -232,7 +232,7 @@ export default function ProHeroSlider({ cardMode, height }) {
                       }}
                     />
                   ) : (
-                    <div className="w-48 h-48 md:w-64 md:h-64 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <div className="w-48 h-48 md:w-64 md:h-64 bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20">
                       <span className="text-white/60 text-sm font-medium">Sin imagen</span>
                     </div>
                   )}
@@ -245,8 +245,8 @@ export default function ProHeroSlider({ cardMode, height }) {
         {/* Controles de navegación */}
         {slides.length > 1 && (
           <>
-            <div className="swiper-button-prev !text-white !w-12 !h-12 !bg-black/20 !rounded-full !backdrop-blur-sm hover:!bg-black/40 !transition-all !duration-300"></div>
-            <div className="swiper-button-next !text-white !w-12 !h-12 !bg-black/20 !rounded-full !backdrop-blur-sm hover:!bg-black/40 !transition-all !duration-300"></div>
+            <div className="swiper-button-prev !text-white !w-12 !h-12 !bg-black/20 !backdrop-blur-sm hover:!bg-black/40 !transition-all !duration-300"></div>
+            <div className="swiper-button-next !text-white !w-12 !h-12 !bg-black/20 !backdrop-blur-sm hover:!bg-black/40 !transition-all !duration-300"></div>
             <div className="swiper-pagination !bottom-4"></div>
           </>
         )}
