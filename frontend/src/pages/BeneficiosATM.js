@@ -40,7 +40,8 @@ import {
   PlayIcon,
   PauseIcon,
   ForwardIcon,
-  BackwardIcon
+  BackwardIcon,
+  InformationCircleIcon
 } from '@heroicons/react/24/outline';
 import HeroBeneficiosATM from '../components/HeroBeneficiosATM';
 
