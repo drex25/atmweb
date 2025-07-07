@@ -235,66 +235,173 @@ const ModernMoratoriaSection = () => {
 // Sección de Sorteos Moderna
 const ModernSorteosSection = () => {
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-white via-yellow-50 to-yellow-100 relative overflow-hidden">
-      {/* Efectos decorativos dorados sutiles */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-yellow-200/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-yellow-300/20 rounded-full blur-2xl z-0"></div>
-      <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-300 rounded-2xl flex items-center justify-center shadow-2xl">
-              <TrophyIcon className="h-8 w-8 text-yellow-600" />
+    <section className="relative py-24 px-6 overflow-hidden">
+      {/* Fondo futurista con gradientes dinámicos */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(236,72,153,0.3),transparent_50%)]"></div>
+      
+      {/* Efectos de partículas y ondas */}
+      <div className="absolute inset-0">
+        {/* Ondas concéntricas animadas */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-cyan-400/20 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-purple-400/20 rounded-full animate-ping" style={{animationDuration: '3s', animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-pink-400/20 rounded-full animate-ping" style={{animationDuration: '2s', animationDelay: '2s'}}></div>
+        
+        {/* Partículas flotantes */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full animate-pulse opacity-30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Header futurista */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-4 mb-8">
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur-lg opacity-40 animate-pulse"></div>
+              <div className="relative w-16 h-16 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl border-2 border-white/20">
+                <TrophyIcon className="h-8 w-8 text-white" />
+              </div>
             </div>
-            <span className="text-lg font-bold text-yellow-700 uppercase tracking-wider" style={{fontFamily: 'serif'}}>¡Sorteos de ATM!</span>
+            <div className="text-left">
+              <span className="block text-sm font-bold text-cyan-300 uppercase tracking-wider">Programa de Incentivos</span>
+              <span className="block text-lg font-black text-white">Sorteos ATM 2025</span>
+            </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-800 tracking-tight" style={{fontFamily: 'serif', letterSpacing: '-1px'}}>
-            ¡Participá y Ganá!
-          </h2>
-        </div>
-        {/* Tarjeta central glassmorphism dorado */}
-        <div className="mx-auto max-w-3xl mb-12">
-          <div className="relative bg-white/70 backdrop-blur-xl border-2 border-yellow-300 rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center">
-            <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl font-bold text-gray-700 mb-4" style={{fontFamily: 'serif'}}>
-              <TrophyIcon className="h-8 w-8 text-yellow-500" />
-              Sorteos de Consumidores Finales y Cumplidores del Impuesto Inmobiliario
-            </div>
-            <div className="flex items-center justify-center gap-4 text-2xl font-bold text-yellow-700 mb-2" style={{fontFamily: 'serif'}}>
-              Los sorteos han finalizado. Gracias por participar.
-            </div>
-            <div className="flex items-center justify-center gap-3 text-lg text-gray-600 mb-2">
-              <CalendarIcon className="h-6 w-6 text-yellow-500" />
-              Próximamente anunciaremos nuevas fechas para los próximos sorteos.
-            </div>
-          </div>
-        </div>
-        {/* Botón principal dorado */}
-        <div className="text-center mb-10">
-          <button className="group relative inline-block">
-            <span className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity"></span>
-            <span className="relative inline-flex items-center gap-4 px-12 py-6 bg-white text-yellow-700 font-extrabold text-xl rounded-full shadow-xl border-2 border-yellow-400 hover:bg-yellow-50 transition-all duration-300" style={{fontFamily: 'serif'}}>
-              <TrophyIcon className="h-7 w-7 text-yellow-500" />
-              Ver los resultados de los Sorteos 2025
-              <StarIcon className="h-6 w-6 text-yellow-400" />
+          
+          <h2 className="text-5xl md:text-7xl font-black mb-8 leading-none">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              SORTEOS
             </span>
+            <br />
+            <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              DIGITALES
+            </span>
+          </h2>
+          
+          <p className="text-xl text-cyan-100 max-w-3xl mx-auto leading-relaxed">
+            Participá automáticamente en nuestros sorteos digitales cumpliendo con tus obligaciones fiscales
+          </p>
+        </div>
+        
+        {/* Panel principal holográfico */}
+        <div className="relative max-w-5xl mx-auto mb-16">
+          {/* Efectos de fondo del panel */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-3xl backdrop-blur-xl border border-white/20"></div>
+          
+          <div className="relative p-12">
+            {/* Estado actual */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-400/30 mb-6">
+                <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                <span className="text-orange-200 font-bold text-sm uppercase tracking-wide">Estado Actual</span>
+              </div>
+              
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Sorteos 2024 Finalizados
+              </h3>
+              <p className="text-cyan-200 text-lg mb-8">
+                Gracias a todos los participantes. Los próximos sorteos se anunciarán pronto.
+              </p>
+            </div>
+            
+            {/* Categorías de sorteos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="group relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl p-8 border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-xl flex items-center justify-center">
+                      <UsersIcon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white">Consumidores Finales</h4>
+                      <p className="text-emerald-200 text-sm">Exigí tu factura</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Participá automáticamente al exigir facturas en tus compras. Cada factura es una oportunidad de ganar.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="group relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center">
+                      <HomeIcon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white">Cumplidores Inmobiliarios</h4>
+                      <p className="text-purple-200 text-sm">Mantené al día tus impuestos</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Cumplí con el Impuesto Inmobiliario en tiempo y forma para participar automáticamente.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Próximos sorteos */}
+            <div className="text-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20 border border-blue-400/30 mb-6">
+                <CalendarIcon className="h-5 w-5 text-blue-300" />
+                <span className="text-blue-200 font-bold text-sm uppercase tracking-wide">Próximamente</span>
+              </div>
+              <h4 className="text-2xl font-bold text-white mb-4">Sorteos 2025</h4>
+              <p className="text-gray-300 mb-8">
+                Mantente atento a nuestros canales oficiales para conocer las fechas de los próximos sorteos.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Botones de acción futuristas */}
+        <div className="flex flex-col md:flex-row gap-6 justify-center mb-16">
+          <button className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity"></div>
+            <div className="relative inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 border border-cyan-400/30">
+              <TrophyIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+              Ver Resultados 2024
+              <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </button>
+          
+          <button className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity"></div>
+            <div className="relative inline-flex items-center gap-3 px-10 py-5 bg-transparent border-2 border-purple-400/50 text-purple-200 font-bold text-lg rounded-2xl hover:bg-purple-500/10 transition-all duration-300 backdrop-blur-md">
+              <InformationCircleIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+              Cómo Participar
+            </div>
           </button>
         </div>
-        {/* Botones secundarios */}
-        <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
-          <button className="px-10 py-4 rounded-full border-2 border-yellow-300 text-yellow-700 font-bold bg-white hover:bg-yellow-50 transition-all duration-300 flex items-center gap-3 justify-center hover:scale-105 shadow-md" style={{fontFamily: 'serif'}}>
-            <GiftIcon className="h-6 w-6 text-yellow-500" />
-            Sorteo Consumidores Finales
-          </button>
-          <button className="px-10 py-4 rounded-full border-2 border-yellow-300 text-yellow-700 font-bold bg-white hover:bg-yellow-50 transition-all duration-300 flex items-center gap-3 justify-center hover:scale-105 shadow-md" style={{fontFamily: 'serif'}}>
-            <GiftIcon className="h-6 w-6 text-yellow-500" />
-            Sorteo Cumplidores Inmobiliarios
-          </button>
-        </div>
-        {/* Mensaje final elegante */}
+        
+        {/* Call to action final */}
         <div className="text-center">
-          <div className="inline-block text-lg text-yellow-800 bg-white/90 backdrop-blur rounded-2xl p-6 border-2 border-yellow-200 shadow-lg font-semibold" style={{fontFamily: 'serif'}}>
-            <TrophyIcon className="h-6 w-6 text-yellow-500 inline mr-2" />
-            ¡Exigí tu factura o mantené tu impuesto al día y participá automáticamente!
-            <TrophyIcon className="h-6 w-6 text-yellow-500 inline ml-2" />
+          <div className="relative inline-block">
+            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+            <div className="relative bg-black/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20">
+              <div className="flex items-center justify-center gap-4 text-white">
+                <SparklesIcon className="h-8 w-8 text-cyan-400 animate-pulse" />
+                <span className="text-xl md:text-2xl font-bold">
+                  ¡Cumplí con tus obligaciones y participá automáticamente!
+                </span>
+                <SparklesIcon className="h-8 w-8 text-pink-400 animate-pulse" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
