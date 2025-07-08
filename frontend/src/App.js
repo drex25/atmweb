@@ -20,6 +20,7 @@ import BeneficiosATM from './pages/BeneficiosATM';
 import Autogestion from './pages/Autogestion';
 import AutogestionItemDetail from './pages/AutogestionItemDetail';
 import IngresosBrutosAutogestion from './pages/IngresosBrutosAutogestion';
+import DocumentacionEstatistica from './pages/DocumentacionEstatistica';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/tramites/sellos" element={<Sellos/>} />
             <Route path="/informacion-fiscal/padrones" element={<PadronesProductores/>} />
             <Route path="/informacion-fiscal/exenciones" element={<Excenciones/>} />
+            <Route path="/informacion-fiscal/estadisticas" element={<DocumentacionEstatistica/>} />
             <Route path="/beneficios" element={<BeneficiosATM />} />
           </Routes>
         </main>
