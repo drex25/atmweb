@@ -1,6 +1,6 @@
 import React from "react";
 import HeroAutoridades from "../components/HeroAutoridades";
-import HeroControlFiscal from "../components/HeroControlFiscal";
+
 
 export default function Autoridades() {
   return (
