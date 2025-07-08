@@ -21,7 +21,7 @@ import Autogestion from './pages/Autogestion';
 import AutogestionItemDetail from './pages/AutogestionItemDetail';
 import IngresosBrutosAutogestion from './pages/IngresosBrutosAutogestion';
 import DocumentacionEstatistica from './pages/DocumentacionEstatistica';
-
+import Autoridades from './pages/Autoridades';
 
 function App() {
   return (
@@ -49,6 +49,7 @@ function App() {
             <Route path="/informacion-fiscal/exenciones" element={<Excenciones/>} />
             <Route path="/informacion-fiscal/estadisticas" element={<DocumentacionEstatistica/>} />
             <Route path="/beneficios" element={<BeneficiosATM />} />
+            <Route path="/institucional/autoridades" element={<Autoridades />} />
           </Routes>
         </main>
         <Footer />
