@@ -338,20 +338,17 @@ const RECAUDACION = {
 
 // Definir las columnas y desde qué año deben aparecer
 const COLUMNAS_DEFINICION = [
-  { key: 'mes', label: 'Mes', desde: 2006 },
-  { key: 'iibb', label: 'IIBB', desde: 2006, hasta: 2018 },
-  { key: 'conv', label: 'CONV', desde: 2006, hasta: 2018 },
-  { key: 'ingresos_brutos', label: 'ING. BRUTOS', desde: 2019 },
-  { key: 'inmobiliario', label: 'INMOB.', desde: 2006 },
+  { key: 'mes', label: 'MES', desde: 2006 },
+  { key: 'ingresos_brutos', label: 'INGRESOS BRUTOS', desde: 2019 },
+  { key: 'inmobiliario', label: 'INMOBILIARIO', desde: 2006 },
   { key: 'sellos', label: 'SELLOS', desde: 2006 },
-  { key: 'parque_automotor', label: 'P. AUTO', desde: 2019 },
-  { key: 'ipa', label: 'IPA', desde: 2006, hasta: 2018 },
-  { key: 'tasa_varias_cod_fiscal', label: 'T. VARIAS', desde: 2018 },
-  { key: 'tasa', label: 'T. FOR.', desde: 2006 },
-  { key: 'minera', label: 'MINERA', desde: 2006 },
-  { key: 'tasa_admin', label: 'T. ADM', desde: 2010 },
-  { key: 'tasa_serv_indust', label: 'T. SERV', desde: 2013 },
-  { key: 'tasa_adm_inmob', label: 'T. INM', desde: 2014 },
+  { key: 'parque_automotor', label: 'PARQUE AUTOMOTOR', desde: 2019 },
+  { key: 'minera', label: 'CONC.MINERA', desde: 2006 },
+  { key: 'tasa_varias_cod_fiscal', label: 'TASA VARIAS COD.FISCAL', desde: 2018 },
+  { key: 'tasa', label: 'TASA FORESTAL', desde: 2006 },
+  { key: 'tasa_admin', label: 'TASA ADMIN.', desde: 2010 },
+  { key: 'tasa_serv_indust', label: 'TASA SERV.INDUST.', desde: 2013 },
+  { key: 'tasa_adm_inmob', label: 'TASA ADM.INMOB', desde: 2014 },
   { key: 'total', label: 'TOTAL', desde: 2006 },
 ];
 
@@ -468,10 +465,35 @@ export default function HeroEstadisticas() {
     }, 300);
   };
 
-  const formatValue = (value, key) => {
+  const formatValue = (value, key, row) => {
     if (!value || value === '00' || value === '') return '-';
     if (key === 'mes') return value;
-    return `$${value}`;
+    if (key === 'total' && (value === '-' || value === undefined)) return '-';
+    // Si es la fila de % Porcentaje, usar % en vez de $
+    if (row && row.mes === '% Porcentaje' && key !== 'mes') {
+      return (
+        <span className="flex items-center justify-between w-full">
+          <span className="text-blue-500 font-bold mr-1">%</span>
+          <span className="text-right flex-1">{value}</span>
+        </span>
+      );
+    }
+    // Si es valor monetario, devolver el diseño con $ a la izquierda y número a la derecha
+    if (
+      key !== 'mes' &&
+      key !== '% Porcentaje' &&
+      key !== 'acumulado' &&
+      key !== 'conv' &&
+      key !== 'ipa'
+    ) {
+      return (
+        <span className="flex items-center justify-between w-full">
+          <span className="text-blue-500 font-bold mr-1">$</span>
+          <span className="text-right flex-1">{value}</span>
+        </span>
+      );
+    }
+    return value;
   };
 
   const getRowClass = (mes) => {
@@ -516,7 +538,7 @@ export default function HeroEstadisticas() {
               />
               <BlurText
                 text="Fiscal"
-                delay={30}
+                delay={300}
                 animateBy="letters"
                 direction="top"
                 className="text-5xl md:text-6xl font-bold text-white leading-tight text-center"
@@ -574,15 +596,15 @@ export default function HeroEstadisticas() {
               </div>
 
               {/* Tabla principal */}
-              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden mb-12">
-                <div className="w-full">
+              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-x-auto mb-12">
+                <div className="min-w-[700px] w-full">
                   <table className="w-full text-xs md:text-sm">
                     <thead>
                       <tr className="bg-gradient-to-r from-blue-600 to-purple-600">
-                        {columnasFiltradas.map(col => (
+                        {columnasFiltradas.map((col, colIdx) => (
                           <th
                             key={col.key}
-                            className="px-2 py-4 text-white font-bold text-center border-r border-white/20 last:border-r-0"
+                            className={`px-2 py-3 text-white font-bold border-r border-white/20 last:border-r-0 text-xs md:text-sm ${colIdx === 0 ? 'text-left min-w-[120px]' : 'text-center'}`}
                           >
                             {col.label}
                           </th>
@@ -592,12 +614,12 @@ export default function HeroEstadisticas() {
                     <tbody>
                       {(RECAUDACION[año] || []).map((fila, idx) => (
                         <tr key={idx} className={getRowClass(fila.mes)}>
-                          {columnasFiltradas.map(col => (
+                          {columnasFiltradas.map((col, colIdx) => (
                             <td
                               key={col.key}
-                              className="px-2 py-3 text-center border-r border-gray-200 last:border-r-0 font-medium"
+                              className={`px-2 py-2 border-r border-gray-200 last:border-r-0 ${colIdx === 0 ? 'text-left font-medium min-w-[120px]' : 'text-center'}`}
                             >
-                              {formatValue(fila[col.key], col.key)}
+                              {formatValue(fila[col.key], col.key, fila)}
                             </td>
                           ))}
                         </tr>
