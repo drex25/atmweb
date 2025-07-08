@@ -1,5 +1,5 @@
 import React from "react";
-import HeroAutoridades from "../components/HeroAutoridades.js";
+import HeroAutoridades from "../components/HeroAutoridades";
 
 
 export default function Autoridades() {
