@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { TrendingUp, Calendar, DollarSign, BarChart3, PieChart } from 'lucide-react';
+import BlurText from './BlurText';
 
 // Array de años editable
 const AÑOS = Array.from({ length: 2025 - 2006 + 1 }, (_, i) => 2006 + i);
@@ -204,104 +206,440 @@ const RECAUDACION = {
     { mes: 'Total', iibb: '6,300,832,082', conv: '2,635,365,727', inmobiliario: '141,996,872', ipa: '98,217,095', sellos: '702,772,846', tasa_org_externo: '2,896,371', tasa: '19,818,946', minera: '1,892,497', tasa_admin: '3,525,056', tasa_serv_indust: '399,552', tasa_adm_inmob: '169,957', total: '9,907,887,002' },
     { mes: '% Porcentaje', iibb: '63,59', conv: '26,60', inmobiliario: '1,43', ipa: '0,99', sellos: '7,09', tasa_org_externo: '0,03', tasa: '0,20', minera: '0,02', tasa_admin: '0,04', tasa_serv_indust: '0,00', tasa_adm_inmob: '0,00', total: '100' },
   ],
+  2018: [
+    { mes: 'Enero', iibb: '611,252,424', conv: '253,002,749', inmobiliario: '27,467,471', ipa: '11,596,964', sellos: '81,221,246', tasa_varias_cod_fiscal: '119,261', tasa: '1,510,251', minera: '133,437', tasa_admin: '264,716', tasa_serv_indust: '9,372', tasa_adm_inmob: '11,841', total: '986,589,732' },
+    { mes: 'Febrero', iibb: '548,804,950', conv: '254,953,609', inmobiliario: '40,776,328', ipa: '22,574,994', sellos: '72,549,191', tasa_varias_cod_fiscal: '186,283', tasa: '1,482,911', minera: '259,395', tasa_admin: '224,303', tasa_serv_indust: '21,414', tasa_adm_inmob: '10,331', total: '941,843,709' },
+    { mes: 'Marzo', iibb: '559,298,671', conv: '259,447,310', inmobiliario: '13,965,328', ipa: '11,935,667', sellos: '72,500,124', tasa_varias_cod_fiscal: '241,127', tasa: '1,447,460', minera: '184,469', tasa_admin: '281,825', tasa_serv_indust: '15,279', tasa_adm_inmob: '13,588', total: '919,330,848' },
+    { mes: 'Abril', iibb: '593,560,493', conv: '252,824,084', inmobiliario: '15,635,263', ipa: '8,797,012', sellos: '82,443,778', tasa_varias_cod_fiscal: '248,605', tasa: '1,630,360', minera: '212,067', tasa_admin: '312,063', tasa_serv_indust: '53,761', tasa_adm_inmob: '14,729', total: '955,732,214' },
+    { mes: 'Mayo', iibb: '656,813,124', conv: '275,315,663', inmobiliario: '14,940,830', ipa: '10,684,943', sellos: '100,801,754', tasa_varias_cod_fiscal: '318,292', tasa: '1,726,623', minera: '272,930', tasa_admin: '314,940', tasa_serv_indust: '169,027', tasa_adm_inmob: '13,880', total: '1,061,372,006' },
+    { mes: 'Junio', iibb: '667,502,272', conv: '291,665,199', inmobiliario: '14,859,737', ipa: '9,450,380', sellos: '84,084,577', tasa_varias_cod_fiscal: '294,017', tasa: '1,927,837', minera: '272,341', tasa_admin: '399,897', tasa_serv_indust: '51,047', tasa_adm_inmob: '17,193', total: '1,070,524,497' },
+    { mes: 'Julio', iibb: '664,292,739', conv: '308,005,682', inmobiliario: '15,593,187', ipa: '11,681,220', sellos: '85,079,933', tasa_varias_cod_fiscal: '432,549', tasa: '1,425,114', minera: '300,605', tasa_admin: '802,258', tasa_serv_indust: '41,202', tasa_adm_inmob: '35,262', total: '1,087,689,750' },
+    { mes: 'Agosto', iibb: '733,441,114', conv: '305,550,674', inmobiliario: '14,752,693', ipa: '8,110,774', sellos: '82,362,530', tasa_varias_cod_fiscal: '528,705', tasa: '1,753,594', minera: '362,096', tasa_admin: '855,926', tasa_serv_indust: '38,726', tasa_adm_inmob: '36,851', total: '1,147,793,685' },
+    { mes: 'Septiembre', iibb: '767,901,023', conv: '305,753,528', inmobiliario: '13,371,890', ipa: '5,415,408', sellos: '78,397,913', tasa_varias_cod_fiscal: '459,317', tasa: '1,937,418', minera: '379,582', tasa_admin: '864,989', tasa_serv_indust: '35,581', tasa_adm_inmob: '33,892', total: '1,174,550,541' },
+    { mes: 'Octubre', iibb: '754,171,073', conv: '339,557,388', inmobiliario: '13,748,159', ipa: '6,346,793', sellos: '70,544,592', tasa_varias_cod_fiscal: '531,006', tasa: '1,964,163', minera: '351,879', tasa_admin: '918,474', tasa_serv_indust: '52,438', tasa_adm_inmob: '36,703', total: '1,188,222,668' },
+    { mes: 'Noviembre', iibb: '869,803,491', conv: '357,303,397', inmobiliario: '4,446,409', ipa: '4,372,735', sellos: '74,917,478', tasa_varias_cod_fiscal: '496,018', tasa: '1,965,478', minera: '297,589', tasa_admin: '873,398', tasa_serv_indust: '161,519', tasa_adm_inmob: '30,225', total: '1,314,667,737' },
+    { mes: 'Diciembre', iibb: '958,586,463', conv: '358,456,181', inmobiliario: '6,281,965', ipa: '4,871,620', sellos: '64,674,835', tasa_varias_cod_fiscal: '516,847', tasa: '1,879,102', minera: '289,675', tasa_admin: '1,024,761', tasa_serv_indust: '145,208', tasa_adm_inmob: '34,966', total: '1,396,761,623' },
+    { mes: 'Total', iibb: '8,385,427,836', conv: '3,561,835,464', inmobiliario: '195,839,259', ipa: '115,838,511', sellos: '949,577,951', tasa_varias_cod_fiscal: '4,372,028', tasa: '20,650,311', minera: '3,316,064', tasa_admin: '7,137,552', tasa_serv_indust: '794,573', tasa_adm_inmob: '289,460', total: '13,245,079,010' },
+    { mes: '% Porcentaje', iibb: '63,31', conv: '26,89', inmobiliario: '1,48', ipa: '0,87', sellos: '7,17', tasa_varias_cod_fiscal: '0,03', tasa: '0,16', minera: '0,03', tasa_admin: '0,05', tasa_serv_indust: '0,01', tasa_adm_inmob: '0,00', total: '100,00' },
+  ],
+  2019: [
+    { mes: 'Enero', ingresos_brutos: '1,360,464,139', inmobiliario: '30,529,113', sellos: '70,657,791', parque_automotor: '15,277,623', minera: '175,939', tasa_varias_cod_fiscal: '266,934', tasa: '2,054,444', tasa_admin: '812,508', tasa_serv_indust: '6,353', tasa_adm_inmob: '23,427', total: '1,480,268,272' },
+    { mes: 'Febrero', ingresos_brutos: '1,350,732,068', inmobiliario: '58,207,782', sellos: '71,712,272', parque_automotor: '29,321,193', minera: '259,252', tasa_varias_cod_fiscal: '405,885', tasa: '1,994,714', tasa_admin: '780,997', tasa_serv_indust: '39,426', tasa_adm_inmob: '24,378', total: '1,513,477,967' },
+    { mes: 'Marzo', ingresos_brutos: '1,261,451,543', inmobiliario: '31,294,019', sellos: '74,780,040', parque_automotor: '22,023,216', minera: '274,244', tasa_varias_cod_fiscal: '363,488', tasa: '1,685,783', tasa_admin: '838,241', tasa_serv_indust: '70,126', tasa_adm_inmob: '27,213', total: '1,392,807,914' },
+    { mes: 'Abril', ingresos_brutos: '1,286,936,677', inmobiliario: '23,429,119', sellos: '72,511,863', parque_automotor: '15,557,897', minera: '253,542', tasa_varias_cod_fiscal: '452,706', tasa: '2,167,928', tasa_admin: '897,392', tasa_serv_indust: '40,512', tasa_adm_inmob: '30,020', total: '1,402,277,657' },
+    { mes: 'Mayo', ingresos_brutos: '1,395,639,898', inmobiliario: '22,967,219', sellos: '84,200,652', parque_automotor: '13,305,912', minera: '412,380', tasa_varias_cod_fiscal: '504,987', tasa: '2,045,560', tasa_admin: '1,018,843', tasa_serv_indust: '78,689', tasa_adm_inmob: '39,006', total: '1,520,213,146' },
+    { mes: 'Junio', ingresos_brutos: '1,415,117,352', inmobiliario: '23,328,142', sellos: '94,425,206', parque_automotor: '12,794,515', minera: '333,621', tasa_varias_cod_fiscal: '442,128', tasa: '1,773,778', tasa_admin: '905,227', tasa_serv_indust: '50,586', tasa_adm_inmob: '28,223', total: '1,549,198,779' },
+    { mes: 'Julio', ingresos_brutos: '1,337,332,470', inmobiliario: '24,985,006', sellos: '96,400,921', parque_automotor: '15,945,768', minera: '453,999', tasa_varias_cod_fiscal: '426,104', tasa: '2,008,242', tasa_admin: '999,586', tasa_serv_indust: '58,782', tasa_adm_inmob: '36,395', total: '1,478,647,273' },
+    { mes: 'Agosto', ingresos_brutos: '1,488,170,162', inmobiliario: '22,605,118', sellos: '93,308,077', parque_automotor: '12,169,769', minera: '447,828', tasa_varias_cod_fiscal: '433,200', tasa: '2,560,053', tasa_admin: '926,900', tasa_serv_indust: '40,067', tasa_adm_inmob: '31,296', total: '1,620,692,471' },
+    { mes: 'Septiembre', ingresos_brutos: '1,507,510,124', inmobiliario: '21,987,882', sellos: '82,281,112', parque_automotor: '9,354,057', minera: '549,760', tasa_varias_cod_fiscal: '585,717', tasa: '2,990,820', tasa_admin: '1,106,697', tasa_serv_indust: '54,673', tasa_adm_inmob: '38,950', total: '1,626,459,791' },
+    { mes: 'Octubre', ingresos_brutos: '1,608,968,376', inmobiliario: '8,501,580', sellos: '91,265,876', parque_automotor: '7,637,376', minera: '629,541', tasa_varias_cod_fiscal: '743,257', tasa: '2,612,125', tasa_admin: '1,504,807', tasa_serv_indust: '25,004', tasa_adm_inmob: '54,943', total: '1,721,942,885' },
+    { mes: 'Noviembre', ingresos_brutos: '1,719,482,525', inmobiliario: '6,360,462', sellos: '102,522,742', parque_automotor: '7,302,831', minera: '446,825', tasa_varias_cod_fiscal: '747,468', tasa: '2,843,776', tasa_admin: '1,537,969', tasa_serv_indust: '41,168', tasa_adm_inmob: '50,577', total: '1,841,336,343' },
+    { mes: 'Diciembre', ingresos_brutos: '1,640,601,681', inmobiliario: '9,092,708', sellos: '104,897,882', parque_automotor: '6,359,306', minera: '599,170', tasa_varias_cod_fiscal: '651,597', tasa: '2,527,158', tasa_admin: '1,648,975', tasa_serv_indust: '34,311', tasa_adm_inmob: '70,274', total: '1,766,483,063' },
+    { mes: 'Acumulado', ingresos_brutos: '17,372,407,018', inmobiliario: '283,288,149', sellos: '1,038,964,434', parque_automotor: '167,049,464', minera: '4,836,102', tasa_varias_cod_fiscal: '6,023,470', tasa: '27,264,380', tasa_admin: '12,978,144', tasa_serv_indust: '539,697', tasa_adm_inmob: '454,703', total: '18,913,805,560' },
+    { mes: '% Porcentaje', ingresos_brutos: '91,85', inmobiliario: '1,50', sellos: '5,49', parque_automotor: '0,89', minera: '0,03', tasa_varias_cod_fiscal: '0,03', tasa: '0,14', tasa_admin: '0,07', tasa_serv_indust: '0,00', tasa_adm_inmob: '0,00', total: '100,00' },
+  ],
+  2020: [
+    { mes: 'Enero', ingresos_brutos: '1.781.838.098,08', inmobiliario: '51.255.770,33', sellos: '96.004.293,15', parque_automotor: '28.511.901,36', minera: '430.199,95', tasa_varias_cod_fiscal: '327.106,01', tasa: '2.706.302,13', tasa_admin: '1.290.339,80', tasa_serv_indust: '7.214,18', tasa_adm_inmob: '46.807,43', total: '1.962.418.032,42' },
+    { mes: 'Febrero', ingresos_brutos: '1.906.895.102,47', inmobiliario: '206.419.512,12', sellos: '96.148.906,16', parque_automotor: '52.800.609,12', minera: '337.722,11', tasa_varias_cod_fiscal: '584.672,32', tasa: '2.202.922,14', tasa_admin: '1.051.516,43', tasa_serv_indust: '5.883,21', tasa_adm_inmob: '41.715,76', total: '2.266.488.561,84' },
+    { mes: 'Marzo', ingresos_brutos: '1.798.072.508,45', inmobiliario: '78.133.499,96', sellos: '94.282.906,50', parque_automotor: '19.452.518,16', minera: '199.995,06', tasa_varias_cod_fiscal: '514.108,96', tasa: '1.806.289,32', tasa_admin: '1.068.408,97', tasa_serv_indust: '40.305,42', tasa_adm_inmob: '30.757,91', total: '1.993.601.298,71' },
+    { mes: 'Abril', ingresos_brutos: '1.851.757.471,85', inmobiliario: '3.650.170,10', sellos: '38.165.579,28', parque_automotor: '9.780.398,52', minera: '161.906,30', tasa_varias_cod_fiscal: '22.660,32', tasa: '1.684.623,54', tasa_admin: '396.046,26', tasa_serv_indust: '0,00', tasa_adm_inmob: '8.576,44', total: '1.905.627.432,61' },
+    { mes: 'Mayo', ingresos_brutos: '2.312.866.576,96', inmobiliario: '8.429.265,54', sellos: '68.864.404,05', parque_automotor: '12.178.632,97', minera: '394.661,53', tasa_varias_cod_fiscal: '164.005,67', tasa: '2.931.693,58', tasa_admin: '614.832,40', tasa_serv_indust: '3.336,45', tasa_adm_inmob: '12.945,78', total: '2.406.460.354,93' },
+    { mes: 'Junio', ingresos_brutos: '2.544.622.874,22', inmobiliario: '14.787.890,30', sellos: '117.369.101,99', parque_automotor: '21.843.820,81', minera: '450.130,37', tasa_varias_cod_fiscal: '538.013,18', tasa: '2.387.922,07', tasa_admin: '702.982,54', tasa_serv_indust: '32.901,32', tasa_adm_inmob: '32.003,84', total: '2.702.767.640,64' },
+    { mes: 'Julio', ingresos_brutos: '2.950.550.132,28', inmobiliario: '19.832.361,96', sellos: '116.095.806,88', parque_automotor: '22.175.917,70', minera: '494.673,64', tasa_varias_cod_fiscal: '643.321,89', tasa: '2.588.053,76', tasa_admin: '1.164.667,64', tasa_serv_indust: '8.382,83', tasa_adm_inmob: '47.348,86', total: '3.113.600.667,44' },
+    { mes: 'Agosto', ingresos_brutos: '3.246.786.579,95', inmobiliario: '18.729.548,92', sellos: '155.447.738,99', parque_automotor: '18.622.435,55', minera: '684.259,17', tasa_varias_cod_fiscal: '590.043,93', tasa: '3.031.399,23', tasa_admin: '2.116.488,47', tasa_serv_indust: '32.875,95', tasa_adm_inmob: '71.824,89', total: '3.446.113.195,05' },
+    { mes: 'Septiembre', ingresos_brutos: '3.072.193.494,82', inmobiliario: '17.465.822,73', sellos: '156.927.522,27', parque_automotor: '14.650.443,32', minera: '602.735,81', tasa_varias_cod_fiscal: '696.148,71', tasa: '3.540.944,55', tasa_admin: '1.630.923,56', tasa_serv_indust: '1.019.745,52', tasa_adm_inmob: '73.381,05', total: '3.268.801.162,34' },
+    { mes: 'Octubre', ingresos_brutos: '2.969.770.293,81', inmobiliario: '14.930.144,91', sellos: '193.123.517,84', parque_automotor: '12.243.883,55', minera: '996.497,78', tasa_varias_cod_fiscal: '1.160.255,97', tasa: '403.376.276,56', tasa_admin: '1.372.776,97', tasa_serv_indust: '332.172,74', tasa_adm_inmob: '89.421,23', total: '3.597.395.241,36' },
+    { mes: 'Noviembre', ingresos_brutos: '3.461.349.273,91', inmobiliario: '13.301.793,59', sellos: '162.499.081,09', parque_automotor: '9.285.088,13', minera: '654.574,39', tasa_varias_cod_fiscal: '1.338.643,38', tasa: '18.435.923,65', tasa_admin: '1.978.276,04', tasa_serv_indust: '361.307,97', tasa_adm_inmob: '101.933,81', total: '3.669.305.895,87' },
+    { mes: 'Diciembre', ingresos_brutos: '3.568.491.522,49', inmobiliario: '22.406.209,03', sellos: '166.033.293,18', parque_automotor: '12.048.775,10', minera: '845.477,77', tasa_varias_cod_fiscal: '1.208.288,30', tasa: '19.629.181,26', tasa_admin: '2.354.043,68', tasa_serv_indust: '40.947,73', tasa_adm_inmob: '116.209,56', total: '3.793.173.948,10' },
+    { mes: 'Acumulado', ingresos_brutos: '31.465.193.929,29', inmobiliario: '469.341.989,49', sellos: '1.460.962.151,29', parque_automotor: '233.594.424,29', minera: '6.252.833,88', tasa_varias_cod_fiscal: '7.787.268,64', tasa: '464.321.531,79', tasa_admin: '15.741.302,76', tasa_serv_indust: '1.885.073,32', tasa_adm_inmob: '672.926,56', total: '34.125.753.431,31' },
+    { mes: '% Porcentaje', ingresos_brutos: '91,969', inmobiliario: '1,473', sellos: '4,269', parque_automotor: '0,730', minera: '0,022', tasa_varias_cod_fiscal: '0,006', tasa: '1,466', tasa_admin: '0,044', tasa_serv_indust: '0,006', tasa_adm_inmob: '0,002', total: '100,00' },
+  ],
+  2021: [
+    { mes: 'Enero', ingresos_brutos: '3.904.172.460,32', inmobiliario: '50.238.127,97', sellos: '161.686.460,50', parque_automotor: '9.639.138,48', minera: '579.117,74', tasa_varias_cod_fiscal: '560.828,85', tasa: '9.014.670,49', tasa_admin: '1.623.423,30', tasa_serv_indust: '2.722,30', tasa_adm_inmob: '78.521,85', total: '4.137.595.471,79' },
+    { mes: 'Febrero', ingresos_brutos: '3.691.234.427,65', inmobiliario: '355.770.630,16', sellos: '167.434.662,55', parque_automotor: '66.591.856,72', minera: '634.751,56', tasa_varias_cod_fiscal: '1.217.729,09', tasa: '9.101.216,12', tasa_admin: '1.531.549,21', tasa_serv_indust: '10.265,48', tasa_adm_inmob: '73.878,63', total: '4.293.600.967,17' },
+    { mes: 'Marzo', ingresos_brutos: '3.943.476.453,98', inmobiliario: '186.148.224,61', sellos: '186.139.112,01', parque_automotor: '63.078.949,87', minera: '728.469,91', tasa_varias_cod_fiscal: '1.309.016,76', tasa: '11.488.766,17', tasa_admin: '2.020.343,25', tasa_serv_indust: '60.884,93', tasa_adm_inmob: '115.950,86', total: '4.394.566.172,31' },
+    { mes: 'Abril', ingresos_brutos: '4.638.694.174,39', inmobiliario: '23.449.303,69', sellos: '245.061.420,51', parque_automotor: '42.273.787,36', minera: '1.203.470,96', tasa_varias_cod_fiscal: '1.270.868,56', tasa: '13.038.691,56', tasa_admin: '2.011.138,94', tasa_serv_indust: '158.984,24', tasa_adm_inmob: '94.250,72', total: '4.967.256.090,93' },
+    { mes: 'Mayo', ingresos_brutos: '4.807.684.826,39', inmobiliario: '21.428.325,79', sellos: '212.184.879,29', parque_automotor: '37.853.967,36', minera: '742.099,09', tasa_varias_cod_fiscal: '1.177.246,60', tasa: '11.067.272,03', tasa_admin: '1.864.966,63', tasa_serv_indust: '20.028,93', tasa_adm_inmob: '94.678,92', total: '5.094.118.291,03' },
+    { mes: 'Junio', ingresos_brutos: '4.793.677.067,64', inmobiliario: '23.942.009,77', sellos: '235.164.569,13', parque_automotor: '36.602.146,93', minera: '1.125.241,69', tasa_varias_cod_fiscal: '1.729.205,20', tasa: '15.792.825,75', tasa_admin: '2.112.632,94', tasa_serv_indust: '69.029,16', tasa_adm_inmob: '101.294,68', total: '5.110.316.022,89' },
+    { mes: 'Julio', iibb: '4.864.320.934,61', inmobiliario: '26.038.524,18', sellos: '246.497.466,51', parque_automotor: '37.615.460,61', minera: '1.026.477,33', tasa_varias_cod_fiscal: '1.686.061,61', tasa: '14.215.702,08', tasa_admin: '1.973.751,48', tasa_serv_indust: '46.738,80', tasa_adm_inmob: '99.297,27', total: '5.193.520.414,48' },
+    { mes: 'Agosto', ingresos_brutos: '5.287.824.232,22', inmobiliario: '26.448.454,64', sellos: '259.699.543,14', parque_automotor: '35.081.343,64', minera: '1.093.323,58', tasa_varias_cod_fiscal: '2.088.057,10', tasa: '15.964.380,81', tasa_admin: '2.752.323,86', tasa_serv_indust: '111.929,29', tasa_adm_inmob: '147.705,24', total: '5.631.211.293,52' },
+    { mes: 'Septiembre', ingresos_brutos: '5.834.386.823,91', inmobiliario: '23.762.521,84', sellos: '268.986.976,84', parque_automotor: '25.797.879,50', minera: '1.121.972,37', tasa_varias_cod_fiscal: '2.457.554,93', tasa: '16.439.149,21', tasa_admin: '3.265.364,40', tasa_serv_indust: '79.074,10', tasa_adm_inmob: '153.512,69', total: '6.176.450.829,79' },
+    { mes: 'Octubre', ingresos_brutos: '5.854.050.384,06', inmobiliario: '21.946.126,08', sellos: '332.704.050,07', parque_automotor: '22.087.874,12', minera: '1.107.689,32', tasa_varias_cod_fiscal: '2.309.853,77', tasa: '16.852.861,29', tasa_admin: '3.354.914,81', tasa_serv_indust: '96.513,66', tasa_adm_inmob: '159.480,80', total: '6.254.669.747,98' },
+    { mes: 'Noviembre', ingresos_brutos: '6.088.581.657,25', inmobiliario: '18.922.354,54', sellos: '279.090.824,81', parque_automotor: '17.153.717,20', minera: '1.421.594,72', tasa_varias_cod_fiscal: '2.508.873,51', tasa: '17.261.615,78', tasa_admin: '3.489.211,75', tasa_serv_indust: '299.664,00', tasa_adm_inmob: '183.185,53', total: '6.428.912.699,09' },
+    { mes: 'Diciembre', ingresos_brutos: '6.570.416.106,36', inmobiliario: '19.792.743,77', sellos: '268.863.307,03', parque_automotor: '18.021.706,93', minera: '1.502.964,57', tasa_varias_cod_fiscal: '2.482.381,85', tasa: '29.860.658,89', tasa_admin: '3.809.039,94', tasa_serv_indust: '477.289,25', tasa_adm_inmob: '227.870,46', total: '6.915.454.069,05' },
+    { mes: 'Acumulado', ingresos_brutos: '60.278.518.211,27', inmobiliario: '797.887.208,80', sellos: '2.863.513.272,39', parque_automotor: '411.797.828,72', minera: '12.287.172,84', tasa_varias_cod_fiscal: '20.797.677,15', tasa: '180.097.810,17', tasa_admin: '29.808.651,78', tasa_serv_indust: '1.433.124,14', tasa_adm_inmob: '1.529.627,65', total: '64.597.670.584,91' },
+    { mes: '% Porcentaje', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+  ],
+  2022: [
+    { mes: 'Enero', ingresos_brutos: '6.509.522.748,34', inmobiliario: '378.277.392,11', sellos: '308.857.511,61', parque_automotor: '18.960.340,42', minera: '2.349.922,61', tasa_varias_cod_fiscal: '1.046.070,89', tasa: '19.531.032,03', tasa_admin: '2.794.690,98', tasa_serv_indust: '1.794,00', tasa_adm_inmob: '115.676,13', total: '7.241.457.179,12' },
+    { mes: 'Febrero', ingresos_brutos: '6.203.764.926,51', inmobiliario: '397.937.841,22', sellos: '312.276.610,02', parque_automotor: '106.772.617,22', minera: '1.003.014,49', tasa_varias_cod_fiscal: '1.407.632,46', tasa: '22.951.210,18', tasa_admin: '2.693.181,97', tasa_serv_indust: '101.609,89', tasa_adm_inmob: '122.933,20', total: '7.049.031.577,16' },
+    { mes: 'Marzo', ingresos_brutos: '6.580.225.847,66', inmobiliario: '422.943.424,33', sellos: '362.826.139,04', parque_automotor: '115.926.183,63', minera: '1.590.914,65', tasa_varias_cod_fiscal: '2.231.791,59', tasa: '19.570.877,90', tasa_admin: '3.281.457,52', tasa_serv_indust: '39.443,39', tasa_adm_inmob: '145.604,73', total: '7.508.781.684,44' },
+    { mes: 'Abril', ingresos_brutos: '7.463.317.780,21', inmobiliario: '37.734.847,17', sellos: '315.915.708,55', parque_automotor: '88.244.094,51', minera: '1.364.261,05', tasa_varias_cod_fiscal: '2.194.712,51', tasa: '23.982.133,27', tasa_admin: '3.398.197,79', tasa_serv_indust: '89.956,00', tasa_adm_inmob: '165.904,59', total: '7.936.407.595,65' },
+    { mes: 'Mayo', ingresos_brutos: '8.438.022.829,60', inmobiliario: '27.796.661,06', sellos: '316.713.521,35', parque_automotor: '77.810.667,00', minera: '1.590.097,99', tasa_varias_cod_fiscal: '2.527.339,78', tasa: '19.702.193,45', tasa_admin: '3.456.318,66', tasa_serv_indust: '83.046,78', tasa_adm_inmob: '173.392,73', total: '8.887.876.068,40' },
+    { mes: 'Junio', ingresos_brutos: '9.132.327.469,75', inmobiliario: '29.697.889,18', sellos: '348.881.102,11', parque_automotor: '73.024.706,26', minera: '2.132.842,91', tasa_varias_cod_fiscal: '3.331.618,46', tasa: '24.190.765,32', tasa_admin: '3.720.393,40', tasa_serv_indust: '11.797,48', tasa_adm_inmob: '165.738,33', total: '9.617.484.323,20' },
+    { mes: 'Julio', ingresos_brutos: '9.654.146.654,03', inmobiliario: '27.077.669,76', sellos: '430.069.448,28', parque_automotor: '74.382.039,78', minera: '1.586.862,66', tasa_varias_cod_fiscal: '2.533.426,12', tasa: '26.197.001,98', tasa_admin: '3.449.509,83', tasa_serv_indust: '17.452,38', tasa_adm_inmob: '142.624,84', total: '10.219.602.689,66' },
+    { mes: 'Agosto', ingresos_brutos: '11.276.680.390,88', inmobiliario: '34.453.207,53', sellos: '457.513.800,37', parque_automotor: '68.616.423,80', minera: '2.976.052,05', tasa_varias_cod_fiscal: '2.871.633,71', tasa: '30.263.263,57', tasa_admin: '4.439.584,75', tasa_serv_indust: '50.947,80', tasa_adm_inmob: '202.375,01', total: '11.878.067.679,47' },
+    { mes: 'Septiembre', ingresos_brutos: '11.404.805.478,70', inmobiliario: '27.611.176,68', sellos: '556.377.727,51', parque_automotor: '44.066.961,62', minera: '5.178.837,63', tasa_varias_cod_fiscal: '2.734.186,48', tasa: '43.184.277,82', tasa_admin: '4.124.013,83', tasa_serv_indust: '157.457,31', tasa_adm_inmob: '189.305,66', total: '12.088.429.423,24' },
+    { mes: 'Octubre', ingresos_brutos: '11.605.373.940,93', inmobiliario: '25.241.349,46', sellos: '419.946.810,51', parque_automotor: '36.980.901,95', minera: '2.081.412,27', tasa_varias_cod_fiscal: '3.502.860,96', tasa: '31.550.305,49', tasa_admin: '6.404.333,77', tasa_serv_indust: '41.572,71', tasa_adm_inmob: '269.868,59', total: '12.131.393.456,07' },
+    { mes: 'Noviembre', ingresos_brutos: '12.236.120.802,72', inmobiliario: '21.565.483,05', sellos: '439.969.197,73', parque_automotor: '31.874.478,13', minera: '2.459.305,96', tasa_varias_cod_fiscal: '4.225.747,61', tasa: '32.435.467,79', tasa_admin: '8.385.394,07', tasa_serv_indust: '245.030,73', tasa_adm_inmob: '303.200,03', total: '12.777.584.107,82' },
+    { mes: 'Diciembre', ingresos_brutos: '12.708.749.064,59', inmobiliario: '24.565.462,48', sellos: '464.436.418,02', parque_automotor: '32.214.285,76', minera: '2.952.561,89', tasa_varias_cod_fiscal: '3.195.829,96', tasa: '38.031.069,76', tasa_admin: '9.422.159,71', tasa_serv_indust: '267.247,65', tasa_adm_inmob: '291.540,16', total: '13.284.125.640,00' },
+    { mes: 'Total', ingresos_brutos: '113.213.057.933,92', inmobiliario: '1.454.902.404,03', sellos: '4.733.783.995,10', parque_automotor: '768.873.700,08', minera: '27.266.086,16', tasa_varias_cod_fiscal: '31.802.849,96', tasa: '331.589.598,58', tasa_admin: '', tasa_serv_indust: '1.107.356,12', tasa_adm_inmob: '2.288.264,00', total: '120.620.241.424,23' },
+    { mes: '% Porcentaje', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+  ],
+  2023: [
+    { mes: 'Enero', ingresos_brutos: '13.437.193.345,15', inmobiliario: '96.585.407,10', sellos: '553.750.311,03', parque_automotor: '43.397.423,75', minera: '1.082.398,47', tasa_varias_cod_fiscal: '2.169.421,72', tasa: '30.804.200,82', tasa_admin: '6.853.809,80', tasa_serv_indust: '307.845,02', tasa_adm_inmob: '220.721,79', total: '14.172.364.884,65' },
+    { mes: 'Febrero', ingresos_brutos: '13.856.817.353,38', inmobiliario: '1.094.570.395,23', sellos: '690.017.729,19', parque_automotor: '188.842.847,40', minera: '2.099.760,14', tasa_varias_cod_fiscal: '1.850.884,81', tasa: '28.747.503,31', tasa_admin: '5.848.234,05', tasa_serv_indust: '14.211,56', tasa_adm_inmob: '258.037,77', total: '15.869.066.956,84' },
+    { mes: 'Marzo', ingresos_brutos: '14.376.546.253,52', inmobiliario: '1.060.375.928,42', sellos: '660.081.568,50', parque_automotor: '212.075.574,97', minera: '3.487.666,79', tasa_varias_cod_fiscal: '4.166.850,97', tasa: '36.886.265,06', tasa_admin: '8.462.698,75', tasa_serv_indust: '476.550,17', tasa_adm_inmob: '383.094,96', total: '16.362.942.452,11' },
+    { mes: 'Abril', ingresos_brutos: '15.036.020.498,77', inmobiliario: '40.709.526,47', sellos: '758.377.480,16', parque_automotor: '152.853.580,39', minera: '4.350.209,05', tasa_varias_cod_fiscal: '3.601.820,81', tasa: '30.725.335,25', tasa_admin: '8.075.241,28', tasa_serv_indust: '39.534,66', tasa_adm_inmob: '332.163,83', total: '16.035.085.390,67' },
+    { mes: 'Mayo', ingresos_brutos: '15.992.432.974,28', inmobiliario: '32.947.544,80', sellos: '792.208.089,33', parque_automotor: '95.417.158,63', minera: '3.070.557,95', tasa_varias_cod_fiscal: '3.470.939,13', tasa: '32.886.343,35', tasa_admin: '7.779.371,26', tasa_serv_indust: '476.645,31', tasa_adm_inmob: '337.922,00', total: '16.961.027.546,04' },
+    { mes: 'Junio', ingresos_brutos: '17.582.893.771,68', inmobiliario: '31.133.967,51', sellos: '763.538.332,49', parque_automotor: '97.893.135,80', minera: '3.630.430,58', tasa_varias_cod_fiscal: '3.499.591,95', tasa: '43.168.969,73', tasa_admin: '7.199.438,36', tasa_serv_indust: '86.775,94', tasa_adm_inmob: '295.132,86', total: '18.533.339.546,90' },
+    { mes: 'Julio', ingresos_brutos: '19.410.926.666,60', inmobiliario: '37.398.965,28', sellos: '945.740.710,30', parque_automotor: '107.250.301,33', minera: '3.547.304,83', tasa_varias_cod_fiscal: '3.626.028,02', tasa: '48.100.944,92', tasa_admin: '7.714.823,42', tasa_serv_indust: '39.921,99', tasa_adm_inmob: '349.485,61', total: '20.564.695.152,30' },
+    { mes: 'Agosto', ingresos_brutos: '22.835.453.796,00', inmobiliario: '36.824.750,43', sellos: '1.086.465.233,65', parque_automotor: '104.947.955,75', minera: '3.204.257,41', tasa_varias_cod_fiscal: '4.616.588,08', tasa: '57.318.812,87', tasa_admin: '7.876.884,78', tasa_serv_indust: '3.754.896,76', tasa_adm_inmob: '333.854,23', total: '24.140.797.029,96' },
+    { mes: 'Septiembre', ingresos_brutos: '24.779.873.706,40', inmobiliario: '31.070.865,08', sellos: '1.066.495.379,58', parque_automotor: '74.109.763,09', minera: '3.522.841,63', tasa_varias_cod_fiscal: '4.323.699,66', tasa: '61.181.031,49', tasa_admin: '7.935.454,53', tasa_serv_indust: '74.572,19', tasa_adm_inmob: '412.176,73', total: '26.028.999.489,78' },
+    { mes: 'Octubre', ingresos_brutos: '25.023.658.849,06', inmobiliario: '29.891.605,28', sellos: '1.028.493.004,62', parque_automotor: '65.940.885,90', minera: '3.708.001,12', tasa_varias_cod_fiscal: '4.719.436,25', tasa: '55.983.633,57', tasa_admin: '10.775.137,19', tasa_serv_indust: '117.423,54', tasa_adm_inmob: '467.405,90', total: '26.223.755.382,43' },
+    { mes: 'Noviembre', ingresos_brutos: '31.739.614.247,91', inmobiliario: '30.096.769,82', sellos: '1.084.548.061,61', parque_automotor: '56.878.704,89', minera: '3.554.746,37', tasa_varias_cod_fiscal: '5.998.058,47', tasa: '62.952.383,39', tasa_admin: '17.132.513,55', tasa_serv_indust: '1.769.992,28', tasa_adm_inmob: '670.613,35', total: '33.003.216.091,64' },
+    { mes: 'Diciembre', ingresos_brutos: '37.409.352.862,16', inmobiliario: '47.970.967,14', sellos: '971.503.419,30', parque_automotor: '70.148.549,66', minera: '3.333.932,26', tasa_varias_cod_fiscal: '7.393.033,88', tasa: '67.802.305,31', tasa_admin: '18.061.416,21', tasa_serv_indust: '217.932,74', tasa_adm_inmob: '684.738,10', total: '38.596.469.156,76' },
+    { mes: 'Total', ingresos_brutos: '251.480.784.324,91', inmobiliario: '2.569.576.692,56', sellos: '10.401.219.319,76', parque_automotor: '1.269.755.881,56', minera: '38.592.106,60', tasa_varias_cod_fiscal: '49.436.353,15', tasa: '556.557.729,07', tasa_admin: '113.715.023,18', tasa_serv_indust: '7.376.302,16', tasa_adm_inmob: '4.745.347,13', total: '266.491.759.080,08' },
+    { mes: '% Porcentaje', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+  ],
+  2024: [
+    { mes: 'Enero', ingresos_brutos: '42.652.915.203,38', inmobiliario: '1.906.423.044,33', sellos: '1.013.882.243,96', parque_automotor: '88.034.406,87', minera: '4.903.058,59', tasa_varias_cod_fiscal: '3.499.608,75', tasa: '71.799.653,55', tasa_admin: '16.254.842,86', tasa_serv_indust: '38.051,03', tasa_adm_inmob: '447.127,56', total: '45.758.197.240,88' },
+    { mes: 'Febrero', ingresos_brutos: '44.472.162.601,98', inmobiliario: '1.754.169.524,06', sellos: '1.385.473.717,87', parque_automotor: '381.540.261,09', minera: '4.511.384,80', tasa_varias_cod_fiscal: '4.676.111,64', tasa: '93.870.041,39', tasa_admin: '14.468.336,96', tasa_serv_indust: '433.350,08', tasa_adm_inmob: '523.050,47', total: '48.111.828.380,34' },
+    { mes: 'Marzo', ingresos_brutos: '49.423.446.699,93', inmobiliario: '1.688.923.662,19', sellos: '1.849.711.586,31', parque_automotor: '693.634.406,51', minera: '6.668.980,88', tasa_varias_cod_fiscal: '5.130.557,05', tasa: '121.409.207,04', tasa_admin: '15.405.342,15', tasa_serv_indust: '83.121,83', tasa_adm_inmob: '634.529,12', total: '53.805.048.093,01' },
+    { mes: 'Abril', ingresos_brutos: '55.529.099.866,74', inmobiliario: '97.762.335,48', sellos: '1.824.067.476,87', parque_automotor: '374.000.704,52', minera: '3.841.548,12', tasa_varias_cod_fiscal: '9.131.977,57', tasa: '131.317.403,03', tasa_admin: '18.957.731,28', tasa_serv_indust: '1.287.703,10', tasa_adm_inmob: '723.797,95', total: '57.990.190.544,66' },
+    { mes: 'Mayo', ingresos_brutos: '59.435.026.465,53', inmobiliario: '98.152.348,39', sellos: '1.918.633.281,05', parque_automotor: '485.943.427,22', minera: '8.798.862,27', tasa_varias_cod_fiscal: '12.313.956,74', tasa: '165.939.287,18', tasa_admin: '34.193.591,49', tasa_serv_indust: '669.529,24', tasa_adm_inmob: '1.336.522,23', total: '62.161.007.271,34' },
+    { mes: 'Junio', ingresos_brutos: '59.471.507.767,41', inmobiliario: '108.048.696,26', sellos: '2.462.887.996,05', parque_automotor: '423.742.411,83', minera: '4.564.252,28', tasa_varias_cod_fiscal: '12.839.664,43', tasa: '152.926.295,82', tasa_admin: '31.897.214,05', tasa_serv_indust: '201.217,32', tasa_adm_inmob: '1.176.895,91', total: '62.669.792.411,36' },
+    { mes: 'Julio', ingresos_brutos: '61.917.174.812,47', inmobiliario: '109.509.976,39', sellos: '2.595.825.056,78', parque_automotor: '379.916.367,10', minera: '6.441.310,03', tasa_varias_cod_fiscal: '13.918.527,14', tasa: '208.248.227,91', tasa_admin: '38.572.325,87', tasa_serv_indust: '344.332,08', tasa_adm_inmob: '1.294.901,77', total: '65.271.245.837,54' },
+    { mes: 'Agosto', ingresos_brutos: '70.554.079.919,59', inmobiliario: '96.851.147,36', sellos: '3.198.776.946,67', parque_automotor: '391.508.989,10', minera: '10.718.185,01', tasa_varias_cod_fiscal: '15.840.503,90', tasa: '212.695.336,50', tasa_admin: '34.246.847,13', tasa_serv_indust: '157.248,39', tasa_adm_inmob: '1.470.853,58', total: '74.516.345.976,78' },
+    { mes: 'Septiembre', ingresos_brutos: '71.018.629.098,22', inmobiliario: '102.978.396,53', sellos: '3.863.375.600,10', parque_automotor: '229.693.787,89', minera: '5.290.699,11', tasa_varias_cod_fiscal: '16.895.258,30', tasa: '196.165.302,17', tasa_admin: '33.175.471,16', tasa_serv_indust: '109.927,97', tasa_adm_inmob: '1.422.985,94', total: '75.467.736.527,39' },
+    { mes: 'Octubre', ingresos_brutos: '71.857.707.871,92', inmobiliario: '123.005.483,56', sellos: '3.066.779.825,56', parque_automotor: '176.147.294,99', minera: '11.617.008,78', tasa_varias_cod_fiscal: '20.731.746,24', tasa: '161.102.259,94', tasa_admin: '33.400.038,34', tasa_serv_indust: '264.896,20', tasa_adm_inmob: '1.502.856,38', total: '75.452.259.281,91' },
+    { mes: 'Noviembre', ingresos_brutos: '73.419.324.668,56', inmobiliario: '82.313.540,11', sellos: '3.204.296.579,96', parque_automotor: '248.831.400,77', minera: '10.449.963,00', tasa_varias_cod_fiscal: '15.316.392,12', tasa: '157.816.269,22', tasa_admin: '28.961.254,31', tasa_serv_indust: '39.585,58', tasa_adm_inmob: '1.170.084,17', total: '77.168.519.737,74' },
+    { mes: 'Diciembre', ingresos_brutos: '75.744.200.934,30', inmobiliario: '94.485.350,80', sellos: '3.246.384.556,00', parque_automotor: '186.004.042,74', minera: '9.618.363,83', tasa_varias_cod_fiscal: '18.130.506,72', tasa: '179.462.374,09', tasa_admin: '33.073.054,72', tasa_serv_indust: '456.854,45', tasa_adm_inmob: '1.177.707,27', total: '79.512.993.744,92' },
+    { mes: 'Total', ingresos_brutos: '735.495.275.910,03', inmobiliario: '2.662.623.505,46', sellos: '29.630.094.867,12', parque_automotor: '4.057.997.500,63', minera: '87.423.616,70', tasa_varias_cod_fiscal: '148.424.810,60', tasa: '1.852.751.657,39', tasa_admin: '332.606.050,32', tasa_serv_indust: '4.085.817,27', tasa_adm_inmob: '12.881.312,35', total: '777.884.165.047,87' },
+    { mes: '% Porcentaje', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+  ],
+  2025: [
+    { mes: 'Enero', ingresos_brutos: '85.174.032.692,84', inmobiliario: '2.345.953.949,44', sellos: '3.864.852.222,07', parque_automotor: '198.345.074,11', minera: '6.111.742,16', tasa_varias_cod_fiscal: '11.322.791,09', tasa: '202.307.778,52', tasa_admin: '29.020.400,34', tasa_serv_indust: '45.167,65', tasa_adm_inmob: '1.121.941,92', total: '91.833.113.760,14' },
+    { mes: 'Febrero', ingresos_brutos: '75.608.574.585,49', inmobiliario: '3.028.630.614,97', sellos: '4.976.507.711,58', parque_automotor: '458.663.120,49', minera: '6.510.839,97', tasa_varias_cod_fiscal: '15.242.900,04', tasa: '203.486.957,14', tasa_admin: '26.287.220,37', tasa_serv_indust: '5.294.648,06', tasa_adm_inmob: '1.021.291,84', total: '84.330.219.889,95' },
+    { mes: 'Marzo', ingresos_brutos: '68.283.797.905,43', inmobiliario: '1.850.125.337,30', sellos: '4.601.974.195,91', parque_automotor: '1.571.531.244,03', minera: '3.344.050,81', tasa_varias_cod_fiscal: '18.271.178,97', tasa: '195.979.880,63', tasa_admin: '27.234.593,40', tasa_serv_indust: '69.109,74', tasa_adm_inmob: '1.279.787,57', total: '76.553.607.283,79' },
+    { mes: 'Abril', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Mayo', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Junio', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Julio', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Agosto', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Septiembre', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Octubre', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Noviembre', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Diciembre', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+    { mes: 'Total', ingresos_brutos: '229.066.405.183,76', inmobiliario: '7.224.709.901,71', sellos: '13.443.334.129,56', parque_automotor: '2.228.539.438,63', minera: '15.966.632,94', tasa_varias_cod_fiscal: '44.836.870,10', tasa: '601.774.616,29', tasa_admin: '82.542.214,11', tasa_serv_indust: '5.408.925,45', tasa_adm_inmob: '3.423.021,33', total: '252.716.940.933,88' },
+    { mes: '% Porcentaje', ingresos_brutos: '', inmobiliario: '', sellos: '', parque_automotor: '', minera: '', tasa_varias_cod_fiscal: '', tasa: '', tasa_admin: '', tasa_serv_indust: '', tasa_adm_inmob: '', total: '' },
+  ],
 };
 
-const COLUMNAS = [
-  { key: 'mes', label: 'Mes' },
-  { key: 'iibb', label: 'IIBB DIRECTO' },
-  { key: 'conv', label: 'CONV. MULT.' },
-  { key: 'inmobiliario', label: 'INMOBILIARIO' },
-  { key: 'ipa', label: 'IPA' },
-  { key: 'sellos', label: 'SELLOS' },
-  { key: 'tasa_org_externo', label: 'TASA ORG.EXTERNO' },
-  { key: 'tasa', label: 'TASA FORESTAL' },
-  { key: 'minera', label: 'CONC. MINERA' },
-  { key: 'tasa_admin', label: 'TASA ADMIN.' },
-  { key: 'tasa_serv_indust', label: 'TASA SERV.INDUST.' },
-  { key: 'tasa_adm_inmob', label: 'TASA ADM.INMOB' },
-  { key: 'total', label: 'TOTAL' },
+// Definir las columnas y desde qué año deben aparecer
+const COLUMNAS_DEFINICION = [
+  { key: 'mes', label: 'Mes', desde: 2006 },
+  { key: 'iibb', label: 'IIBB', desde: 2006, hasta: 2018 },
+  { key: 'conv', label: 'CONV', desde: 2006, hasta: 2018 },
+  { key: 'ingresos_brutos', label: 'ING. BRUTOS', desde: 2019 },
+  { key: 'inmobiliario', label: 'INMOB.', desde: 2006 },
+  { key: 'sellos', label: 'SELLOS', desde: 2006 },
+  { key: 'parque_automotor', label: 'P. AUTO', desde: 2019 },
+  { key: 'ipa', label: 'IPA', desde: 2006, hasta: 2018 },
+  { key: 'tasa_varias_cod_fiscal', label: 'T. VARIAS', desde: 2018 },
+  { key: 'tasa', label: 'T. FOR.', desde: 2006 },
+  { key: 'minera', label: 'MINERA', desde: 2006 },
+  { key: 'tasa_admin', label: 'T. ADM', desde: 2010 },
+  { key: 'tasa_serv_indust', label: 'T. SERV', desde: 2013 },
+  { key: 'tasa_adm_inmob', label: 'T. INM', desde: 2014 },
+  { key: 'total', label: 'TOTAL', desde: 2006 },
 ];
+
+// Datos de Fondo Energético a partir de 2020
+const FONDO_ENERGETICO = {
+  2020: {
+    ENERO: '11.158.166,49',
+    FEBRERO: '25.430.940,51',
+    MARZO: '8.756.499,55',
+    ABRIL: '3.896.790,18',
+    MAYO: '5.265.129,49',
+    JUNIO: '9.396.182,93',
+    JULIO: '8.573.380,04',
+    AGOSTO: '7.911.055,97',
+    SEPTIEMBRE: '6.654.866,86',
+    OCTUBRE: '5.076.215,20',
+    NOVIEMBRE: '3.991.888,11',
+    DICIEMBRE: '4.952.739,53',
+    ACUMULADO: '101.068.854,92',
+  },
+  2021: {
+    ENERO: '4.099.556,38',
+    FEBRERO: '29.017.595,15',
+    MARZO: '28.754.837,22',
+    ABRIL: '18.024.445,42',
+    MAYO: '16.082.634,77',
+    JUNIO: '15.424.938,94',
+    JULIO: '15.850.614,80',
+    AGOSTO: '14.647.551,75',
+    SEPTIEMBRE: '10.817.818,44',
+    OCTUBRE: '9.232.203,40',
+    NOVIEMBRE: '7.174.143,41',
+    DICIEMBRE: '7.493.655,00',
+    ACUMULADO: '176.619.994,68',
+  },
+  2022: {
+    ENERO: '9.957.672,90',
+    FEBRERO: '47.611.318,92',
+    MARZO: '52.034.886,87',
+    ABRIL: '36.620.172,96',
+    MAYO: '32.756.922,79',
+    JUNIO: '31.370.922,13',
+    JULIO: '30.452.936,50',
+    AGOSTO: '28.972.946,94',
+    SEPTIEMBRE: '18.186.308,81',
+    OCTUBRE: '15.323.522,54',
+    NOVIEMBRE: '13.213.541,64',
+    DICIEMBRE: '13.536.658,46',
+    ACUMULADO: '330.037.811,46',
+  },
+  2023: {
+    ENERO: '17.851.867,19',
+    FEBRERO: '97.972.444,08',
+    MARZO: '130.448.052,86',
+    ABRIL: '81.797.149,51',
+    MAYO: '49.178.921,37',
+    JUNIO: '48.567.062,48',
+    JULIO: '57.291.649,22',
+    AGOSTO: '49.054.688,50',
+    SEPTIEMBRE: '31.495.600,38',
+    OCTUBRE: '27.450.481,01',
+    NOVIEMBRE: '21.129.607,25',
+    DICIEMBRE: '30.037.496,47',
+    ACUMULADO: '642.275.020,32',
+  },
+  2024: {
+    ENERO: '37.049.350,24',
+    FEBRERO: '236.013.471,82',
+    MARZO: '424.413.618,06',
+    ABRIL: '215.653.802,71',
+    MAYO: '258.856.394,23',
+    JUNIO: '321.118.847,69',
+    JULIO: '182.020.976,19',
+    AGOSTO: '180.268.915,02',
+    SEPTIEMBRE: '98.273.314,49',
+    OCTUBRE: '75.063.171,72',
+    NOVIEMBRE: '104.341.946,05',
+    DICIEMBRE: '78.078.001,71',
+    ACUMULADO: '2.121.151.809,93',
+  },
+  2025: {
+    ENERO: '82.877.022,41',
+    FEBRERO: '216.879.531,31',
+    MARZO: '776.480.017,23',
+    ABRIL: '',
+    MAYO: '',
+    JUNIO: '',
+    JULIO: '',
+    AGOSTO: '',
+    SEPTIEMBRE: '',
+    OCTUBRE: '',
+    NOVIEMBRE: '',
+    DICIEMBRE: '',
+    ACUMULADO: '',
+  },
+};
 
 export default function HeroEstadisticas() {
   const [año, setAño] = useState(AÑOS[0]);
-  const mostrarTasaAdmin = año >= 2010;
-  const mostrarTasaServIndust = año >= 2013;
-  const mostrarTasaAdmInmob = año >= 2014;
-  const mostrarTasaOrgExterno = año >= 2016;
-  const columnasFiltradas = COLUMNAS.filter(col => {
-    if (col.key === 'tasa_admin') return mostrarTasaAdmin;
-    if (col.key === 'tasa_serv_indust') return mostrarTasaServIndust;
-    if (col.key === 'tasa_adm_inmob') return mostrarTasaAdmInmob;
-    if (col.key === 'tasa_org_externo') return mostrarTasaOrgExterno;
+  const [loading, setLoading] = useState(false);
+
+  // Filtrar columnas según el año seleccionado
+  const columnasFiltradas = COLUMNAS_DEFINICION.filter(col => {
+    if (col.desde && año < col.desde) return false;
+    if (col.hasta && año > col.hasta) return false;
     return true;
   });
 
+  const handleYearChange = (newYear) => {
+    setLoading(true);
+    setTimeout(() => {
+      setAño(Number(newYear));
+      setLoading(false);
+    }, 300);
+  };
+
+  const formatValue = (value, key) => {
+    if (!value || value === '00' || value === '') return '-';
+    if (key === 'mes') return value;
+    return `$${value}`;
+  };
+
+  const getRowClass = (mes) => {
+    if (mes === 'Total' || mes === 'Acumulado') {
+      return 'bg-gradient-to-r from-blue-100 to-blue-50 border-blue-300 font-bold text-blue-900';
+    }
+    if (mes === '% Porcentaje') {
+      return 'bg-gradient-to-r from-purple-100 to-purple-50 border-purple-300 font-semibold text-purple-900';
+    }
+    return 'bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-transparent transition-all duration-200';
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-pink-200">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-purple-600">
       {/* Hero Section */}
-      <div className="relative h-[420px] flex items-center justify-center bg-center bg-cover mb-12 shadow-lg" style={{ backgroundImage: `url('/normativas.png')` }}>
-        <div className="absolute inset-0 bg-blue-900 bg-opacity-80" />
-        <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 w-full">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg tracking-tight animate-fade-in">
-            Gráficos de Recaudación y PBG
-          </h1>
-          <p className="text-lg md:text-2xl text-white/90 mb-6 max-w-2xl drop-shadow font-medium animate-fade-in delay-100">
-            Accedé a los datos de recaudación fiscal por año. Selecciona un año para ver el detalle mensual.
-          </p>
+      <div className="relative overflow-hidden">
+        {/* Elementos decorativos de fondo */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-300/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="relative z-10 px-6 py-20 text-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
+                <TrendingUp className="w-8 h-8 text-white" />
+                <BarChart3 className="w-8 h-8 text-white/80" />
+                <PieChart className="w-8 h-8 text-white/60" />
+              </div>
+            </div>
+
+            {/* Título animado en dos líneas */}
+            <div className="mb-2 flex flex-col items-center w-full">
+              <BlurText
+                text="Estadísticas de Recaudación"
+                delay={30}
+                animateBy="letters"
+                direction="top"
+                className="text-5xl md:text-6xl font-bold text-white leading-tight text-center"
+              />
+              <BlurText
+                text="Fiscal"
+                delay={30}
+                animateBy="letters"
+                direction="top"
+                className="text-5xl md:text-6xl font-bold text-white leading-tight text-center"
+              />
+            </div>
+
+            {/* Párrafo animado con BlurText */}
+            <div className="mb-8 flex justify-center w-full">
+              <BlurText
+                text="Accede a los datos históricos de recaudación fiscal organizados por año. Información detallada y actualizada para análisis y consulta."
+                delay={80}
+                animateBy="words"
+                direction="top"
+                className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed text-center"
+              />
+            </div>
+
+            <div className="flex items-center justify-center space-x-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto">
+              <Calendar className="w-6 h-6 text-white" />
+              <div className="flex flex-col">
+                <label className="text-sm font-medium text-white/80 mb-2">Seleccionar Año</label>
+                <select
+                  className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-2 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+                  value={año}
+                  onChange={e => handleYearChange(e.target.value)}
+                >
+                  {AÑOS.map(y => (
+                    <option key={y} value={y} className="bg-blue-900 text-white">{y}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      {/* Select de año */}
-      <div className="flex flex-col items-center mb-8">
-        <label className="text-lg font-semibold text-blue-900 mb-2">Seleccione el año:</label>
-        <select
-          className="w-56 px-4 py-2 rounded-lg border-2 border-pink-300 shadow focus:outline-none focus:ring-2 focus:ring-pink-400 text-blue-900 font-semibold bg-white"
-          value={año}
-          onChange={e => setAño(Number(e.target.value))}
-        >
-          {AÑOS.map(y => (
-            <option key={y} value={y}>{`Año ${y}`}</option>
-          ))}
-        </select>
-        <h2 className="mt-6 text-2xl font-bold text-blue-900">Recursos Fiscales - Año {año}</h2>
+
+      {/* Contenido principal */}
+      <div className="relative z-10 px-4 pb-12">
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+              <span className="ml-4 text-white text-lg">Cargando datos...</span>
+            </div>
+          ) : (
+            <>
+              {/* Título de la tabla */}
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-2xl px-8 py-4">
+                  <DollarSign className="w-8 h-8 text-white" />
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    Recursos Fiscales - Año {año}
+                  </h2>
+                </div>
+              </div>
+
+              {/* Tabla principal */}
+              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden mb-12">
+                <div className="w-full">
+                  <table className="w-full text-xs md:text-sm">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-blue-600 to-purple-600">
+                        {columnasFiltradas.map(col => (
+                          <th
+                            key={col.key}
+                            className="px-2 py-4 text-white font-bold text-center border-r border-white/20 last:border-r-0"
+                          >
+                            {col.label}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(RECAUDACION[año] || []).map((fila, idx) => (
+                        <tr key={idx} className={getRowClass(fila.mes)}>
+                          {columnasFiltradas.map(col => (
+                            <td
+                              key={col.key}
+                              className="px-2 py-3 text-center border-r border-gray-200 last:border-r-0 font-medium"
+                            >
+                              {formatValue(fila[col.key], col.key)}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                      {(!RECAUDACION[año] || RECAUDACION[año].length === 0) && (
+                        <tr>
+                          <td colSpan={columnasFiltradas.length} className="py-12 text-center text-gray-500 text-lg">
+                            No hay datos disponibles para este año
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Tabla Fondo Energético */}
+              {año >= 2020 && FONDO_ENERGETICO[año] && (
+                <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
+                  <div className="bg-gradient-to-r from-green-600 to-teal-600 px-6 py-4">
+                    <h3 className="text-lg font-bold text-white text-center">
+                      Fondo Energético (Antes denominado Tasa Org. Externos)
+                    </h3>
+                  </div>
+                  <div className="p-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+                      {Object.entries(FONDO_ENERGETICO[año]).map(([mes, valor]) => (
+                        <div key={mes} className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-4 border border-green-200">
+                          <div className="text-xs font-semibold text-green-800 mb-1">{mes}</div>
+                          <div className="text-sm font-bold text-green-900">
+                            {valor ? `$${valor}` : '-'}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
-      {/* Tabla de recaudación */}
-      <table className="w-full table-fixed text-center rounded-2xl border-separate border-spacing-0 mb-12 text-sm">
-          <thead>
-            <tr>
-            {columnasFiltradas.map(col => (
-              <th
-                key={col.key}
-                className="px-2 py-2 bg-blue-700 text-white font-bold uppercase border border-blue-200 first:rounded-tl-2xl last:rounded-tr-2xl"
-              >
-                  {col.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-        <tbody className="bg-blue-50">
-            {(RECAUDACION[año] || []).map((fila, idx) => (
-            <tr key={idx} className="">
-              {columnasFiltradas.map(col => (
-                <td
-                  key={col.key}
-                  className={`px-2 py-2 text-blue-900 font-medium border border-blue-200 ${col.key !== 'mes' ? 'text-pink-500 font-bold' : 'font-bold text-blue-900'}`}
-                >
-                    {col.key === 'mes' ? (
-                    <span>{fila[col.key]}</span>
-                    ) : (
-                    fila[col.key] ? <span>{`$${fila[col.key]}`}</span> : <span></span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-            {(!RECAUDACION[año] || RECAUDACION[año].length === 0) && (
-              <tr>
-              <td colSpan={columnasFiltradas.length} className="py-8 text-gray-400 text-lg">No hay datos para este año.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
     </div>
   );
 }
