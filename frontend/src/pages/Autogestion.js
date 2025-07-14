@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { 
+import {
   MagnifyingGlassIcon,
   DocumentTextIcon,
   HomeIcon,
@@ -21,6 +21,7 @@ import {
   CpuChipIcon,
   RocketLaunchIcon
 } from '@heroicons/react/24/outline';
+import BlurText from '../components/BlurText';
 
 // Datos exactos de las categorías según la imagen
 const mainCategories = [
@@ -134,9 +135,7 @@ const FuturisticSearch = ({ searchTerm, setSearchTerm }) => {
     <div className="relative max-w-4xl mx-auto mb-20">
       <div className="relative group">
         {/* Anillo de energía */}
-        <div className="absolute -inset-4 rounded-full border-2 border-cyan-400/30 animate-spin" style={{animationDuration: '8s'}}></div>
-        <div className="absolute -inset-2 rounded-full border border-blue-400/20 animate-spin" style={{animationDuration: '6s', animationDirection: 'reverse'}}></div>
-        
+        {/* Eliminado: anillos giratorios */}
         {/* Campo de búsqueda */}
         <div className="relative bg-black/40 backdrop-blur-2xl border border-cyan-400/30 rounded-full p-2 shadow-2xl">
           <div className="flex items-center bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-full">
@@ -170,7 +169,7 @@ const ModernCard = ({ category }) => {
       {/* Contenedor principal */}
       <div className="relative h-full min-h-[420px] cursor-pointer">
         {/* Fondo con efectos */}
-        <div 
+        <div
           className="absolute inset-0 rounded-3xl transition-all duration-500 group-hover:scale-105 border-2"
           style={{
             background: `linear-gradient(135deg, ${category.color}15, ${category.color}25, transparent)`,
@@ -180,7 +179,7 @@ const ModernCard = ({ category }) => {
         >
           {/* Efectos de luz */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl"></div>
-          <div 
+          <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
             style={{
               background: `radial-gradient(circle at center, ${category.color}30, transparent 70%)`
@@ -192,7 +191,7 @@ const ModernCard = ({ category }) => {
         <div className="relative h-full flex flex-col p-8 z-10">
           {/* Header con icono y título */}
           <div className="flex flex-col items-center text-center mb-6">
-            <div 
+            <div
               className="w-20 h-20 rounded-full flex items-center justify-center mb-4 border-2 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
               style={{
                 backgroundColor: `${category.color}20`,
@@ -211,7 +210,7 @@ const ModernCard = ({ category }) => {
           {/* Lista de servicios siempre visible */}
           <div className="flex-1 space-y-2">
             {category.services.map((service, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="flex items-center justify-between p-3 rounded-xl hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-white/20 group/item"
               >
@@ -225,7 +224,7 @@ const ModernCard = ({ category }) => {
 
           {/* Footer con contador */}
           <div className="mt-4 text-center">
-            <div 
+            <div
               className="inline-block px-4 py-2 rounded-full text-sm font-bold text-white border transition-all duration-300"
               style={{
                 backgroundColor: `${category.color}30`,
@@ -237,21 +236,7 @@ const ModernCard = ({ category }) => {
           </div>
         </div>
 
-        {/* Partículas flotantes */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div 
-            className="absolute top-4 left-4 w-2 h-2 rounded-full animate-pulse"
-            style={{ backgroundColor: category.color }}
-          ></div>
-          <div 
-            className="absolute top-8 right-6 w-1 h-1 rounded-full animate-pulse delay-300"
-            style={{ backgroundColor: category.color }}
-          ></div>
-          <div 
-            className="absolute bottom-6 left-8 w-1.5 h-1.5 rounded-full animate-pulse delay-700"
-            style={{ backgroundColor: category.color }}
-          ></div>
-        </div>
+        {/* Eliminado: partículas flotantes */}
       </div>
     </div>
   );
@@ -263,7 +248,7 @@ export default function Autogestion() {
 
   const filteredCategories = mainCategories.filter(category =>
     category.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    category.services.some(service => 
+    category.services.some(service =>
       service.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
@@ -272,28 +257,12 @@ export default function Autogestion() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Fondo espacial */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"></div>
-      
+
       {/* Estrellas animadas */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          ></div>
-        ))}
-      </div>
+      {/* Eliminado: partículas flotantes */}
 
       {/* Ondas de energía */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 border border-cyan-400/20 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 border border-purple-400/20 rounded-full animate-ping" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
-      </div>
+      {/* Eliminado: figuras geométricas girando */}
 
       {/* Hero Section futurista */}
       <section className="relative z-10 pt-20 pb-16 px-4">
@@ -332,7 +301,6 @@ export default function Autogestion() {
                 <span className="text-lg font-bold">
                   ¡Ahora! 👉 Manuales, guías y mucho más para facilitar tus trámites!
                 </span>
-                <SparklesIcon className="h-6 w-6 animate-pulse text-pink-300" />
               </div>
             </div>
           </div>
@@ -345,7 +313,7 @@ export default function Autogestion() {
           {filteredCategories.map((category, index) => {
             const card = <ModernCard category={category} />;
             return (
-              <div 
+              <div
                 key={category.id}
                 className="animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -368,7 +336,7 @@ export default function Autogestion() {
             </div>
             <h3 className="text-4xl font-bold text-white mb-6">No se encontraron resultados</h3>
             <p className="text-cyan-200 mb-10 text-xl">Intentá con otros términos de búsqueda</p>
-            <button 
+            <button
               onClick={() => setSearchTerm('')}
               className="px-12 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-bold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-xl hover:shadow-cyan-500/50 hover:scale-105 text-lg border border-cyan-400/30"
             >
@@ -382,11 +350,16 @@ export default function Autogestion() {
       <section className="relative z-10 py-20 mt-20">
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/60 backdrop-blur-sm"></div>
         <div className="relative max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-black text-white mb-16 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            ¿Necesitás ayuda adicional?
-          </h2>
+          {/* Título de ayuda adicional */}
+          <BlurText
+            text="¿Necesitás ayuda adicional?"
+            className="text-4xl font-black text-white mb-16 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent text-center"
+            animateBy="words"
+            direction="top"
+            delay={120}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a 
+            <a
               href="tel:0810-444-5505"
               className="group relative"
             >

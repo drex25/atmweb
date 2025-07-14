@@ -80,7 +80,8 @@ const BlurText = ({
   return (
     <p
       ref={ref}
-      className={`blur-text ${className} flex flex-wrap`}
+      className={`blur-text flex flex-wrap ${className} ${className.includes('text-center') ? 'justify-center' : ''}`}
+      style={{ textAlign: className.includes('text-center') ? 'center' : undefined }}
     >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
