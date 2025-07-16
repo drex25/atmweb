@@ -22,6 +22,7 @@ import AutogestionItemDetail from './pages/AutogestionItemDetail';
 import IngresosBrutosAutogestion from './pages/IngresosBrutosAutogestion';
 import DocumentacionEstatistica from './pages/DocumentacionEstatistica';
 import Autoridades from './pages/Autoridades';
+import Ods from './pages/Ods';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="/informacion-fiscal/estadisticas" element={<DocumentacionEstatistica/>} />
             <Route path="/beneficios" element={<BeneficiosATM />} />
             <Route path="/institucional/autoridades" element={<Autoridades />} />
+            <Route path="/ods" element={<Ods />} />
           </Routes>
         </main>
         <Footer />

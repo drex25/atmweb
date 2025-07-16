@@ -137,16 +137,15 @@ function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo Section - Mejorado */}
             <div className="flex-shrink-0 flex items-center gap-4">
-              <Link to="/" className="flex items-center gap-4" aria-label="Ir al inicio">
-                {/* Logo ATM - Más grande */}
-                <img 
-                  src="/logo-atm.png" 
-                  alt="ATM Misiones" 
-                  className="h-14 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200" 
+              <Link to="/" aria-label="Ir al inicio">
+                <img
+                  src="/logo-atm.png"
+                  alt="ATM Misiones"
+                  className="h-14 w-auto drop-shadow-sm hover:drop-shadow-md transition-all duration-200"
                 />
-                {/* Separador sutil */}
-                <div className="w-px h-10 bg-gray-300"></div>
-                {/* Logo ODS - Más pequeño */}
+              </Link>
+              <div className="w-px h-10 bg-gray-300"></div>
+              <Link to="/ods" aria-label="ODS Misiones">
                 <img
                   src="/ods.png"
                   alt="ODS Misiones"
@@ -176,8 +175,8 @@ function Navbar() {
                       ) : (
                         <button
                           className={`flex items-center px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 group ${
-                            openMenu === item.name 
-                              ? 'text-atm-primary bg-gray-50' 
+                            openMenu === item.name
+                              ? 'text-atm-primary bg-gray-50'
                               : 'text-gray-700 hover:text-atm-primary hover:bg-gray-50'
                           }`}
                           aria-haspopup="true"
@@ -202,7 +201,7 @@ function Navbar() {
                           leaveFrom="opacity-100 translate-y-0 scale-100"
                           leaveTo="opacity-0 translate-y-2 scale-95"
                         >
-                          <div 
+                          <div
                             className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[520px] bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
                             onMouseEnter={handleMenuMouseEnter}
                             onMouseLeave={handleMenuMouseLeave}
@@ -248,7 +247,7 @@ function Navbar() {
                           leaveFrom="opacity-100 translate-y-0 scale-100"
                           leaveTo="opacity-0 translate-y-2 scale-95"
                         >
-                          <div 
+                          <div
                             className="absolute left-0 mt-3 w-64 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
                             onMouseEnter={handleMenuMouseEnter}
                             onMouseLeave={handleMenuMouseLeave}
@@ -438,7 +437,7 @@ function Navbar() {
         <>
           {/* Overlay */}
           <div className="fixed inset-0 bg-black/20 z-[99] transition-opacity" onClick={() => setShowSearch(false)} />
-          
+
           {/* Modal de búsqueda profesional */}
           <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[100] w-full max-w-2xl mx-auto px-4">
             <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
@@ -448,14 +447,14 @@ function Navbar() {
                   <MagnifyingGlassIcon className="h-6 w-6 text-atm-primary" />
                   <span className="font-semibold text-gray-800">Buscar en ATM Misiones</span>
                 </div>
-                <button 
-                  onClick={() => setShowSearch(false)} 
+                <button
+                  onClick={() => setShowSearch(false)}
                   className="p-2 rounded-full hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all"
                 >
                   <XIcon className="h-5 w-5" />
                 </button>
               </div>
-              
+
               {/* Campo de búsqueda */}
               <div className="p-6">
                 <form onSubmit={handleSearch} className="relative">
@@ -477,7 +476,7 @@ function Navbar() {
                     </button>
                   </div>
                 </form>
-                
+
                 {/* Sugerencias rápidas */}
                 <div className="mt-6">
                   <p className="text-sm font-medium text-gray-600 mb-3">Búsquedas populares:</p>
