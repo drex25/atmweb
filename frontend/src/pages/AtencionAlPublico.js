@@ -402,7 +402,7 @@ const AtencionAlPublico = () => {
   useEffect(() => {
     // Load Google Maps script
     const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDfy_OfLdra2EBpXefU1bhPvmWwH0jEVrM&callback=initMap';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap';
     script.async = true;
     script.defer = true;
     
